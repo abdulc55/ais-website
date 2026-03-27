@@ -1,6 +1,6 @@
-# AIS — Abdul Intelligent Solutions
+# Spiffy Tec
 
-Agency website for AIS, a web development & SaaS company based in Cary, NC serving the Raleigh-Durham Triangle area.
+Agency website for Spiffy Tec, a web development & SaaS company based in Cary, NC serving the Raleigh-Durham Triangle area.
 
 ## Tech Stack
 
@@ -34,8 +34,15 @@ src/
 │   ├── portfolio/page.tsx      # Featured case study (Mike T Detailing) + project grid
 │   ├── about/page.tsx          # Founder story, mission, values, tech stack
 │   ├── contact/page.tsx        # Contact form + direct contact info panel
+│   ├── admin/
+│   │   ├── login/page.tsx          # Admin login
+│   │   └── leads/page.tsx          # Lead Scanner dashboard (tabbed: Search by Area + Analyze URLs)
 │   └── api/
-│       └── contact/route.ts    # POST — validates form, sends email via Resend
+│       ├── contact/route.ts        # POST — validates form, sends email via Resend
+│       └── admin/leads/
+│           ├── route.ts            # GET leads, POST mark contacted
+│           ├── analyze/route.ts    # POST — analyze specific URLs via lead scraper CLI
+│           └── discover/route.ts   # POST — Google Places search + analyze (Search by Area)
 ├── components/
 │   ├── Navbar.tsx              # Fixed header, transparent→white on scroll, mobile hamburger
 │   ├── Footer.tsx              # Dark navy, 4-column grid, social icons (GitHub, LinkedIn, X)
@@ -131,12 +138,12 @@ No props — self-contained with internal state management. Service and budget o
 
 ```
 RESEND_API_KEY          # Resend service API key for contact form emails
-CONTACT_EMAIL           # Recipient email for form submissions (defaults to contact@aintelliagents.com)
+CONTACT_EMAIL           # Recipient email for form submissions (defaults to abdul@spiffytec.com)
 ```
 
 ## SEO
 
-- **Metadata:** Defined in `layout.tsx` with title template `"%s | AIS — Abdul Intelligent Solutions"`
+- **Metadata:** Defined in `layout.tsx` with title template `"%s | Spiffy Tec"`
 - **JSON-LD:** `LocalBusiness` schema with geo coordinates (Cary, NC: 35.7915, -78.7811), service radius 50km
 - **OpenGraph + Twitter cards:** Configured globally in layout metadata
 - **Service types in schema:** Web Development, SaaS Development, Mobile App Development, SEO & Digital Marketing
@@ -206,6 +213,7 @@ npm run dev            # Start dev server on port 3001
 <!-- Append a one-liner per session so we have a running history -->
 - **2026-03-23** — Created CLAUDE.md. Updated pricing from one-time ($1,500–$5,000+) to monthly model ($99–$349/mo). Added AI Business Suite as new service and add-on.
 - **2026-03-23** — Major pricing restructure: $149-$599/mo with setup fees ($0-$3,999), monthly/annual billing toggle, revenue share model, 12-month commitment, updated headlines across all pages, generated sales PDF (AIS-Sales-Pricing-2026.pdf). Updated CLAUDE.md pricing section.
+- **2026-03-24** — Added Lead Scanner web UI at `/admin/leads`: tabbed interface with "Search by Area" (Google Places discovery → auto-analyze) and "Analyze URLs" (direct URL scan). New API routes: `/api/admin/leads/analyze` and `/api/admin/leads/discover`. Dashboard shows scores, pitch points, outreach tracking. Reads from `tools/lead-scraper/` SQLite DB.
 
 ## Planning Convention — Multi-Agent Approval
 

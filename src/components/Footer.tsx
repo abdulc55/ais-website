@@ -41,13 +41,13 @@ const company = [
 ];
 
 const socials = [
-  { icon: GithubIcon, href: "https://github.com/aintelliagents", label: "GitHub" },
+  { icon: GithubIcon, href: "https://github.com/spiffytec", label: "GitHub" },
   {
     icon: LinkedinIcon,
-    href: "https://linkedin.com/company/aintelliagents",
+    href: "https://linkedin.com/company/spiffytec",
     label: "LinkedIn",
   },
-  { icon: XIcon, href: "https://x.com/aintelliagents", label: "X (Twitter)" },
+  { icon: XIcon, href: "https://x.com/spiffytec", label: "X (Twitter)" },
 ];
 
 export function Footer() {
@@ -59,12 +59,12 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-1 mb-3">
               <span className="text-2xl font-bold tracking-tight text-white">
-                AIS
+                Spiffy Tec
               </span>
               <span className="w-2 h-2 rounded-full bg-cyan-400 mt-2" />
             </Link>
             <p className="text-sm text-gray-400 mb-1 font-medium">
-              Abdul Intelligent Solutions
+              Web Development & AI Agency
             </p>
             <p className="text-sm text-gray-500 leading-relaxed mb-5">
               Building exceptional digital experiences for businesses in the
@@ -132,10 +132,10 @@ export function Footer() {
             <ul className="space-y-2.5 text-sm text-gray-400">
               <li>
                 <a
-                  href="mailto:abdulcaesar@aintelliagents.com"
+                  href="mailto:abdul@spiffytec.com"
                   className="hover:text-white transition-colors"
                 >
-                  abdulcaesar@aintelliagents.com
+                  abdul@spiffytec.com
                 </a>
               </li>
               <li>
@@ -157,7 +157,7 @@ export function Footer() {
 
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
-          <p>&copy; 2026 Abdul Intelligent Solutions. All rights reserved.</p>
+          <p>&copy; 2026 Spiffy Tec. All rights reserved.</p>
           <p>Built with Next.js</p>
         </div>
       </div>

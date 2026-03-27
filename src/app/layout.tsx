@@ -11,11 +11,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "AIS — Web Development & AI Agency | Custom Websites Starting at $149/mo",
-    template: "%s | AIS — Abdul Intelligent Solutions",
+    default: "Spiffy Tec — Web Development & AI Agency",
+    template: "%s | Spiffy Tec",
   },
   description:
-    "AIS builds custom websites, SaaS platforms, and AI-powered business tools — starting at $149/mo with $0 setup. Live in 2 weeks, not 2 months. Serving businesses worldwide.",
+    "Spiffy Tec builds custom websites, SaaS platforms, and AI-powered tools for service businesses.",
   keywords: [
     "web development",
     "SaaS agency",
@@ -27,15 +27,15 @@ export const metadata: Metadata = {
     "React",
     "software development",
   ],
-  authors: [{ name: "Abdul Intelligent Solutions" }],
-  creator: "Abdul Intelligent Solutions",
-  metadataBase: new URL("https://aintelliagents.com"),
+  authors: [{ name: "Spiffy Tec" }],
+  creator: "Spiffy Tec",
+  metadataBase: new URL("https://spiffytec.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://aintelliagents.com",
-    siteName: "Abdul Intelligent Solutions",
-    title: "AIS — Web Development & SaaS Agency | Cary, NC",
+    url: "https://spiffytec.com",
+    siteName: "Spiffy Tec",
+    title: "Spiffy Tec — Web Development & SaaS Agency | Cary, NC",
     description:
       "Custom websites, SaaS platforms, and mobile apps for businesses in the Triangle area and beyond.",
     images: [
@@ -43,13 +43,13 @@ export const metadata: Metadata = {
         url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Abdul Intelligent Solutions",
+        alt: "Spiffy Tec",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "AIS — Web Development & SaaS Agency | Cary, NC",
+    title: "Spiffy Tec — Web Development & SaaS Agency | Cary, NC",
     description:
       "Custom websites, SaaS platforms, and mobile apps for businesses in the Triangle area and beyond.",
     images: ["/og-image.png"],
@@ -70,13 +70,13 @@ export const metadata: Metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  name: "Abdul Intelligent Solutions",
-  alternateName: "AIS",
+  name: "Spiffy Tec",
+  alternateName: "Spiffy Tec",
   description:
     "Web development and SaaS agency specializing in custom websites, SaaS platforms, and mobile apps.",
-  url: "https://aintelliagents.com",
+  url: "https://spiffytec.com",
   telephone: "(984) 215-1498",
-  email: "abdulcaesar@aintelliagents.com",
+  email: "abdul@spiffytec.com",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Cary",
@@ -100,9 +100,9 @@ const jsonLd = {
     geoRadius: "50000",
   },
   sameAs: [
-    "https://github.com/aintelliagents",
-    "https://linkedin.com/company/aintelliagents",
-    "https://x.com/aintelliagents",
+    "https://github.com/spiffytec",
+    "https://linkedin.com/company/spiffytec",
+    "https://x.com/spiffytec",
   ],
   serviceType: [
     "Web Development",

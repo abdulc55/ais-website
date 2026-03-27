@@ -8,8 +8,9 @@ import { cn } from "@/lib/cn";
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
-  { label: "Portfolio", href: "/portfolio" },
+  { label: "How It Works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
+  { label: "Portfolio", href: "/portfolio" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -55,7 +56,7 @@ export function Navbar() {
                 scrolled ? "text-primary-800" : "text-white"
               )}
             >
-              AIS
+              Spiffy Tec
             </span>
             <span className="w-2 h-2 rounded-full bg-cyan-400 mt-2" />
           </Link>

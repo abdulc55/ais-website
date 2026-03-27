@@ -17,7 +17,7 @@ interface ContactFormData {
 }
 
 export async function sendContactEmail(data: ContactFormData) {
-  const toEmail = process.env.CONTACT_EMAIL || "abdulcaesar@aintelliagents.com";
+  const toEmail = process.env.CONTACT_EMAIL || "abdul@spiffytec.com";
 
   const html = `
     <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; max-width: 600px; margin: 0 auto; padding: 24px;">
@@ -75,14 +75,14 @@ export async function sendContactEmail(data: ContactFormData) {
         </table>
       </div>
       <p style="color: #9ca3af; font-size: 12px; text-align: center; margin-top: 16px;">
-        Sent from the AIS website contact form
+        Sent from the Spiffy Tec website contact form
       </p>
     </div>
   `;
 
   const resend = getResendClient();
   const { error } = await resend.emails.send({
-    from: "AIS Website <onboarding@resend.dev>",
+    from: "Spiffy Tec <onboarding@resend.dev>",
     to: [toEmail],
     replyTo: data.email,
     subject: `New inquiry from ${data.name}${data.businessName ? ` (${data.businessName})` : ""}`,

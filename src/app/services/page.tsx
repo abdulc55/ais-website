@@ -6,15 +6,15 @@ import { Hero } from "@/components/Hero";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Custom websites, SaaS platforms, mobile apps, AI business tools, and SEO services — starting at $149/mo.",
+    "Custom websites, SaaS platforms, mobile apps, AI tools, and SEO for service businesses.",
 };
 
 const services = [
   {
     title: "Custom Websites",
     price: "$149/mo",
-    lead: "Your business deserves more than a template.",
-    body: "We design and build professional, mobile-responsive websites optimized for search engines and built to convert visitors into paying customers. Every site is hand-crafted to reflect your brand and serve your goals. $0 setup — just one simple monthly price.",
+    lead: "Designed from scratch. Built to convert.",
+    body: "Mobile-responsive, search-optimized websites crafted to reflect your brand and turn visitors into customers. No templates. No page builders. Real code.",
     features: [
       "Custom design tailored to your brand",
       "Fully mobile responsive",
@@ -55,8 +55,8 @@ const services = [
   {
     title: "AI Business Suite",
     price: "+$99/mo add-on",
-    lead: "Let AI work for your business 24/7.",
-    body: "Our AI-powered tools give your business superpowers. A chatbot that answers customer questions and helps with booking around the clock, an analytics dashboard that predicts revenue and spots trends, and a marketing generator that creates social posts, emails, and review responses in seconds.",
+    lead: "Intelligence, built in.",
+    body: "AI tools that answer customers, surface insights, and write your marketing — a chatbot for 24/7 support, an analytics dashboard that predicts revenue, and a content generator for social posts, emails, and review responses.",
     features: [
       "24/7 AI customer chatbot",
       "Revenue predictions and business insights",
@@ -132,14 +132,13 @@ export default function ServicesPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Not Sure What You Need?</h2>
           <p className="mt-4 text-lg text-gray-300">
-            No problem. Book a free consultation and we&apos;ll help you figure out the best plan
-            for your business. No commitment, no pressure.
+            Not sure where to start? We&apos;ll walk you through it.
           </p>
           <Link
             href="/contact"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 font-semibold text-navy hover:bg-amber-400 transition-colors"
           >
-            Book Your Free Strategy Call <ArrowRight className="h-4 w-4" />
+            Get in Touch <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

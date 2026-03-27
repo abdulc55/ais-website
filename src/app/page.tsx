@@ -12,12 +12,12 @@ export default function Home() {
     <>
       {/* Section 1 — Hero */}
       <Hero
-        badge="Web Development & AI Agency"
-        title="Your Website Shouldn't Cost $15,000. It Should Make You $15,000."
-        highlight="Make You $15,000"
-        subtitle="Custom websites and AI-powered platforms — live in 2 weeks, not 2 months. $0 setup on Starter plans. Serving businesses worldwide."
-        primaryCta={{ label: "Book Your Free Strategy Call", href: "/contact" }}
-        secondaryCta={{ label: "View Our Work", href: "/portfolio" }}
+        badge="Web Development & AI"
+        title="Smart Websites. Real Revenue."
+        highlight="Real Revenue"
+        subtitle="We design, build, and run your entire web presence. You focus on your business."
+        primaryCta={{ label: "Start a Project", href: "/contact" }}
+        secondaryCta={{ label: "See Our Work", href: "/portfolio" }}
         tall
       />
 
@@ -84,7 +84,7 @@ export default function Home() {
                 AI Business Suite
               </h2>
               <p className="mt-3 text-lg text-gray-300 leading-relaxed">
-                Give your business an unfair advantage. Our AI tools work 24/7 — answering customer questions, predicting revenue trends, and generating marketing content. No other agency at our price point offers this.
+                AI, built in. Our tools answer customer questions, surface revenue insights, and generate marketing content. Every plan includes what most agencies charge extra for.
               </p>
               <Link
                 href="/services"
@@ -145,9 +145,9 @@ export default function Home() {
       {/* Section 4 — Stats */}
       <section className="bg-navy py-20 md:py-28 px-4">
         <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4 text-center">
-          <StatCounter value={2} suffix=" Weeks" label="Average Delivery" />
+          <StatCounter value={2} suffix=" Weeks" label="Launch Time" />
           <StatCounter value={100} suffix="%" label="Client Retention" />
-          <StatCounter value={0} suffix="" label="$0 Starter Setup" prefix="$" />
+          <StatCounter value={24} suffix="/7" label="Your Site Never Sleeps" />
           <StatCounter value={24} suffix="hr" label="Response Time" />
         </div>
       </section>
@@ -156,7 +156,7 @@ export default function Home() {
       <section className="bg-white py-20 md:py-28 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
-            badge="Why AIS"
+            badge="Why Spiffy Tec"
             title="Why 10 out of 10 Clients Stay"
             highlight="Stay"
             centered
@@ -204,7 +204,7 @@ export default function Home() {
           <TestimonialCard
             name="Mike T."
             business="Mike T Detailing"
-            quote="AIS built our entire booking platform from scratch. Online scheduling, payments, VIP memberships — everything we needed to run our business. The quality is incredible and they delivered fast."
+            quote="Spiffy Tec built our entire booking platform from scratch. Online scheduling, payments, VIP memberships — everything we needed to run our business. The quality is incredible and they delivered fast."
             rating={5}
           />
         </div>
@@ -214,17 +214,17 @@ export default function Home() {
       <section className="bg-navy py-20 md:py-28 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
-            Let&apos;s Get Your Business Online This Month
+            Ready when you are.
           </h2>
           <p className="mt-4 text-lg text-gray-300">
-            Book a free strategy call. We only take 3 new clients per month.
+            Tell us what you&apos;re building.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 font-semibold text-navy hover:bg-amber-400 transition-colors"
             >
-              Book Your Free Strategy Call <ArrowRight className="h-4 w-4" />
+              Get in Touch <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href="tel:+19842151498"

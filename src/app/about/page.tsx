@@ -8,7 +8,7 @@ import { TechBadge } from "@/components/TechBadge";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Meet Abdul Shakur Caesar, founder of AIS — building affordable, high-quality web solutions for businesses worldwide.",
+    "Meet Abdul Shakur Caesar, founder of Spiffy Tec — building websites, platforms, and AI tools for service businesses.",
 };
 
 const values = [
@@ -51,9 +51,9 @@ export default function AboutPage() {
   return (
     <>
       <Hero
-        title="Meet the Builder Behind AIS"
-        highlight="AIS"
-        subtitle="One developer. One mission. Professional websites for every business — without the agency price tag."
+        title="Meet the Builder Behind Spiffy Tec"
+        highlight="Spiffy Tec"
+        subtitle="The people behind the product."
       />
 
       {/* Story */}
@@ -63,7 +63,7 @@ export default function AboutPage() {
           <div className="relative h-80 md:h-[28rem] rounded-2xl overflow-hidden">
             <Image
               src="/images/abdul.jpg"
-              alt="Abdul Shakur Caesar — Founder of Abdul Intelligent Solutions"
+              alt="Abdul Shakur Caesar — Founder of Spiffy Tec"
               fill
               className="object-cover object-top"
               priority
@@ -78,15 +78,14 @@ export default function AboutPage() {
               Hi, I&apos;m Abdul Shakur Caesar
             </h2>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Developer, problem solver, and the founder of Abdul Intelligent Solutions. I started
-              AIS after watching local businesses in the Raleigh-Durham area lose customers every
+              Developer, problem solver, and the founder of Spiffy Tec. I started
+              Spiffy Tec after watching local businesses in the Raleigh-Durham area lose customers every
               day because they had no website — or worse, a terrible one.
             </p>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Too many agencies charge too much and deliver too little. I built AIS to change that —
-              to provide affordable, high-quality web solutions that actually move the needle for
-              small businesses. Whether you need a simple landing page or a full SaaS platform, we
-              build it right, we build it fast, and we build it to last.
+              I built Spiffy Tec to do one thing: build software that makes businesses money.
+              Whether you need a landing page or a full SaaS platform, we
+              build it right, we build it fast, and we stand behind it.
             </p>
             <p className="mt-4 text-gray-600 leading-relaxed">
               Every business deserves a professional online presence. That&apos;s not a tagline —
@@ -101,12 +100,11 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-sm font-semibold text-primary-600 uppercase tracking-wider">Our Mission</p>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy">
-            Great Websites Shouldn&apos;t Cost a Fortune.
+            Better tools. Better businesses.
           </h2>
           <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-            We believe the quality of your website shouldn&apos;t depend on the size of your budget.
-            Every project we take on gets the same level of care, craftsmanship, and attention to
-            detail — whether it&apos;s a 3-page site or a full-featured platform.
+            Every project gets the same level of craft and attention to detail —
+            whether it&apos;s a 3-page site or a full-featured platform.
           </p>
         </div>
       </section>
@@ -166,13 +164,13 @@ export default function AboutPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Let&apos;s Work Together</h2>
           <p className="mt-4 text-lg text-gray-300">
-            Ready to give your business the online presence it deserves? Let&apos;s talk.
+            Tell us what you&apos;re building.
           </p>
           <Link
             href="/contact"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 font-semibold text-navy hover:bg-amber-400 transition-colors"
           >
-            Book Your Free Strategy Call <ArrowRight className="h-4 w-4" />
+            Get in Touch <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>
