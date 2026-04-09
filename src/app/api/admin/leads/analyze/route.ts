@@ -8,67 +8,33 @@
  * Returns: { success: true, report: object } or { error: string }
  */
 import { NextResponse } from "next/server";
-import { execFile } from "child_process";
-import { promisify } from "util";
 import path from "path";
-import fs from "fs";
-
-const execFileAsync = promisify(execFile);
-
-/** Path to the lead scraper tool (sibling directory in the workspace) */
-function getScraperPath(): string {
-  // In production (Vercel), the scraper won't be available as a sibling directory.
-  // This feature only works in local development or self-hosted deployments.
-  const candidates = [
-    path.resolve(process.cwd(), "../tools/lead-scraper"),
-    path.resolve(process.cwd(), "../../tools/lead-scraper"),
-    path.resolve(process.env.SCRAPER_PATH || ""),
-  ];
-
-  for (const dir of candidates) {
-    if (dir && fs.existsSync(path.join(dir, "src/index.ts"))) {
-      return dir;
-    }
-  }
-
-  throw new Error("Lead scraper tool not found. Set SCRAPER_PATH env var or ensure tools/lead-scraper exists.");
-}
-
-/** Validate a URL string — must be http(s) */
-function isValidUrl(url: string): boolean {
-  try {
-    const parsed = new URL(url);
-    return parsed.protocol === "http:" || parsed.protocol === "https:";
-  } catch {
-    return false;
-  }
-}
+import {
+  execFileAsync,
+  getScraperPath,
+  isValidUrl,
+  readLatestReport,
+} from "@/lib/scraper";
+import { analyzeUrlsSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { urls, type } = body as { urls?: string[]; type?: string };
 
-    if (!urls || !Array.isArray(urls) || urls.length === 0) {
-      return NextResponse.json(
-        { error: "At least one URL is required" },
-        { status: 400 }
-      );
+    // Zod validation for structure
+    const parsed = analyzeUrlsSchema.safeParse(body);
+    if (!parsed.success) {
+      const errors = parsed.error.issues.map((i) => i.message);
+      return NextResponse.json({ error: errors.join(", ") }, { status: 400 });
     }
 
-    // Limit to 10 URLs per request to prevent abuse
-    if (urls.length > 10) {
-      return NextResponse.json(
-        { error: "Maximum 10 URLs per request" },
-        { status: 400 }
-      );
-    }
+    const { urls, type } = parsed.data;
 
-    // Validate all URLs
+    // Additional security validation (control chars, null bytes, length)
     const invalidUrls = urls.filter((u) => !isValidUrl(u));
     if (invalidUrls.length > 0) {
       return NextResponse.json(
-        { error: `Invalid URL(s): ${invalidUrls.join(", ")}. Must start with http:// or https://` },
+        { error: `Invalid URL(s): ${invalidUrls.join(", ")}. Must be valid http:// or https:// URLs.` },
         { status: 400 }
       );
     }
@@ -101,19 +67,10 @@ export async function POST(request: Request) {
       console.error("Scraper stderr:", stderr);
     }
 
-    // Find the most recent report JSON file
-    const reportsDir = path.join(scraperDir, "reports");
-    if (fs.existsSync(reportsDir)) {
-      const files = fs.readdirSync(reportsDir)
-        .filter((f) => f.endsWith(".json"))
-        .sort()
-        .reverse();
-
-      if (files.length > 0) {
-        const reportPath = path.join(reportsDir, files[0]);
-        const report = JSON.parse(fs.readFileSync(reportPath, "utf-8"));
-        return NextResponse.json({ success: true, report, output: stdout });
-      }
+    // Read the most recent report
+    const report = readLatestReport(scraperDir);
+    if (report) {
+      return NextResponse.json({ success: true, report, output: stdout });
     }
 
     // If no report file, return the stdout

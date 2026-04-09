@@ -57,7 +57,7 @@ export default function AboutPage() {
       />
 
       {/* Story */}
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-6xl mx-auto grid gap-12 md:grid-cols-2 items-center">
           {/* Photo */}
           <div className="relative h-80 md:h-[28rem] rounded-2xl overflow-hidden">
@@ -73,7 +73,7 @@ export default function AboutPage() {
 
           {/* Content */}
           <div>
-            <p className="text-sm font-semibold text-primary-600 uppercase tracking-wider">Our Story</p>
+            <p className="text-sm font-semibold text-amber-dark uppercase tracking-wider">Our Story</p>
             <h2 className="mt-2 text-3xl md:text-4xl font-bold text-navy">
               Hi, I&apos;m Abdul Shakur Caesar
             </h2>
@@ -98,7 +98,7 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="bg-surface-muted py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-sm font-semibold text-primary-600 uppercase tracking-wider">Our Mission</p>
+          <p className="text-sm font-semibold text-amber-dark uppercase tracking-wider">Our Mission</p>
           <h2 className="mt-4 text-3xl md:text-4xl font-bold text-navy">
             Better tools. Better businesses.
           </h2>
@@ -110,16 +110,16 @@ export default function AboutPage() {
       </section>
 
       {/* Values */}
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-navy text-center">Our Values</h2>
           <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {values.map((v) => (
               <div
                 key={v.title}
-                className="card-shadow rounded-2xl bg-white border border-gray-100 p-8 text-center"
+                className="card-shadow rounded-2xl bg-white p-8 text-center"
               >
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-light text-amber-dark">
                   <v.icon className="h-7 w-7" />
                 </div>
                 <h3 className="text-xl font-bold text-navy">{v.title}</h3>
@@ -146,9 +146,9 @@ export default function AboutPage() {
       </section>
 
       {/* Location */}
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <p className="text-sm font-semibold text-primary-600 uppercase tracking-wider">Location</p>
+          <p className="text-sm font-semibold text-amber-dark uppercase tracking-wider">Location</p>
           <h2 className="mt-2 text-3xl md:text-4xl font-bold text-navy">
             Based in North Carolina. Serving the World.
           </h2>
@@ -163,12 +163,12 @@ export default function AboutPage() {
       <section className="bg-navy py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Let&apos;s Work Together</h2>
-          <p className="mt-4 text-lg text-gray-300">
+          <p className="mt-4 text-lg text-ice/60">
             Tell us what you&apos;re building.
           </p>
           <Link
             href="/contact"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 font-semibold text-navy hover:bg-amber-400 transition-colors"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
           >
             Get in Touch <ArrowRight className="h-4 w-4" />
           </Link>

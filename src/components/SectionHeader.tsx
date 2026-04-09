@@ -29,7 +29,7 @@ export function SectionHeader({
   return (
     <div className={cn(centered && "text-center")}>
       {badge && (
-        <span className="inline-block bg-primary-50 text-primary-600 text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+        <span className="inline-block bg-amber-light text-amber-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
           {badge}
         </span>
       )}

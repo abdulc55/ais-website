@@ -8,70 +8,27 @@
  * Returns: { success: true, report: object, count: number }
  */
 import { NextResponse } from "next/server";
-import { execFile } from "child_process";
-import { promisify } from "util";
 import path from "path";
 import fs from "fs";
-
-const execFileAsync = promisify(execFile);
-
-/** Map business type slugs to Google Places search terms */
-const SEARCH_TERMS: Record<string, string> = {
-  detailing: "auto detailing",
-  "pressure-washing": "pressure washing",
-  "lawn-care": "lawn care landscaping",
-  cleaning: "house cleaning service",
-  restaurant: "restaurant",
-  "law-firm": "law firm attorney",
-  dental: "dentist dental office",
-  salon: "hair salon barbershop",
-  gym: "gym fitness center",
-  boutique: "clothing boutique store",
-  plumber: "plumber plumbing",
-  electrician: "electrician electrical",
-  hvac: "hvac heating cooling",
-  other: "",
-};
-
-/** Find the lead scraper tool directory */
-function getScraperPath(): string {
-  const candidates = [
-    path.resolve(process.cwd(), "../tools/lead-scraper"),
-    path.resolve(process.cwd(), "../../tools/lead-scraper"),
-    path.resolve(process.env.SCRAPER_PATH || ""),
-  ];
-  for (const dir of candidates) {
-    if (dir && fs.existsSync(path.join(dir, "src/index.ts"))) {
-      return dir;
-    }
-  }
-  throw new Error("Lead scraper tool not found. Set SCRAPER_PATH env var.");
-}
+import {
+  execFileAsync,
+  getScraperPath,
+  readLatestReport,
+  SEARCH_TERMS,
+} from "@/lib/scraper";
+import { discoverLeadsSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { businessType, location, limit = 25 } = body as {
-      businessType?: string;
-      location?: string;
-      limit?: number;
-    };
-
-    if (!location || !location.trim()) {
-      return NextResponse.json(
-        { error: "Location is required (e.g., 'Raleigh NC')" },
-        { status: 400 }
-      );
+    const parsed = discoverLeadsSchema.safeParse(body);
+    if (!parsed.success) {
+      const errors = parsed.error.issues.map((i) => i.message);
+      return NextResponse.json({ error: errors.join(", ") }, { status: 400 });
     }
 
-    if (!businessType) {
-      return NextResponse.json(
-        { error: "Business type is required" },
-        { status: 400 }
-      );
-    }
-
-    const clampedLimit = Math.min(Math.max(1, limit), 25);
+    const { businessType, location, limit } = parsed.data;
+    const clampedLimit = limit;
 
     // Check if scraper binary exists before attempting to exec
     let scraperDir: string;
@@ -132,25 +89,15 @@ export async function POST(request: Request) {
       console.error("Scraper stderr:", stderr);
     }
 
-    // Find the most recent report JSON file
-    const reportsDir = path.join(scraperDir, "reports");
-    if (fs.existsSync(reportsDir)) {
-      const files = fs
-        .readdirSync(reportsDir)
-        .filter((f) => f.endsWith(".json"))
-        .sort()
-        .reverse();
-
-      if (files.length > 0) {
-        const reportPath = path.join(reportsDir, files[0]);
-        const report = JSON.parse(fs.readFileSync(reportPath, "utf-8"));
-        return NextResponse.json({
-          success: true,
-          report,
-          count: report.totalBusinesses || 0,
-          query,
-        });
-      }
+    // Read the most recent report
+    const report = readLatestReport(scraperDir);
+    if (report) {
+      return NextResponse.json({
+        success: true,
+        report,
+        count: (report.totalBusinesses as number) || 0,
+        query,
+      });
     }
 
     return NextResponse.json({ success: true, output: stdout, count: 0, query });

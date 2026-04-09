@@ -3,10 +3,24 @@ import path from "path";
 
 const DB_PATH = path.resolve(process.cwd(), "../tools/lead-scraper/leads.db");
 
-function getDb(): Database.Database {
-  const db = new Database(DB_PATH, { readonly: true });
+function getDb(readonly = true): Database.Database {
+  const db = new Database(DB_PATH, { readonly });
   db.pragma("journal_mode = WAL");
   return db;
+}
+
+// ─── Row Types ──────────────────────────────────────────────────────────────
+
+interface CountRow {
+  c: number;
+}
+
+interface AvgRow {
+  avg: number | null;
+}
+
+interface SumRow {
+  t: number;
 }
 
 export interface LeadStats {
@@ -52,48 +66,72 @@ export interface LeadRow {
   lastContactedAt: string | null;
 }
 
-export function getLeadStats(): LeadStats {
-  const db = getDb();
-  try {
-    const total = (
-      db.prepare("SELECT COUNT(DISTINCT business_id) as c FROM scans").get() as any
-    ).c;
-    const avgScore = (
-      db
-        .prepare(
-          "SELECT AVG(opportunity_score) as avg FROM scans WHERE id IN (SELECT MAX(id) FROM scans GROUP BY business_id)"
-        )
-        .get() as any
-    ).avg || 0;
-    const hotLeads = (
-      db
-        .prepare(
-          "SELECT COUNT(*) as c FROM scans WHERE id IN (SELECT MAX(id) FROM scans GROUP BY business_id) AND opportunity_score >= 6"
-        )
-        .get() as any
-    ).c;
-    const potentialMRR = (
-      db
-        .prepare(
-          "SELECT COALESCE(SUM(estimated_mrr), 0) as t FROM scans WHERE id IN (SELECT MAX(id) FROM scans GROUP BY business_id) AND score_label IN ('critical', 'poor')"
-        )
-        .get() as any
-    ).t;
-
-    return { total, avgScore: Math.round(avgScore * 10) / 10, hotLeads, potentialMRR };
-  } finally {
-    db.close();
-  }
+interface LeadRowRaw extends Omit<LeadRow, "contacted"> {
+  contacted: number;
 }
 
-export function getScoreDistribution(): ScoreLabelCount[] {
+export interface NoWebsiteLead {
+  id: number;
+  name: string;
+  phone: string | null;
+  address: string | null;
+  businessType: string | null;
+  googleRating: number | null;
+  googleReviews: number | null;
+  createdAt: string;
+  contacted: boolean;
+  lastContactedAt: string | null;
+}
+
+interface NoWebsiteLeadRaw extends Omit<NoWebsiteLead, "contacted"> {
+  contacted: number;
+}
+
+// ─── Queries (Latest Scan Subquery) ─────────────────────────────────────────
+
+/** Common subquery: get only the latest scan per business */
+const LATEST_SCAN = "SELECT MAX(id) FROM scans GROUP BY business_id";
+
+// ─── Public API ─────────────────────────────────────────────────────────────
+
+/**
+ * Fetch all dashboard data in a single database connection.
+ * Returns stats, score distribution, business types, leads, and no-website leads.
+ */
+export function getAllDashboardData(options?: {
+  type?: string;
+  label?: string;
+  sort?: string;
+  order?: string;
+}): {
+  stats: LeadStats;
+  byLabel: ScoreLabelCount[];
+  byType: BusinessTypeStats[];
+  leads: LeadRow[];
+  noWebsiteLeads: NoWebsiteLead[];
+  noWebsiteCount: number;
+} {
   const db = getDb();
   try {
-    return db
+    // Stats
+    const total = (db.prepare(`SELECT COUNT(DISTINCT business_id) as c FROM scans`).get() as CountRow).c;
+    const avgRaw = (db.prepare(`SELECT AVG(opportunity_score) as avg FROM scans WHERE id IN (${LATEST_SCAN})`).get() as AvgRow).avg || 0;
+    const hotLeads = (db.prepare(`SELECT COUNT(*) as c FROM scans WHERE id IN (${LATEST_SCAN}) AND opportunity_score >= 6`).get() as CountRow).c;
+    const potentialMRR = (db.prepare(`SELECT COALESCE(SUM(estimated_mrr), 0) as t FROM scans WHERE id IN (${LATEST_SCAN}) AND score_label IN ('critical', 'poor')`).get() as SumRow).t;
+
+    const stats: LeadStats = {
+      total,
+      avgScore: Math.round(avgRaw * 10) / 10,
+      hotLeads,
+      potentialMRR,
+    };
+
+    // Score distribution
+    const byLabel = db
       .prepare(
         `SELECT score_label as label, COUNT(*) as count
          FROM scans
-         WHERE id IN (SELECT MAX(id) FROM scans GROUP BY business_id)
+         WHERE id IN (${LATEST_SCAN})
          GROUP BY score_label
          ORDER BY CASE score_label
            WHEN 'critical' THEN 1 WHEN 'poor' THEN 2
@@ -101,41 +139,24 @@ export function getScoreDistribution(): ScoreLabelCount[] {
          END`
       )
       .all() as ScoreLabelCount[];
-  } finally {
-    db.close();
-  }
-}
 
-export function getBusinessTypes(): BusinessTypeStats[] {
-  const db = getDb();
-  try {
-    return db
+    // Business types
+    const byType = db
       .prepare(
         `SELECT COALESCE(b.business_type, 'untagged') as type,
                 COUNT(DISTINCT b.id) as count,
                 ROUND(AVG(s.opportunity_score), 1) as avgScore
          FROM businesses b
          JOIN scans s ON s.business_id = b.id
-         WHERE s.id IN (SELECT MAX(id) FROM scans GROUP BY business_id)
+         WHERE s.id IN (${LATEST_SCAN})
          GROUP BY b.business_type
          ORDER BY avgScore DESC`
       )
       .all() as BusinessTypeStats[];
-  } finally {
-    db.close();
-  }
-}
 
-export function getLeads(options?: {
-  type?: string;
-  label?: string;
-  sort?: string;
-  order?: string;
-}): LeadRow[] {
-  const db = getDb();
-  try {
-    let where = "WHERE s.id IN (SELECT MAX(id) FROM scans GROUP BY business_id)";
-    const params: any[] = [];
+    // Leads (with filtering & sorting)
+    let where = `WHERE s.id IN (${LATEST_SCAN})`;
+    const params: (string | number)[] = [];
 
     if (options?.type) {
       where += " AND b.business_type = ?";
@@ -155,7 +176,7 @@ export function getLeads(options?: {
           : "s.opportunity_score";
     const sortDir = options?.order === "asc" ? "ASC" : "DESC";
 
-    const rows = db
+    const rawLeads = db
       .prepare(
         `SELECT
            b.id, b.name, b.website, b.phone, b.address,
@@ -181,34 +202,15 @@ export function getLeads(options?: {
          ${where}
          ORDER BY ${sortCol} ${sortDir}`
       )
-      .all(...params) as any[];
+      .all(...params) as LeadRowRaw[];
 
-    return rows.map((r) => ({
+    const leads: LeadRow[] = rawLeads.map((r) => ({
       ...r,
       contacted: r.contacted === 1,
     }));
-  } finally {
-    db.close();
-  }
-}
 
-export interface NoWebsiteLead {
-  id: number;
-  name: string;
-  phone: string | null;
-  address: string | null;
-  businessType: string | null;
-  googleRating: number | null;
-  googleReviews: number | null;
-  createdAt: string;
-  contacted: boolean;
-  lastContactedAt: string | null;
-}
-
-export function getNoWebsiteLeads(): NoWebsiteLead[] {
-  const db = getDb();
-  try {
-    const rows = db
+    // No-website leads
+    const rawNoWebsite = db
       .prepare(
         `SELECT
            b.id, b.name, b.phone, b.address,
@@ -222,26 +224,55 @@ export function getNoWebsiteLeads(): NoWebsiteLead[] {
          WHERE b.website LIKE 'no-website://%'
          ORDER BY b.google_rating DESC NULLS LAST`
       )
-      .all() as any[];
+      .all() as NoWebsiteLeadRaw[];
 
-    return rows.map((r) => ({
+    const noWebsiteLeads: NoWebsiteLead[] = rawNoWebsite.map((r) => ({
       ...r,
       contacted: r.contacted === 1,
     }));
+
+    const noWebsiteCount = (
+      db.prepare("SELECT COUNT(*) as c FROM businesses WHERE website LIKE 'no-website://%'").get() as CountRow
+    ).c;
+
+    return { stats, byLabel, byType, leads, noWebsiteLeads, noWebsiteCount };
   } finally {
     db.close();
   }
+}
+
+/** Legacy individual query functions (for backward compatibility) */
+
+export function getLeadStats(): LeadStats {
+  return getAllDashboardData().stats;
+}
+
+export function getScoreDistribution(): ScoreLabelCount[] {
+  return getAllDashboardData().byLabel;
+}
+
+export function getBusinessTypes(): BusinessTypeStats[] {
+  return getAllDashboardData().byType;
+}
+
+export function getLeads(options?: {
+  type?: string;
+  label?: string;
+  sort?: string;
+  order?: string;
+}): LeadRow[] {
+  return getAllDashboardData(options).leads;
+}
+
+export function getNoWebsiteLeads(): NoWebsiteLead[] {
+  return getAllDashboardData().noWebsiteLeads;
 }
 
 export function getNoWebsiteCount(): number {
-  const db = getDb();
-  try {
-    return (db.prepare("SELECT COUNT(*) as c FROM businesses WHERE website LIKE 'no-website://%'").get() as any).c;
-  } finally {
-    db.close();
-  }
+  return getAllDashboardData().noWebsiteCount;
 }
 
+/** Mark a business as contacted (writes to DB — not readonly) */
 export function markContacted(businessId: number, method: string, notes?: string): void {
   const dbPath = path.resolve(process.cwd(), "../tools/lead-scraper/leads.db");
   const db = new Database(dbPath);

@@ -1,13 +1,6 @@
 import { NextResponse } from "next/server";
-import {
-  getLeadStats,
-  getScoreDistribution,
-  getBusinessTypes,
-  getLeads,
-  getNoWebsiteLeads,
-  getNoWebsiteCount,
-  markContacted,
-} from "@/lib/leads-db";
+import { getAllDashboardData, markContacted } from "@/lib/leads-db";
+import { markContactedSchema } from "@/lib/validations";
 
 export async function GET(request: Request) {
   try {
@@ -17,19 +10,14 @@ export async function GET(request: Request) {
     const sort = url.searchParams.get("sort") || undefined;
     const order = url.searchParams.get("order") || undefined;
 
-    const [stats, byLabel, byType, leads, noWebsiteLeads, noWebsiteCount] = [
-      getLeadStats(),
-      getScoreDistribution(),
-      getBusinessTypes(),
-      getLeads({ type, label, sort, order }),
-      getNoWebsiteLeads(),
-      getNoWebsiteCount(),
-    ];
+    const data = getAllDashboardData({ type, label, sort, order });
 
-    return NextResponse.json({ stats, byLabel, byType, leads, noWebsiteLeads, noWebsiteCount });
-  } catch (err: any) {
+    return NextResponse.json(data);
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Failed to load leads";
+    console.error("Leads GET error:", err);
     return NextResponse.json(
-      { error: err.message || "Failed to load leads" },
+      { error: message },
       { status: 500 }
     );
   }
@@ -37,18 +25,20 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const { businessId, method, notes } = await request.json();
-    if (!businessId || !method) {
-      return NextResponse.json(
-        { error: "businessId and method are required" },
-        { status: 400 }
-      );
+    const body = await request.json();
+    const parsed = markContactedSchema.safeParse(body);
+    if (!parsed.success) {
+      const errors = parsed.error.issues.map((i) => i.message);
+      return NextResponse.json({ error: errors.join(", ") }, { status: 400 });
     }
+    const { businessId, method, notes } = parsed.data;
     markContacted(businessId, method, notes);
     return NextResponse.json({ success: true });
-  } catch (err: any) {
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Failed to log outreach";
+    console.error("Leads POST error:", err);
     return NextResponse.json(
-      { error: err.message || "Failed to log outreach" },
+      { error: message },
       { status: 500 }
     );
   }

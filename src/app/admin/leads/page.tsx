@@ -234,8 +234,8 @@ export default function LeadsDashboard() {
       const res = await fetch(`/api/admin/leads?${params}`);
       if (!res.ok) throw new Error("Failed to load");
       setData(await res.json());
-    } catch (err: any) {
-      setError(err.message);
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : "Failed to load leads");
     } finally {
       setLoading(false);
     }
@@ -243,6 +243,7 @@ export default function LeadsDashboard() {
 
   useEffect(() => {
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filterLabel, filterType, sortField, sortOrder]);
 
   async function handleMarkContacted(businessId: number, method: string) {
@@ -962,7 +963,7 @@ function StatCard({
   value,
   color,
 }: {
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: string | number;
   color?: string;

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import type { SVGProps } from "react";
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -57,16 +58,19 @@ export function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
-            <Link href="/" className="flex items-center gap-1 mb-3">
-              <span className="text-2xl font-bold tracking-tight text-white">
-                Spiffy Tec
-              </span>
-              <span className="w-2 h-2 rounded-full bg-cyan-400 mt-2" />
+            <Link href="/" className="inline-block mb-3">
+              <Image
+                src="/logo.png"
+                alt="Spiffy Tec"
+                width={140}
+                height={38}
+                className="h-8 w-auto"
+              />
             </Link>
-            <p className="text-sm text-gray-400 mb-1 font-medium">
+            <p className="text-sm text-ice/60 mb-1 font-medium">
               Web Development & AI Agency
             </p>
-            <p className="text-sm text-gray-500 leading-relaxed mb-5">
+            <p className="text-sm text-ice/40 leading-relaxed mb-5">
               Building exceptional digital experiences for businesses in the
               Triangle area and beyond.
             </p>
@@ -78,7 +82,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-primary-600 hover:text-white transition-colors"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-ice/50 hover:bg-amber hover:text-navy-dark transition-colors"
                 >
                   <s.icon className="w-4 h-4" />
                 </a>
@@ -88,7 +92,7 @@ export function Footer() {
 
           {/* Services column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
               Services
             </h3>
             <ul className="space-y-2.5">
@@ -96,7 +100,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-ice/50 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -107,7 +111,7 @@ export function Footer() {
 
           {/* Company column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
               Company
             </h3>
             <ul className="space-y-2.5">
@@ -115,7 +119,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-gray-400 hover:text-white transition-colors"
+                    className="text-sm text-ice/50 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -126,10 +130,10 @@ export function Footer() {
 
           {/* Contact column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-300 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
               Get in Touch
             </h3>
-            <ul className="space-y-2.5 text-sm text-gray-400">
+            <ul className="space-y-2.5 text-sm text-ice/50">
               <li>
                 <a
                   href="mailto:abdul@spiffytec.com"
@@ -156,9 +160,8 @@ export function Footer() {
         <div className="h-px bg-white/10 my-10" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-gray-500">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ice/40">
           <p>&copy; 2026 Spiffy Tec. All rights reserved.</p>
-          <p>Built with Next.js</p>
         </div>
       </div>
     </footer>

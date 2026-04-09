@@ -1,37 +1,26 @@
 import { sendContactEmail } from "@/lib/email";
+import { contactFormSchema } from "@/lib/validations";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    const { name, email, message, phone, businessName, service, budget } = body;
-
-    // Validate required fields
-    const errors: string[] = [];
-    if (!name || typeof name !== "string" || !name.trim()) {
-      errors.push("Name is required.");
-    }
-    if (!email || typeof email !== "string" || !email.trim()) {
-      errors.push("Email is required.");
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errors.push("Invalid email format.");
-    }
-    if (!message || typeof message !== "string" || !message.trim()) {
-      errors.push("Message is required.");
-    }
-
-    if (errors.length > 0) {
+    const result = contactFormSchema.safeParse(body);
+    if (!result.success) {
+      const errors = result.error.issues.map((i) => i.message);
       return Response.json({ errors }, { status: 400 });
     }
 
+    const { name, email, message, phone, businessName, service, budget } = result.data;
+
     await sendContactEmail({
-      name: name.trim(),
-      email: email.trim(),
-      phone: phone?.trim() || undefined,
-      businessName: businessName?.trim() || undefined,
+      name,
+      email,
+      phone: phone || undefined,
+      businessName: businessName || undefined,
       service: service || undefined,
       budget: budget || undefined,
-      message: message.trim(),
+      message,
     });
 
     return Response.json({ success: true });

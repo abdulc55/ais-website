@@ -19,11 +19,11 @@ export function ProjectCard({
   const placeholder = (
     <div
       className={cn(
-        "bg-gradient-to-br from-primary-100 via-cyan-50 to-primary-50 flex items-center justify-center",
+        "bg-gradient-to-br from-navy-dark via-navy to-navy-light flex items-center justify-center",
         featured ? "h-full min-h-[240px]" : "h-48 md:h-56"
       )}
     >
-      <span className="text-primary-300 text-sm font-medium">
+      <span className="text-ice/50 text-sm font-medium">
         {imagePlaceholder ?? "Screenshot coming soon"}
       </span>
     </div>
@@ -34,7 +34,7 @@ export function ProjectCard({
       <div className="bg-white rounded-2xl card-shadow overflow-hidden grid md:grid-cols-2">
         {placeholder}
         <div className="p-6 md:p-8 flex flex-col justify-center">
-          <span className="text-xs font-semibold uppercase tracking-wider text-primary-600 mb-2">
+          <span className="text-xs font-semibold uppercase tracking-wider text-amber-dark mb-2">
             Featured Project
           </span>
           <h3 className="text-2xl font-bold text-navy mb-3">{title}</h3>

@@ -28,16 +28,16 @@ export function ServiceCard({
     <div
       className={cn(
         "bg-white rounded-2xl card-shadow p-6 md:p-8 relative flex flex-col",
-        popular && "border-2 border-primary-500 ring-1 ring-primary-500/20"
+        popular && "border-2 border-amber ring-1 ring-amber/20"
       )}
     >
       {popular && (
-        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber-500 text-white text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-amber text-navy-dark text-xs font-bold uppercase tracking-wider px-4 py-1 rounded-full">
           Most Popular
         </span>
       )}
 
-      <div className="w-12 h-12 rounded-xl bg-primary-50 flex items-center justify-center text-primary-600 mb-5">
+      <div className="w-12 h-12 rounded-xl bg-ice-muted flex items-center justify-center text-navy mb-5">
         {icon}
       </div>
 
@@ -67,8 +67,8 @@ export function ServiceCard({
         className={cn(
           "block text-center rounded-full px-6 py-3 font-semibold transition-colors",
           popular
-            ? "cta-gradient text-white hover:opacity-90"
-            : "border-2 border-primary-500 text-primary-700 hover:bg-primary-50"
+            ? "bg-amber text-navy-dark hover:bg-amber-dark"
+            : "border-2 border-navy text-navy hover:bg-navy hover:text-white"
         )}
       >
         Get Started

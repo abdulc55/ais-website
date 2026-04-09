@@ -45,7 +45,7 @@ export default function ContactPage() {
         subtitle="Free strategy call, no strings attached. Tell us about your project and we'll get back to you within 24 hours."
       />
 
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-12 md:py-16 px-4">
         <div className="max-w-6xl mx-auto grid gap-16 lg:grid-cols-5">
           {/* Left — Form */}
           <div className="lg:col-span-3">
@@ -60,13 +60,13 @@ export default function ContactPage() {
 
           {/* Right — Info Panel */}
           <div className="lg:col-span-2">
-            <div className="rounded-2xl bg-surface-muted border border-gray-100 p-8">
+            <div className="rounded-2xl bg-surface-muted border border-border p-8">
               <h3 className="text-xl font-bold text-navy">Contact Info</h3>
 
               <div className="mt-6 space-y-6">
                 {contactInfo.map((item) => (
                   <div key={item.label} className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-muted text-navy">
                       <item.icon className="h-5 w-5" />
                     </div>
                     <div>
@@ -74,7 +74,7 @@ export default function ContactPage() {
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="text-navy font-medium hover:text-primary-600 transition-colors"
+                          className="text-navy font-medium hover:text-amber-dark transition-colors"
                         >
                           {item.value}
                         </a>
@@ -87,8 +87,8 @@ export default function ContactPage() {
               </div>
 
               {/* Response time note */}
-              <div className="mt-8 rounded-xl bg-primary-50 p-4">
-                <p className="text-sm font-medium text-primary-700">
+              <div className="mt-8 rounded-xl bg-amber-light p-4">
+                <p className="text-sm font-medium text-navy">
                   We respond to every inquiry within 24 hours. Usually much sooner.
                 </p>
               </div>
@@ -106,7 +106,7 @@ export default function ContactPage() {
                       href={platform.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="rounded-lg bg-white border border-gray-200 px-4 py-2 text-sm font-medium text-gray-600 hover:border-primary-300 hover:text-primary-600 transition-colors"
+                      className="rounded-lg bg-white border border-border px-4 py-2 text-sm font-medium text-text-muted hover:border-amber hover:text-navy transition-colors"
                     >
                       {platform.name}
                     </a>

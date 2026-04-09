@@ -82,7 +82,7 @@ export async function sendContactEmail(data: ContactFormData) {
 
   const resend = getResendClient();
   const { error } = await resend.emails.send({
-    from: "Spiffy Tec <onboarding@resend.dev>",
+    from: "Spiffy Tec <support@spiffytec.com>",
     to: [toEmail],
     replyTo: data.email,
     subject: `New inquiry from ${data.name}${data.businessName ? ` (${data.businessName})` : ""}`,

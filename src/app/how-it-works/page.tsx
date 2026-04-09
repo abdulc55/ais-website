@@ -1,6 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Phone, ClipboardList, Code2, Rocket, Headphones } from "lucide-react";
 import { Hero } from "@/components/Hero";
+
+export const metadata: Metadata = {
+  title: "How It Works",
+  description:
+    "Our simple 5-step process from first call to launch. See how Spiffy Tec builds your website.",
+};
 
 const steps = [
   {
@@ -55,7 +62,7 @@ export default function HowItWorksPage() {
       />
 
       {/* Steps */}
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-4xl mx-auto">
           <div className="space-y-16 md:space-y-24">
             {steps.map((step, i) => (
@@ -67,18 +74,18 @@ export default function HowItWorksPage() {
               >
                 {/* Number + Icon */}
                 <div className="shrink-0 flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl cta-gradient text-white text-2xl font-bold shadow-lg">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-navy text-white text-2xl font-bold shadow-lg">
                     {step.number}
                   </div>
                   {i < steps.length - 1 && (
-                    <div className="hidden md:block w-px h-24 bg-gradient-to-b from-primary-300 to-transparent mt-4" />
+                    <div className="hidden md:block w-px h-24 bg-gradient-to-b from-border to-transparent mt-4" />
                   )}
                 </div>
 
                 {/* Content */}
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-3">
-                    <step.icon className="h-5 w-5 text-primary-600" />
+                    <step.icon className="h-5 w-5 text-amber-dark" />
                     <h3 className="text-xl md:text-2xl font-bold text-navy">
                       {step.title}
                     </h3>
@@ -100,11 +107,11 @@ export default function HowItWorksPage() {
       <section className="bg-surface-muted py-16 px-4">
         <div className="max-w-4xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 text-center">
           {[
-            { stat: "$0", label: "Down Payment", sub: "Zero upfront costs" },
+            { stat: "$100", label: "Starting Down Payment", sub: "Domain & email included" },
             { stat: "2 Weeks", label: "Average Launch Time", sub: "From onboarding to live" },
             { stat: "12 Months", label: "Partnership", sub: "Then month-to-month" },
           ].map((item) => (
-            <div key={item.label} className="rounded-2xl bg-white border border-gray-200 p-6 card-shadow">
+            <div key={item.label} className="rounded-2xl bg-white p-6 card-shadow">
               <p className="text-3xl font-bold gradient-text">{item.stat}</p>
               <p className="mt-1 font-semibold text-navy">{item.label}</p>
               <p className="mt-1 text-sm text-gray-500">{item.sub}</p>
@@ -117,13 +124,13 @@ export default function HowItWorksPage() {
       <section className="bg-navy py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Get Started?</h2>
-          <p className="mt-4 text-lg text-gray-300">
+          <p className="mt-4 text-lg text-ice/60">
             Book a free 15-minute call. No commitment, no pressure.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 font-semibold text-navy hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
             >
               Book Your Free Call <ArrowRight className="h-4 w-4" />
             </Link>

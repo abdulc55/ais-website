@@ -1,11 +1,12 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
+import { adminAuthSchema } from "@/lib/validations";
 
 /** Generate a signed session token from the admin password. Never store the raw password in a cookie. */
 export function generateAdminToken(adminPassword: string): string {
   return crypto
     .createHmac("sha256", adminPassword)
-    .update("ais-admin-session")
+    .update("spiffy-admin-session")
     .digest("hex");
 }
 
@@ -65,7 +66,13 @@ export async function POST(request: Request) {
       );
     }
 
-    const { password } = await request.json();
+    const body = await request.json();
+    const parsed = adminAuthSchema.safeParse(body);
+    if (!parsed.success) {
+      return NextResponse.json({ error: "Password is required" }, { status: 400 });
+    }
+
+    const { password } = parsed.data;
     const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminPassword) {
@@ -85,7 +92,7 @@ export async function POST(request: Request) {
     const token = generateAdminToken(adminPassword);
 
     const response = NextResponse.json({ success: true });
-    response.cookies.set("ais-admin-token", token, {
+    response.cookies.set("spiffy-admin-token", token, {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",

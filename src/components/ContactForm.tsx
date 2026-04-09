@@ -14,10 +14,10 @@ const serviceOptions = [
 ];
 
 const budgetOptions = [
-  "$149/mo (Starter)",
-  "$249/mo (Business)",
-  "$399/mo (Growth)",
-  "$599/mo (Premium)",
+  "$99/mo (Starter)",
+  "$149/mo (Business)",
+  "$249/mo (Growth)",
+  "$349/mo (Premium)",
   "Need a custom quote",
 ];
 
@@ -30,7 +30,7 @@ interface FormErrors {
 }
 
 const inputBase =
-  "w-full border border-gray-200 rounded-xl px-4 py-3 text-sm text-navy placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-shadow";
+  "w-full border border-border rounded-xl px-4 py-3 text-sm text-navy placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-ice focus:border-transparent transition-shadow bg-white";
 
 export function ContactForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -108,7 +108,7 @@ export function ContactForm() {
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm text-primary-600 font-medium hover:underline"
+          className="mt-6 text-sm text-navy font-medium hover:underline"
         >
           Send another message
         </button>
@@ -252,7 +252,7 @@ export function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="w-full cta-gradient text-white rounded-full px-6 py-3.5 font-semibold text-base transition-opacity hover:opacity-90 disabled:opacity-60 flex items-center justify-center gap-2"
+        className="w-full bg-amber text-navy-dark rounded-full px-6 py-3.5 font-semibold text-base transition-colors hover:bg-amber-dark disabled:opacity-60 flex items-center justify-center gap-2"
       >
         {status === "loading" ? (
           <>

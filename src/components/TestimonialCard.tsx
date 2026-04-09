@@ -22,7 +22,7 @@ export function TestimonialCard({
             key={i}
             className={`w-4 h-4 ${
               i < rating
-                ? "fill-amber-500 text-amber-500"
+                ? "fill-amber text-amber"
                 : "fill-gray-200 text-gray-200"
             }`}
           />
@@ -30,7 +30,7 @@ export function TestimonialCard({
       </div>
 
       {/* Quote icon */}
-      <Quote className="w-8 h-8 text-primary-200 mb-3" />
+      <Quote className="w-8 h-8 text-ice mb-3" />
 
       {/* Quote text */}
       <p className="text-gray-700 italic leading-relaxed flex-1 mb-5">

@@ -15,14 +15,14 @@ export default function Home() {
         badge="Web Development & AI"
         title="Smart Websites. Real Revenue."
         highlight="Real Revenue"
-        subtitle="We design, build, and run your entire web presence. You focus on your business."
+        subtitle="In a jiffy, your website will be spiffy. We design, build, and run your entire web presence — you focus on your business."
         primaryCta={{ label: "Start a Project", href: "/contact" }}
         secondaryCta={{ label: "See Our Work", href: "/portfolio" }}
         tall
       />
 
       {/* Section 2 — Services Overview */}
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="What We Do"
@@ -37,7 +37,7 @@ export default function Home() {
               title="Custom Websites"
               description="Professional, mobile-responsive websites designed to convert visitors into customers."
               features={["Responsive Design", "SEO Optimized", "Fast Loading", "Custom Design"]}
-              price="$149/mo"
+              price="$99/mo"
               href="/services"
             />
             <ServiceCard
@@ -45,7 +45,7 @@ export default function Home() {
               title="SaaS Platforms"
               description="Full-featured web applications with user accounts, dashboards, and payment processing."
               features={["User Accounts", "Admin Dashboard", "Stripe Payments", "Custom Logic"]}
-              price="$249/mo"
+              price="$149/mo"
               href="/services"
               popular
             />
@@ -72,23 +72,23 @@ export default function Home() {
       </section>
 
       {/* AI Business Suite Banner */}
-      <section className="bg-gradient-to-r from-primary-900 via-primary-800 to-navy py-16 md:py-20 px-4">
+      <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-dark py-16 md:py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
             <div className="flex-1">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 mb-4">
-                <Brain className="w-4 h-4 text-cyan-300" />
-                <span className="text-sm font-medium text-cyan-300">AI-Powered</span>
+                <Brain className="w-4 h-4 text-ice" />
+                <span className="text-sm font-medium text-ice">AI-Powered</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white">
                 AI Business Suite
               </h2>
-              <p className="mt-3 text-lg text-gray-300 leading-relaxed">
+              <p className="mt-3 text-lg text-ice/60 leading-relaxed">
                 AI, built in. Our tools answer customer questions, surface revenue insights, and generate marketing content. Every plan includes what most agencies charge extra for.
               </p>
               <Link
                 href="/services"
-                className="mt-6 inline-flex items-center gap-2 rounded-full bg-cyan-500 px-7 py-3 font-semibold text-white hover:bg-cyan-400 transition-colors"
+                className="mt-6 inline-flex items-center gap-2 rounded-full bg-amber px-7 py-3 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
               >
                 Learn More <ArrowRight className="h-4 w-4" />
               </Link>
@@ -100,9 +100,9 @@ export default function Home() {
                 { icon: Sparkles, title: "AI Marketing", desc: "Social posts, emails, and review responses" },
               ].map((item) => (
                 <div key={item.title} className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-5 text-center">
-                  <item.icon className="w-8 h-8 text-cyan-300 mx-auto mb-3" />
+                  <item.icon className="w-8 h-8 text-ice mx-auto mb-3" />
                   <h3 className="font-semibold text-white text-sm">{item.title}</h3>
-                  <p className="mt-1 text-xs text-gray-400">{item.desc}</p>
+                  <p className="mt-1 text-xs text-ice/50">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -134,7 +134,7 @@ export default function Home() {
           <div className="mt-10 text-center">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors"
+              className="inline-flex items-center gap-2 text-navy font-semibold hover:text-amber-dark transition-colors"
             >
               View Case Study <ArrowRight className="h-4 w-4" />
             </Link>
@@ -153,7 +153,7 @@ export default function Home() {
       </section>
 
       {/* Section 5 — Why Choose Us */}
-      <section className="bg-white py-20 md:py-28 px-4">
+      <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="Why Spiffy Tec"
@@ -185,9 +185,9 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.title}
-                className="card-shadow rounded-2xl bg-white border border-gray-100 p-8 text-center"
+                className="card-shadow rounded-2xl bg-white p-8 text-center"
               >
-                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-primary-50 text-primary-600">
+                <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-xl bg-amber-light text-amber-dark">
                   <item.icon className="h-7 w-7" />
                 </div>
                 <h3 className="text-xl font-bold text-navy">{item.title}</h3>
@@ -216,19 +216,19 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             Ready when you are.
           </h2>
-          <p className="mt-4 text-lg text-gray-300">
+          <p className="mt-4 text-lg text-ice/60">
             Tell us what you&apos;re building.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-3.5 font-semibold text-navy hover:bg-amber-400 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
             >
               Get in Touch <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href="tel:+19842151498"
-              className="inline-flex items-center gap-2 text-gray-300 hover:text-white transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-ice/60 hover:text-white transition-colors font-medium"
             >
               <Phone className="h-4 w-4" />
               (984) 215-1498
