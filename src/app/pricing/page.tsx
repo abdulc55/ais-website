@@ -14,7 +14,6 @@ const tiers = [
   {
     name: "Starter",
     price: 99,
-    downPayment: 59,
     description: "Perfect for new businesses that need a professional online presence.",
     features: [
       "3-5 page website",
@@ -30,7 +29,6 @@ const tiers = [
   {
     name: "Business",
     price: 149,
-    downPayment: 75,
     popular: true,
     description: "For businesses ready to book clients and grow online.",
     features: [
@@ -47,7 +45,6 @@ const tiers = [
   {
     name: "Growth",
     price: 249,
-    downPayment: 112,
     description: "Full platform with payments, user accounts, and custom features.",
     features: [
       "Everything in Business",
@@ -77,10 +74,6 @@ const includedInEvery = [
 ];
 
 const faqs = [
-  {
-    q: "What does the down payment cover?",
-    a: "Your down payment covers the initial design and development work to get your site built. It's a percentage of the plan cost — 60% for Starter, 50% for Business, 45% for Growth. After that, your monthly fee covers hosting, SSL, ongoing support, and included edits.",
-  },
   {
     q: "Is there a commitment period?",
     a: "All plans include a 12-month partnership. This ensures we can invest the time to build your site right and provide ongoing support. After 12 months, you switch to month-to-month — cancel anytime with 30 days notice.",
@@ -117,7 +110,7 @@ export default function PricingPage() {
       <Hero
         title="Simple Pricing. Zero Hassle."
         highlight="Zero Hassle"
-        subtitle="Low down payment, simple monthly pricing. Domain, email, and hosting included. Just a website that makes you money."
+        subtitle="Simple monthly pricing. Domain, email, and hosting included. Just a website that makes you money."
       />
 
       {/* Included in Every Plan */}
@@ -168,7 +161,6 @@ export default function PricingPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {[
-                  ["Down Payment", "$59 (60%)", "$75 (50%)", "$112 (45%)"],
                   ["Domain & Email", true, true, true],
                   ["Pages", "3-5", "5-10", "10-20"],
                   ["Custom Design", false, true, true],
@@ -264,7 +256,7 @@ export default function PricingPage() {
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Get Started?</h2>
           <p className="mt-4 text-lg text-ice/60">
-            Low down payment. Live in 2 weeks. Domain, email, and support every month.
+            First month gets you live. Domain, email, and support every month after.
           </p>
           <Link
             href="/contact"

@@ -5,7 +5,6 @@ import { cn } from "@/lib/cn";
 interface PricingCardProps {
   name: string;
   price: number;
-  downPayment: number;
   description: string;
   features: string[];
   popular?: boolean;
@@ -14,7 +13,6 @@ interface PricingCardProps {
 export function PricingCard({
   name,
   price,
-  downPayment,
   description,
   features,
   popular = false,
@@ -37,9 +35,6 @@ export function PricingCard({
         <p className="text-sm text-text-muted mb-5 min-h-[40px]">{description}</p>
 
         <div className="mb-2">
-          <span className="inline-block text-xs font-semibold rounded-full px-3 py-1 mb-3 text-navy bg-ice-muted border border-ice">
-            ${downPayment} down payment
-          </span>
           <div>
             <span className="text-4xl font-bold text-navy">${price}</span>
             <span className="text-text-muted text-sm ml-1">/month</span>
