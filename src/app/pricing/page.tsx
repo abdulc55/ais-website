@@ -14,7 +14,7 @@ const tiers = [
   {
     name: "Starter",
     price: 99,
-    downPayment: 99,
+    downPayment: 59,
     description: "Perfect for new businesses that need a professional online presence.",
     features: [
       "3-5 page website",
@@ -30,7 +30,7 @@ const tiers = [
   {
     name: "Business",
     price: 149,
-    downPayment: 149,
+    downPayment: 75,
     popular: true,
     description: "For businesses ready to book clients and grow online.",
     features: [
@@ -47,7 +47,7 @@ const tiers = [
   {
     name: "Growth",
     price: 249,
-    downPayment: 249,
+    downPayment: 112,
     description: "Full platform with payments, user accounts, and custom features.",
     features: [
       "Everything in Business",
@@ -79,7 +79,7 @@ const includedInEvery = [
 const faqs = [
   {
     q: "What does the down payment cover?",
-    a: "Your down payment covers the initial design, development setup, domain registration, and business email. After that, your monthly fee covers hosting, SSL, ongoing support, and edits. Domain and email stay yours — we handle all the technical setup.",
+    a: "Your down payment covers the initial design and development work to get your site built. It's a percentage of the plan cost — 60% for Starter, 50% for Business, 45% for Growth. After that, your monthly fee covers hosting, SSL, ongoing support, and included edits.",
   },
   {
     q: "Is there a commitment period?",
@@ -87,7 +87,7 @@ const faqs = [
   },
   {
     q: "Do I own my website?",
-    a: "Yes. After your 12-month commitment, you fully own all content, designs, and code. If you ever leave, we provide a complete export of everything.",
+    a: "Your monthly subscription includes access to a professionally built and maintained website — you do not own the underlying code or platform. If you wish to purchase full ownership, that is handled as a separate buyout at current market rate. We're happy to discuss what that looks like during your strategy call.",
   },
   {
     q: "How long does it take to launch?",
@@ -95,7 +95,7 @@ const faqs = [
   },
   {
     q: "What happens if I cancel?",
-    a: "After your 12-month commitment, cancel with 30 days notice. Your site goes offline at the end of your billing period. We provide a full export of your content — no hostage situations.",
+    a: "After your 12-month commitment, cancel with 30 days notice. Your site goes offline at the end of your billing period. We provide an export of your content (text, images, copy) — the platform itself remains ours. If you want to keep the site running independently, ask about our buyout option.",
   },
   {
     q: "What are the monthly edits?",
@@ -168,7 +168,7 @@ export default function PricingPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {[
-                  ["Down Payment", "$100", "$120", "$150"],
+                  ["Down Payment", "$59 (60%)", "$75 (50%)", "$112 (45%)"],
                   ["Domain & Email", true, true, true],
                   ["Pages", "3-5", "5-10", "10-20"],
                   ["Custom Design", false, true, true],
