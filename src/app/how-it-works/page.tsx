@@ -4,9 +4,9 @@ import { ArrowRight, Phone, ClipboardList, Code2, Rocket, Headphones } from "luc
 import { Hero } from "@/components/Hero";
 
 export const metadata: Metadata = {
-  title: "How It Works",
+  title: "Our 5-Step Process — From Strategy Call to Launch in 2 Weeks",
   description:
-    "Our simple 5-step process from first call to launch. See how Spiffy Tec builds your website.",
+    "How Spiffy Tec builds your website: strategy call, discovery, design, build, launch. 2-3 weeks from signed contract to live site.",
 };
 
 const steps = [

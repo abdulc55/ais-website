@@ -4,9 +4,9 @@ import { Check, ArrowRight } from "lucide-react";
 import { Hero } from "@/components/Hero";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Web Development, Booking Platforms & AI Tools",
   description:
-    "Custom websites, SaaS platforms, mobile apps, AI tools, and SEO for service businesses.",
+    "Custom websites, booking platforms, mobile apps, and AI tools for Raleigh-Durham service businesses. Live in 2-3 weeks, plans from $99/mo.",
 };
 
 const services = [

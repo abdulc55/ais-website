@@ -6,9 +6,9 @@ import { Hero } from "@/components/Hero";
 import { TechBadge } from "@/components/TechBadge";
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Raleigh-Durham Web Developer — Spiffy Tec Founder Story",
   description:
-    "Meet Abdul Shakur Caesar, founder of Spiffy Tec — building websites, platforms, and AI tools for service businesses.",
+    "Meet Abdul Shakur Caesar, founder of Spiffy Tec — a Raleigh-Durham web developer building booking platforms and AI tools for local service businesses.",
 };
 
 const values = [

@@ -5,9 +5,9 @@ import { Hero } from "@/components/Hero";
 import { TechBadge } from "@/components/TechBadge";
 
 export const metadata: Metadata = {
-  title: "Our Work",
+  title: "Client Work — Web Design & Booking Platforms",
   description:
-    "See the websites, platforms, and mobile apps we've built for businesses in the Raleigh-Durham Triangle.",
+    "See the websites, booking platforms, and mobile apps Spiffy Tec has built for service businesses in the Raleigh-Durham Triangle.",
 };
 
 const projects = [
@@ -124,6 +124,16 @@ export default function PortfolioPage() {
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* Read full case study CTA */}
+          <div className="mt-12 text-center">
+            <Link
+              href="/portfolio/mike-t-detailing"
+              className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-8 py-3.5 font-semibold hover:bg-navy-light transition-colors"
+            >
+              Read the Full Case Study <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

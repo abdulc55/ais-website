@@ -11,11 +11,11 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Spiffy Tec — Web Development & AI Agency",
-    template: "%s | Spiffy Tec",
+    default: "Web Design for Service Businesses in Raleigh-Durham | Spiffy Tec",
+    template: "%s | Spiffy Tec — Raleigh-Durham Web Development",
   },
   description:
-    "Spiffy Tec builds custom websites, SaaS platforms, and AI-powered tools for service businesses.",
+    "Spiffy Tec builds websites, booking platforms, and AI tools for service businesses in Raleigh, Cary, and Durham. Plans from $99/mo, live in 2 weeks.",
   keywords: [
     "web development",
     "SaaS agency",

@@ -5,9 +5,9 @@ import { Hero } from "@/components/Hero";
 import { PricingCard } from "@/components/PricingCard";
 
 export const metadata: Metadata = {
-  title: "Pricing",
+  title: "Monthly Website Plans from $99/mo — No Upfront Cost",
   description:
-    "Affordable monthly plans for websites, SaaS platforms, mobile apps, and AI tools. Starting at $99/mo.",
+    "Simple monthly pricing for websites, booking platforms, and AI tools. Starting at $99/mo. Domain, hosting, and SSL included. No surprise fees.",
 };
 
 const tiers = [

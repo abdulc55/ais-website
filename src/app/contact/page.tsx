@@ -4,9 +4,9 @@ import { Hero } from "@/components/Hero";
 import { ContactForm } from "@/components/ContactForm";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Book a Free Web Strategy Call — Spiffy Tec (Raleigh, NC)",
   description:
-    "Get in touch for a free consultation. We build custom websites, SaaS platforms, and mobile apps for businesses in the Raleigh-Durham Triangle.",
+    "Book a free 30-minute strategy call with Spiffy Tec. We build websites, booking platforms, and AI tools for service businesses in the Raleigh-Durham Triangle.",
 };
 
 const contactInfo = [
