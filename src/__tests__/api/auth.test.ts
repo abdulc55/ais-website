@@ -16,20 +16,22 @@ function makeRequest(body: Record<string, unknown>, ip = "127.0.0.1"): Request {
 }
 
 describe("generateAdminToken()", () => {
-  it("returns a hex string", () => {
-    const token = generateAdminToken("test-password");
-    expect(token).toMatch(/^[a-f0-9]{64}$/);
+  it("returns an expiring token with a signed suffix", () => {
+    const token = generateAdminToken("test-password", 1_700_000_000_000);
+    expect(token).toMatch(/^\d+\.[a-f0-9]{64}$/);
   });
 
   it("generates consistent tokens for same input", () => {
-    const token1 = generateAdminToken("test-password");
-    const token2 = generateAdminToken("test-password");
+    const now = 1_700_000_000_000;
+    const token1 = generateAdminToken("test-password", now);
+    const token2 = generateAdminToken("test-password", now);
     expect(token1).toBe(token2);
   });
 
   it("generates different tokens for different passwords", () => {
-    const token1 = generateAdminToken("password-a");
-    const token2 = generateAdminToken("password-b");
+    const now = 1_700_000_000_000;
+    const token1 = generateAdminToken("password-a", now);
+    const token2 = generateAdminToken("password-b", now);
     expect(token1).not.toBe(token2);
   });
 });

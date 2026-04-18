@@ -1,13 +1,21 @@
 import { NextResponse } from "next/server";
 import crypto from "crypto";
 import { adminAuthSchema } from "@/lib/validations";
+import {
+  ADMIN_SESSION_MAX_AGE_SECONDS,
+  buildAdminSessionPayload,
+  formatAdminToken,
+} from "@/lib/admin-session";
 
 /** Generate a signed session token from the admin password. Never store the raw password in a cookie. */
-export function generateAdminToken(adminPassword: string): string {
-  return crypto
+export function generateAdminToken(adminPassword: string, nowMs = Date.now()): string {
+  const expiresAt = nowMs + (ADMIN_SESSION_MAX_AGE_SECONDS * 1000);
+  const signature = crypto
     .createHmac("sha256", adminPassword)
-    .update("spiffy-admin-session")
+    .update(buildAdminSessionPayload(expiresAt))
     .digest("hex");
+
+  return formatAdminToken(expiresAt, signature);
 }
 
 // ─── Rate Limiter (In-Memory) ───────────────────────────────────────────────
@@ -96,7 +104,7 @@ export async function POST(request: Request) {
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
-      maxAge: 60 * 60 * 24, // 24 hours
+      maxAge: ADMIN_SESSION_MAX_AGE_SECONDS,
       path: "/",
     });
 

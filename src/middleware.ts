@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { buildAdminSessionPayload, parseAdminToken } from "@/lib/admin-session";
 
 /** Convert a hex string to Uint8Array */
 function hexToBytes(hex: string): Uint8Array {
@@ -31,6 +32,11 @@ function timingSafeEqual(a: string, b: string): boolean {
 
 /** Regenerate the expected token to compare against the cookie. Must match generateAdminToken in auth route. */
 async function verifyAdminToken(cookieToken: string, adminPassword: string): Promise<boolean> {
+  const parsedToken = parseAdminToken(cookieToken);
+  if (!parsedToken || Date.now() > parsedToken.expiresAt) {
+    return false;
+  }
+
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey(
     "raw",
@@ -39,24 +45,33 @@ async function verifyAdminToken(cookieToken: string, adminPassword: string): Pro
     false,
     ["sign"]
   );
-  const signature = await crypto.subtle.sign("HMAC", key, encoder.encode("spiffy-admin-session"));
-  const expectedToken = bytesToHex(signature);
-  return timingSafeEqual(cookieToken, expectedToken);
+  const signature = await crypto.subtle.sign(
+    "HMAC",
+    key,
+    encoder.encode(buildAdminSessionPayload(parsedToken.expiresAt))
+  );
+  const expectedSignature = bytesToHex(signature);
+  return timingSafeEqual(parsedToken.signature, expectedSignature);
 }
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-
-  // Only protect /admin/* routes (except /admin/login and /api/admin/auth)
-  if (
+  const isAdminPage =
     pathname.startsWith("/admin") &&
-    !pathname.startsWith("/admin/login") &&
-    !pathname.startsWith("/api/admin/auth")
-  ) {
+    !pathname.startsWith("/admin/login");
+  const isAdminApi =
+    pathname.startsWith("/api/admin") &&
+    !pathname.startsWith("/api/admin/auth");
+
+  if (isAdminPage || isAdminApi) {
     const token = request.cookies.get("spiffy-admin-token")?.value;
     const adminPassword = process.env.ADMIN_PASSWORD;
 
     if (!adminPassword || !token) {
+      if (isAdminApi) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+
       const loginUrl = new URL("/admin/login", request.url);
       loginUrl.searchParams.set("redirect", pathname);
       return NextResponse.redirect(loginUrl);
@@ -64,12 +79,19 @@ export async function middleware(request: NextRequest) {
 
     try {
       if (!(await verifyAdminToken(token, adminPassword))) {
+        if (isAdminApi) {
+          return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+        }
+
         const loginUrl = new URL("/admin/login", request.url);
         loginUrl.searchParams.set("redirect", pathname);
         return NextResponse.redirect(loginUrl);
       }
     } catch {
-      // Invalid token format (e.g., not valid hex) — reject
+      if (isAdminApi) {
+        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+      }
+
       const loginUrl = new URL("/admin/login", request.url);
       loginUrl.searchParams.set("redirect", pathname);
       return NextResponse.redirect(loginUrl);
@@ -80,5 +102,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/api/admin/:path*"],
 };

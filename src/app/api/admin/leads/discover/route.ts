@@ -64,8 +64,10 @@ export async function POST(request: Request) {
     }
 
     // Build the search query
-    const searchTerm = SEARCH_TERMS[businessType] || businessType;
-    const query = `${searchTerm} ${location.trim()}`;
+    const searchTerm = businessType in SEARCH_TERMS
+      ? SEARCH_TERMS[businessType]
+      : businessType;
+    const query = [searchTerm, location.trim()].filter(Boolean).join(" ");
 
     // Build CLI arguments
     const args = [

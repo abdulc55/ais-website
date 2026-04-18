@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { Lock } from "lucide-react";
+import { sanitizeAdminRedirect } from "@/lib/admin-redirect";
 
 function LoginForm() {
   const [password, setPassword] = useState("");
@@ -11,7 +12,7 @@ function LoginForm() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const redirect = searchParams.get("redirect") || "/admin/leads";
+  const redirect = sanitizeAdminRedirect(searchParams.get("redirect"));
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();

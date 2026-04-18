@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import {
   BarChart3,
@@ -28,6 +29,7 @@ import {
   Flame,
   MapPin,
   Star,
+  BookOpenText,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -298,6 +300,12 @@ export default function LeadsDashboard() {
               </p>
             </div>
             <div className="flex items-center gap-3">
+              <Link
+                href="/admin/docs"
+                className="flex items-center gap-2 rounded-xl border border-gray-200 px-4 py-2 text-sm text-gray-600 transition hover:bg-gray-50"
+              >
+                <BookOpenText className="w-4 h-4" /> Docs
+              </Link>
               <button
                 onClick={() => setShowScanner(!showScanner)}
                 className={cn(
