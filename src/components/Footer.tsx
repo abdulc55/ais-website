@@ -51,6 +51,23 @@ const socials = [
   { icon: XIcon, href: "https://x.com/spiffytec", label: "X (Twitter)" },
 ];
 
+const locations = [
+  { label: "Raleigh Web Design", href: "/raleigh-web-design" },
+  { label: "Cary Web Design", href: "/cary-web-design" },
+  { label: "Durham Web Design", href: "/durham-web-design" },
+];
+
+const industries = [
+  {
+    label: "Mobile Detailers",
+    href: "/websites-for-mobile-detailers",
+  },
+  {
+    label: "Booking Platform Sites",
+    href: "/booking-platform-websites",
+  },
+];
+
 export function Footer() {
   return (
     <footer className="bg-navy text-white">
@@ -152,6 +169,44 @@ export function Footer() {
               </li>
               <li>Cary, NC</li>
               <li>Mon &ndash; Fri, 9am &ndash; 6pm</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Locations + industries — internal linking for SEO */}
+        <div className="mt-14 grid gap-10 md:grid-cols-2">
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+              Areas We Serve
+            </h3>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {locations.map((loc) => (
+                <li key={loc.href}>
+                  <Link
+                    href={loc.href}
+                    className="text-sm text-ice/50 hover:text-white transition-colors"
+                  >
+                    {loc.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+              Industries
+            </h3>
+            <ul className="flex flex-wrap gap-x-5 gap-y-2">
+              {industries.map((ind) => (
+                <li key={ind.href}>
+                  <Link
+                    href={ind.href}
+                    className="text-sm text-ice/50 hover:text-white transition-colors"
+                  >
+                    {ind.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

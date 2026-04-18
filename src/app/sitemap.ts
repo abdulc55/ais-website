@@ -39,6 +39,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    // ─── SEO landing pages — city-scoped ───────────────────────────
+    {
+      url: `${base}/raleigh-web-design`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/cary-web-design`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/durham-web-design`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    // ─── SEO landing pages — niche-scoped ──────────────────────────
+    {
+      url: `${base}/websites-for-mobile-detailers`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${base}/booking-platform-websites`,
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
     {
       url: `${base}/how-it-works`,
       lastModified,
