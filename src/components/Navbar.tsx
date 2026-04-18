@@ -22,10 +22,10 @@ export function Navbar() {
   const [hasDarkHero, setHasDarkHero] = useState(false);
 
   useEffect(() => {
-    // Detect if the page has a dark (animated) hero — only homepage.
-    // This is a one-time DOM check on mount, not a subscription.
+    const pageHero = document.querySelector<HTMLElement>("[data-page-hero]");
+    // This is a one-time DOM read on mount to match the rendered hero theme.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setHasDarkHero(!!document.querySelector('section.bg-navy'));
+    setHasDarkHero(pageHero?.dataset.heroTone === "dark");
   }, []);
 
   useEffect(() => {

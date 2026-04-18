@@ -34,6 +34,8 @@ export function Hero({
 
   return (
     <section
+      data-page-hero
+      data-hero-tone={tall ? "dark" : "light"}
       className={cn(
         "relative overflow-hidden",
         tall
