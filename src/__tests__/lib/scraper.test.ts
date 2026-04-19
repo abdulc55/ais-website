@@ -1,4 +1,6 @@
-import { isValidUrl } from "@/lib/scraper";
+import fs from "fs";
+import path from "path";
+import { getScraperPath, isValidUrl } from "@/lib/scraper";
 
 describe("isValidUrl()", () => {
   it("accepts valid https URL", () => {
@@ -60,5 +62,37 @@ describe("isValidUrl()", () => {
     const url = "https://example.com/" + "a".repeat(2028);
     expect(url.length).toBe(2048);
     expect(isValidUrl(url)).toBe(true);
+  });
+});
+
+describe("getScraperPath()", () => {
+  const originalEnv = process.env;
+
+  afterEach(() => {
+    process.env = originalEnv;
+    jest.restoreAllMocks();
+  });
+
+  it("ignores a blank SCRAPER_PATH instead of resolving the project root", () => {
+    process.env = { ...originalEnv, SCRAPER_PATH: "   " };
+    const existsSyncSpy = jest.spyOn(fs, "existsSync").mockReturnValue(true);
+
+    const scraperPath = getScraperPath();
+
+    expect(scraperPath).toBe(path.join(process.cwd(), "..", "tools", "lead-scraper"));
+    expect(existsSyncSpy).toHaveBeenCalledWith(
+      path.join(process.cwd(), "..", "tools", "lead-scraper", "src/index.ts")
+    );
+    expect(existsSyncSpy).not.toHaveBeenCalledWith(path.join(process.cwd(), "src/index.ts"));
+  });
+
+  it("prefers an explicit SCRAPER_PATH when it contains the scraper entrypoint", () => {
+    process.env = { ...originalEnv, SCRAPER_PATH: "/tmp/custom-scraper" };
+    const existsSyncSpy = jest.spyOn(fs, "existsSync").mockImplementation((target) => (
+      target === "/tmp/custom-scraper/src/index.ts"
+    ));
+
+    expect(getScraperPath()).toBe("/tmp/custom-scraper");
+    expect(existsSyncSpy).toHaveBeenCalledWith("/tmp/custom-scraper/src/index.ts");
   });
 });

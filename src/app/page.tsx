@@ -1,10 +1,25 @@
 import Link from "next/link";
-import { Globe, Code, Smartphone, Search, Zap, Shield, BarChart3, ArrowRight, Phone, Brain, MessageCircle, TrendingUp, Sparkles } from "lucide-react";
+import {
+  Globe,
+  Code,
+  Smartphone,
+  Search,
+  Zap,
+  Shield,
+  ArrowRight,
+  Phone,
+  Brain,
+  MessageCircle,
+  TrendingUp,
+  Sparkles,
+  CalendarDays,
+  CreditCard,
+  Layers3,
+} from "lucide-react";
 import { Hero } from "@/components/Hero";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ServiceCard } from "@/components/ServiceCard";
 import { ProjectCard } from "@/components/ProjectCard";
-import { StatCounter } from "@/components/StatCounter";
 import { TestimonialCard } from "@/components/TestimonialCard";
 
 export default function Home() {
@@ -12,11 +27,16 @@ export default function Home() {
     <>
       {/* Section 1 — Hero */}
       <Hero
-        badge="Web Development & AI"
-        title="Smart Websites. Real Revenue."
-        highlight="Real Revenue"
-        subtitle="In a jiffy, your website will be spiffy. We design, build, and run your entire web presence — you focus on your business."
-        primaryCta={{ label: "Start a Project", href: "/contact" }}
+        badge="Websites, Platforms & AI Systems"
+        title="Websites that look sharp and book real work."
+        highlight="book real work"
+        subtitle="Spiffy Tec designs, builds, and supports the websites, booking systems, and AI tools local service businesses need to stop leaking leads and start closing faster."
+        supportingPoints={[
+          "Launch-ready in 2-3 weeks",
+          "Booking, payments, and automation",
+          "Built in Cary, NC for service businesses",
+        ]}
+        primaryCta={{ label: "Book a Strategy Call", href: "/contact" }}
         secondaryCta={{ label: "See Our Work", href: "/portfolio" }}
         tall
       />
@@ -26,8 +46,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="What We Do"
-            title="Everything You Need Online. Nothing You Don't."
-            highlight="Need"
+            title="From first website to full operating system."
+            highlight="operating system"
             centered
           />
 
@@ -117,38 +137,89 @@ export default function Home() {
             badge="Featured Project"
             title="Mike T Detailing"
             highlight="Mike T Detailing"
-            description="A complete mobile car detailing booking platform built from scratch — online scheduling, payments, VIP memberships, and more."
+            description="A real service-business system: online booking, Stripe payments, recurring memberships, customer history, admin controls, and a companion mobile app."
             centered
           />
 
-          <div className="mt-14 max-w-4xl mx-auto">
+          <div className="mt-14 max-w-5xl mx-auto">
             <ProjectCard
               title="Mike T Detailing"
               description="Full-stack booking platform with online scheduling, Stripe payments, VIP memberships, referral program, admin dashboard, and a React Native mobile app."
               tags={["Next.js", "React", "TypeScript", "Stripe", "Prisma", "Tailwind CSS", "React Native"]}
               featured
-              imagePlaceholder="gradient"
+              metrics={[
+                { value: "3 weeks", label: "Strategy call to live platform" },
+                { value: "24/7", label: "Booking availability for customers" },
+                { value: "Stripe", label: "Payments and receipts automated" },
+                { value: "iOS + Android", label: "Companion app shipped" },
+              ]}
+              proofPoints={[
+                "5-step booking flow built for fast mobile checkout",
+                "VIP memberships and referrals to create repeat revenue",
+                "Admin dashboard to run schedule, customers, and payments in one place",
+              ]}
+              primaryCta={{ label: "Read the Case Study", href: "/portfolio/mike-t-detailing" }}
+              secondaryCta={{ label: "See Pricing", href: "/pricing" }}
             />
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link
-              href="/portfolio"
-              className="inline-flex items-center gap-2 text-navy font-semibold hover:text-amber-dark transition-colors"
-            >
-              View Case Study <ArrowRight className="h-4 w-4" />
-            </Link>
           </div>
         </div>
       </section>
 
-      {/* Section 4 — Stats */}
+      {/* Section 4 — Delivery Model */}
       <section className="bg-navy py-20 md:py-28 px-4">
-        <div className="max-w-7xl mx-auto grid gap-10 sm:grid-cols-2 lg:grid-cols-4 text-center">
-          <StatCounter value={2} suffix=" Weeks" label="Launch Time" />
-          <StatCounter value={100} suffix="%" label="Client Retention" />
-          <StatCounter value={24} suffix="/7" label="Your Site Never Sleeps" />
-          <StatCounter value={24} suffix="hr" label="Response Time" />
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <span className="inline-block rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber">
+              How We Build
+            </span>
+            <h2 className="mt-4 text-3xl font-bold leading-tight text-white md:text-4xl">
+              Built for the way local service businesses sell.
+            </h2>
+            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-ice/65">
+              We focus on the moments that actually change revenue: first impression, first booking,
+              first payment, and the repeat follow-up that keeps customers coming back.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {[
+              {
+                icon: Globe,
+                title: "Win the first impression",
+                description:
+                  "Custom pages, sharp messaging, and local SEO so customers trust you before they ever call.",
+              },
+              {
+                icon: CalendarDays,
+                title: "Capture the booking",
+                description:
+                  "Scheduling, deposits, and clear offers so buyers can act while they still have intent.",
+              },
+              {
+                icon: CreditCard,
+                title: "Get paid with less friction",
+                description:
+                  "Stripe payments, receipts, and automated reminders so revenue feels systemized instead of manual.",
+              },
+              {
+                icon: Layers3,
+                title: "Keep the backend clean",
+                description:
+                  "Dashboards, automations, and support that replace the spreadsheet-and-voicemail chaos.",
+              },
+            ].map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-white/10 bg-white/6 p-6 text-left backdrop-blur-sm"
+              >
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-amber">
+                  <item.icon className="h-6 w-6" />
+                </div>
+                <h3 className="mt-5 text-xl font-bold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ice/65">{item.description}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -157,8 +228,8 @@ export default function Home() {
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="Why Spiffy Tec"
-            title="Why 10 out of 10 Clients Stay"
-            highlight="Stay"
+            title="Why owners hire us instead of juggling three vendors."
+            highlight="three vendors"
             centered
           />
 
@@ -166,21 +237,21 @@ export default function Home() {
             {[
               {
                 icon: Zap,
-                title: "Speed",
+                title: "Fast without feeling rushed",
                 description:
-                  "Most agencies take 2-3 months. We deliver in 2-3 weeks without cutting corners on quality.",
+                  "We move quickly, but the work still feels considered. Strategy, design, build, and launch stay in one lane.",
               },
               {
                 icon: Shield,
-                title: "Transparency",
+                title: "Clear scope and honest guidance",
                 description:
-                  "No hidden fees, no vague timelines. You know exactly what you're paying for and when it ships.",
+                  "We steer clients toward the smallest thing that makes money first, not the biggest package we can sell.",
               },
               {
-                icon: BarChart3,
-                title: "Results",
+                icon: TrendingUp,
+                title: "Built around revenue moments",
                 description:
-                  "Every site is built to convert visitors into customers. Great design meets real business outcomes.",
+                  "Pages, bookings, payments, automations, and follow-up all work together so the site earns its keep.",
               },
             ].map((item) => (
               <div
@@ -217,14 +288,14 @@ export default function Home() {
             Ready when you are.
           </h2>
           <p className="mt-4 text-lg text-ice/60">
-            Tell us what you&apos;re building.
+            Tell us what needs to book, sell, or run smoother.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
             >
-              Get in Touch <ArrowRight className="h-4 w-4" />
+              Book a Strategy Call <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href="tel:+19842151498"

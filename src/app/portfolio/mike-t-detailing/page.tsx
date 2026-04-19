@@ -83,6 +83,40 @@ const SOLUTIONS = [
   },
 ];
 
+const PLATFORM_WALKTHROUGH = [
+  {
+    title: "Booking Flow",
+    body: "Customers choose a package, stack add-ons, pick a time, enter their address, and pay without needing a callback.",
+  },
+  {
+    title: "Admin Dashboard",
+    body: "Schedule, customer records, revenue, and refunds are managed from one control panel instead of a pile of separate tools.",
+  },
+  {
+    title: "Mobile App",
+    body: "Repeat customers can rebook faster, while the business gets a stronger premium feel on both app stores.",
+  },
+  {
+    title: "AI Chatbot",
+    body: "Questions about pricing, packages, and memberships get answered even while Mike is out on the road detailing.",
+  },
+];
+
+const BUILD_PROOF = [
+  {
+    title: "Customer acquisition",
+    body: "The site is no longer a brochure. It is the front desk, the booking rep, and the payment checkpoint.",
+  },
+  {
+    title: "Operational control",
+    body: "Scheduling, receipts, refunds, and customer history now live inside one system the owner can actually run day to day.",
+  },
+  {
+    title: "Retention and repeat revenue",
+    body: "VIP memberships, referrals, and mobile rebooking turn one-off detailing jobs into something much stickier.",
+  },
+];
+
 const TECH_STACK = [
   "Next.js",
   "React",
@@ -192,7 +226,7 @@ export default function MikeTCaseStudyPage() {
         </div>
       </section>
 
-      {/* Screenshots placeholder — TODO: replace with real screenshots ─── */}
+      {/* Platform Walkthrough */}
       <section className="bg-surface-muted py-20 px-4">
         <div className="max-w-5xl mx-auto">
           <p className="text-sm font-semibold uppercase tracking-wider text-amber-dark text-center">
@@ -203,25 +237,27 @@ export default function MikeTCaseStudyPage() {
           </h2>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {/* TODO: swap these placeholders for real screenshots from
-                mike-t-detailing app: booking flow, admin dashboard,
-                mobile app, AI chatbot. Recommended size: 1200x800. */}
-            {[
-              "Booking Flow",
-              "Admin Dashboard",
-              "Mobile App",
-              "AI Chatbot",
-            ].map((caption) => (
+            {PLATFORM_WALKTHROUGH.map((module) => (
               <div
-                key={caption}
-                className="aspect-[3/2] rounded-2xl bg-gradient-to-br from-navy-dark via-navy to-navy-light flex items-center justify-center"
+                key={module.title}
+                className="rounded-[2rem] bg-gradient-to-br from-navy-dark via-navy to-navy-light p-7 text-white card-shadow"
               >
-                <div className="text-center">
-                  <p className="text-ice/50 text-sm font-medium uppercase tracking-wider">
-                    Screenshot
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+                  Module
+                </p>
+                <h3 className="mt-4 text-2xl font-bold tracking-tight text-white">
+                  {module.title}
+                </h3>
+                <p className="mt-4 leading-relaxed text-ice/75">
+                  {module.body}
+                </p>
+                <div className="mt-8 rounded-2xl border border-white/10 bg-white/8 p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ice/60">
+                    Why it matters
                   </p>
-                  <p className="text-white/80 text-lg font-semibold mt-1">
-                    {caption}
+                  <p className="mt-2 text-sm text-ice/80">
+                    Each module removes a real piece of friction from booking, paying, communicating,
+                    or coming back.
                   </p>
                 </div>
               </div>
@@ -280,24 +316,31 @@ export default function MikeTCaseStudyPage() {
         </div>
       </section>
 
-      {/* Testimonial — TODO: replace with real Mike T quote ──────────── */}
+      {/* Build Proof */}
       <section className="bg-navy py-20 px-4">
-        <div className="max-w-3xl mx-auto text-center">
+        <div className="max-w-6xl mx-auto">
           <p className="text-sm font-semibold uppercase tracking-wider text-amber">
-            Client Voice
+            What This Build Proves
           </p>
-          {/*
-            TODO: swap placeholder for real testimonial.
-            Ask Mike for 1-2 sentences covering: what life was like before,
-            what changed after launch, and whether he'd recommend Spiffy Tec.
-          */}
-          <blockquote className="mt-6 text-2xl md:text-3xl font-semibold text-white leading-relaxed italic">
-            &ldquo;Testimonial coming soon — reach out if you want to speak
-            with Mike directly about his experience.&rdquo;
-          </blockquote>
-          <p className="mt-6 text-ice/70">
-            Mike T. — Owner, Mike T Detailing (Cary, NC)
+          <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">
+            A local service business does not need “more marketing.”
+          </h2>
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ice/70">
+            It needs a sharper system. This project proves what happens when booking, payments,
+            follow-up, and retention all live inside one coherent platform.
           </p>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {BUILD_PROOF.map((item) => (
+              <div
+                key={item.title}
+                className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur-sm"
+              >
+                <h3 className="text-xl font-bold text-white">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-ice/70">{item.body}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

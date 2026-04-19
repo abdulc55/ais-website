@@ -90,7 +90,10 @@ export async function POST(request: Request) {
       );
     }
 
-    if (password !== adminPassword) {
+    // Hash both to a fixed length before comparing — prevents timing attacks
+    const passwordHash = crypto.createHash("sha256").update(password).digest();
+    const adminHash = crypto.createHash("sha256").update(adminPassword).digest();
+    if (!crypto.timingSafeEqual(passwordHash, adminHash)) {
       return NextResponse.json(
         { error: "Invalid password" },
         { status: 401 }

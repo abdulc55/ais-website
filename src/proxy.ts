@@ -54,7 +54,7 @@ async function verifyAdminToken(cookieToken: string, adminPassword: string): Pro
   return timingSafeEqual(parsedToken.signature, expectedSignature);
 }
 
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const isAdminPage =
     pathname.startsWith("/admin") &&

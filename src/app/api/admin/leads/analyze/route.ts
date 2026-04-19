@@ -16,8 +16,12 @@ import {
   readLatestReport,
 } from "@/lib/scraper";
 import { analyzeUrlsSchema } from "@/lib/validations";
+import { requireAdmin } from "@/lib/require-admin";
 
 export async function POST(request: Request) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
 
@@ -76,8 +80,7 @@ export async function POST(request: Request) {
     // If no report file, return the stdout
     return NextResponse.json({ success: true, output: stdout });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Analysis failed";
     console.error("Lead analysis error:", err);
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: "Analysis failed. Please try again." }, { status: 500 });
   }
 }

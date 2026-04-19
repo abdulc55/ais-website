@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, Check } from "lucide-react";
 import { Hero } from "@/components/Hero";
+import { ProjectCard } from "@/components/ProjectCard";
 import { TechBadge } from "@/components/TechBadge";
 
 export const metadata: Metadata = {
@@ -24,6 +25,17 @@ const projects = [
       "Online bookings replaced phone calls, automated payments eliminated invoicing headaches, VIP subscriptions created recurring revenue, and a mobile app launched on both app stores.",
     tech: ["Next.js", "React", "React Native", "TypeScript", "Tailwind CSS", "Stripe", "Prisma"],
     features: ["Online Booking", "Stripe Payments", "VIP Memberships", "Referral System", "Admin Dashboard", "Mobile App"],
+    metrics: [
+      { value: "3 weeks", label: "To launch the live platform" },
+      { value: "24/7", label: "Customers can book online" },
+      { value: "Stripe", label: "Payments and receipts automated" },
+      { value: "iOS + Android", label: "Companion app delivered" },
+    ],
+    proofPoints: [
+      "Booking flow, deposits, and service add-ons in one mobile-first checkout",
+      "VIP memberships and referral system for repeat revenue",
+      "Dashboard, customer history, and notifications for the owner",
+    ],
     featured: true,
   },
   {
@@ -69,7 +81,12 @@ export default function PortfolioPage() {
       <Hero
         title="Real Projects. Real Revenue."
         highlight="Revenue"
-        subtitle="Real projects, real results. Here's what we've built."
+        subtitle="Not just brochure sites. These are the systems we build when the website has to win trust, capture the booking, and make operations easier."
+        supportingPoints={[
+          "Service-business websites and platforms",
+          "Payments, dashboards, and mobile apps",
+          "Built in North Carolina",
+        ]}
       />
 
       {/* Featured Project — Mike T Detailing */}
@@ -82,9 +99,17 @@ export default function PortfolioPage() {
             {featured.name}
           </h2>
 
-          {/* Image placeholder */}
-          <div className="mt-10 h-72 md:h-96 rounded-2xl bg-gradient-to-br from-navy-dark via-navy to-navy-light flex items-center justify-center">
-            <span className="text-ice/50 text-lg font-medium">Project Screenshot</span>
+          <div className="mt-10">
+            <ProjectCard
+              title={featured.name}
+              description={featured.description}
+              tags={featured.tech}
+              featured
+              metrics={featured.metrics}
+              proofPoints={featured.proofPoints}
+              primaryCta={{ label: "Read the Full Case Study", href: "/portfolio/mike-t-detailing" }}
+              secondaryCta={{ label: "Book a Strategy Call", href: "/contact" }}
+            />
           </div>
 
           {/* Challenge / Solution / Results */}

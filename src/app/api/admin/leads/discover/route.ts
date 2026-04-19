@@ -17,8 +17,12 @@ import {
   SEARCH_TERMS,
 } from "@/lib/scraper";
 import { discoverLeadsSchema } from "@/lib/validations";
+import { requireAdmin } from "@/lib/require-admin";
 
 export async function POST(request: Request) {
+  const authError = await requireAdmin();
+  if (authError) return authError;
+
   try {
     const body = await request.json();
     const parsed = discoverLeadsSchema.safeParse(body);
@@ -104,8 +108,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({ success: true, output: stdout, count: 0, query });
   } catch (err: unknown) {
-    const message = err instanceof Error ? err.message : "Discovery failed";
     console.error("Lead discovery error:", err);
-    return NextResponse.json({ error: message }, { status: 500 });
+    return NextResponse.json({ error: "Discovery failed. Please try again." }, { status: 500 });
   }
 }

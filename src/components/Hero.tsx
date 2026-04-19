@@ -7,6 +7,7 @@ interface HeroProps {
   title: string;
   highlight?: string;
   subtitle?: string;
+  supportingPoints?: string[];
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
   tall?: boolean;
@@ -17,6 +18,7 @@ export function Hero({
   title,
   highlight,
   subtitle,
+  supportingPoints,
   primaryCta,
   secondaryCta,
   tall = false,
@@ -79,6 +81,24 @@ export function Hero({
           )}>
             {subtitle}
           </p>
+        )}
+
+        {supportingPoints && supportingPoints.length > 0 && (
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3 max-w-4xl mx-auto">
+            {supportingPoints.map((point) => (
+              <span
+                key={point}
+                className={cn(
+                  "rounded-full px-4 py-2 text-sm font-medium",
+                  tall
+                    ? "border border-white/15 bg-white/8 text-ice"
+                    : "border border-navy/10 bg-white text-navy"
+                )}
+              >
+                {point}
+              </span>
+            ))}
+          </div>
         )}
 
         {(primaryCta || secondaryCta) && (

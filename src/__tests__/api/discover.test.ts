@@ -18,6 +18,10 @@ jest.mock("@/lib/scraper", () => {
   };
 });
 
+jest.mock("@/lib/require-admin", () => ({
+  requireAdmin: jest.fn(async () => null),
+}));
+
 import fs from "fs";
 import { POST } from "@/app/api/admin/leads/discover/route";
 import {

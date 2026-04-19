@@ -218,8 +218,7 @@ export function LandingPage({ content }: { content: LandingPageContent }) {
             Ready to get set up?
           </h2>
           <p className="mt-4 text-ice/70">
-            Book a free 30-minute strategy call. We'll pull up your site, score
-            it, and show you exactly what's costing you customers.
+            {"Book a free 30-minute strategy call. We'll pull up your site, score it, and show you exactly what's costing you customers."}
           </p>
           <Link
             href={`/contact?ref=${slug}`}

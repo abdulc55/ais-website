@@ -31,7 +31,7 @@ const services = [
   { label: "SaaS Platforms", href: "/services#saas" },
   { label: "Mobile Apps", href: "/services#mobile" },
   { label: "SEO & Marketing", href: "/services#seo" },
-  { label: "UI/UX Design", href: "/services#design" },
+  { label: "AI Business Suite", href: "/services#ai" },
 ];
 
 const company = [

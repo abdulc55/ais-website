@@ -3,6 +3,10 @@ jest.mock("@/lib/leads-db", () => ({
   markContacted: jest.fn(),
 }));
 
+jest.mock("@/lib/require-admin", () => ({
+  requireAdmin: jest.fn(async () => null),
+}));
+
 import { GET, POST } from "@/app/api/admin/leads/route";
 import { getAllDashboardData, markContacted } from "@/lib/leads-db";
 
@@ -59,7 +63,9 @@ describe("GET /api/admin/leads", () => {
     const response = await GET(makeGetRequest());
 
     expect(response.status).toBe(500);
-    await expect(response.json()).resolves.toEqual({ error: "DB unavailable" });
+    await expect(response.json()).resolves.toEqual({
+      error: "Failed to load leads. Please try again.",
+    });
   });
 });
 
@@ -110,6 +116,8 @@ describe("POST /api/admin/leads", () => {
     );
 
     expect(response.status).toBe(500);
-    await expect(response.json()).resolves.toEqual({ error: "Insert failed" });
+    await expect(response.json()).resolves.toEqual({
+      error: "Failed to log outreach. Please try again.",
+    });
   });
 });

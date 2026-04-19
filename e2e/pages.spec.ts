@@ -9,20 +9,27 @@ test.describe("Public Pages", () => {
   test("homepage loads and shows hero", async ({ page }) => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Spiffy Tec/);
-    await expect(page.locator("text=Smart Websites. Real Revenue.")).toBeVisible();
-    await expect(page.locator("text=Start a Project")).toBeVisible();
+    await expect(page.locator("text=Websites that look sharp and book real work.")).toBeVisible();
+    await expect(
+      page.locator("[data-page-hero]").getByRole("link", { name: "Book a Strategy Call" })
+    ).toBeVisible();
+    await expect(page.locator("text=Platform Snapshot")).toBeVisible();
   });
 
   test("services page loads", async ({ page }) => {
     await page.goto("/services");
-    await expect(page).toHaveTitle(/Services/);
-    // Verify page has service content
-    await expect(page.getByRole("heading", { name: /Custom Websites/i })).toBeVisible();
+    await expect(page).toHaveTitle(/Web Development, Booking Platforms & AI Tools/);
+    await expect(
+      page.getByRole("heading", { name: /The revenue-generating foundation\./i })
+    ).toBeVisible();
+    await expect(
+      page.getByRole("heading", { name: /Layer in retention, reach, and automation\./i })
+    ).toBeVisible();
   });
 
   test("pricing page loads with correct tiers", async ({ page }) => {
     await page.goto("/pricing");
-    await expect(page).toHaveTitle(/Pricing/);
+    await expect(page).toHaveTitle(/Monthly Website Plans from \$99\/mo/);
     // Check tier names exist on the page
     await expect(page.locator("text=Starter").first()).toBeVisible();
     await expect(page.locator("text=Business").first()).toBeVisible();
@@ -31,23 +38,32 @@ test.describe("Public Pages", () => {
 
   test("portfolio page loads", async ({ page }) => {
     await page.goto("/portfolio");
-    await expect(page).toHaveTitle(/Our Work/);
+    await expect(page).toHaveTitle(/Client Work/);
     await expect(page.locator("text=Mike T Detailing").first()).toBeVisible();
+    await expect(page.locator("text=Platform Snapshot")).toBeVisible();
+    await expect(page.locator("text=Project Screenshot")).toHaveCount(0);
+  });
+
+  test("case study page loads without placeholder proof blocks", async ({ page }) => {
+    await page.goto("/portfolio/mike-t-detailing");
+    await expect(page).toHaveTitle(/Mike T Detailing/);
+    await expect(page.locator("text=What This Build Proves")).toBeVisible();
+    await expect(page.locator("text=Testimonial coming soon")).toHaveCount(0);
   });
 
   test("about page loads", async ({ page }) => {
     await page.goto("/about");
-    await expect(page).toHaveTitle(/About/);
+    await expect(page).toHaveTitle(/Raleigh-Durham Web Developer/i);
   });
 
   test("how it works page loads", async ({ page }) => {
     await page.goto("/how-it-works");
-    await expect(page).toHaveTitle(/How It Works/);
+    await expect(page).toHaveTitle(/Our 5-Step Process/i);
   });
 
   test("contact page loads with form", async ({ page }) => {
     await page.goto("/contact");
-    await expect(page).toHaveTitle(/Contact/);
+    await expect(page).toHaveTitle(/Book a Free Web Strategy Call/i);
     await expect(page.locator("form")).toBeVisible();
     await expect(page.locator("text=Send Message")).toBeVisible();
   });

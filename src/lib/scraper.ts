@@ -7,7 +7,26 @@ import { promisify } from "util";
 import path from "path";
 import fs from "fs";
 
-export const execFileAsync = promisify(execFile);
+const execFileAsyncRaw = promisify(execFile);
+
+// ─── Concurrency Limiter ──────────────────────────────────────────────────────
+// Cap simultaneous scraper child processes to avoid resource exhaustion.
+const MAX_CONCURRENT_SCRAPERS = 2;
+let activeScrapers = 0;
+
+export async function execFileAsync(
+  ...args: Parameters<typeof execFileAsyncRaw>
+) {
+  if (activeScrapers >= MAX_CONCURRENT_SCRAPERS) {
+    throw new Error("Scraper busy — another scan is in progress. Please wait and retry.");
+  }
+  activeScrapers++;
+  try {
+    return await execFileAsyncRaw(...args);
+  } finally {
+    activeScrapers--;
+  }
+}
 
 /** Map business type slugs to Google Places search terms */
 export const SEARCH_TERMS: Record<string, string> = {
@@ -33,11 +52,14 @@ export const SEARCH_TERMS: Record<string, string> = {
  * @throws Error if the scraper tool is not found
  */
 export function getScraperPath(): string {
+  const envScraperPath = process.env.SCRAPER_PATH?.trim();
   const candidates = [
-    path.resolve(process.cwd(), "../tools/lead-scraper"),
-    path.resolve(process.cwd(), "../../tools/lead-scraper"),
-    path.resolve(process.env.SCRAPER_PATH || ""),
+    path.join(process.cwd(), "..", "tools", "lead-scraper"),
+    path.join(process.cwd(), "..", "..", "tools", "lead-scraper"),
   ];
+  if (envScraperPath) {
+    candidates.unshift(path.resolve(/*turbopackIgnore: true*/ envScraperPath));
+  }
 
   for (const dir of candidates) {
     if (dir && fs.existsSync(path.join(dir, "src/index.ts"))) {

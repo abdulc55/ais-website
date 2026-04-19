@@ -12,10 +12,15 @@ import { sendContactEmail } from "@/lib/email";
 
 const mockSendEmail = sendContactEmail as jest.MockedFunction<typeof sendContactEmail>;
 
-function makeRequest(body: Record<string, unknown>): Request {
+let requestCounter = 0;
+
+function makeRequest(body: Record<string, unknown>, ip = `10.0.0.${++requestCounter}`): Request {
   return new Request("http://localhost:3001/api/contact", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "x-forwarded-for": ip,
+    },
     body: JSON.stringify(body),
   });
 }

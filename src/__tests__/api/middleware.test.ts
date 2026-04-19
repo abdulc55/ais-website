@@ -1,6 +1,6 @@
 import { webcrypto } from "crypto";
 import { NextRequest } from "next/server";
-import { middleware } from "@/middleware";
+import { proxy } from "@/proxy";
 import { generateAdminToken } from "@/app/api/admin/auth/route";
 
 function makeRequest(url: string, cookieToken?: string): NextRequest {
@@ -13,7 +13,7 @@ function makeRequest(url: string, cookieToken?: string): NextRequest {
   return new NextRequest(new Request(url, { headers }));
 }
 
-describe("middleware", () => {
+describe("proxy", () => {
   const originalEnv = process.env;
   const originalCrypto = globalThis.crypto;
 
@@ -37,7 +37,7 @@ describe("middleware", () => {
   });
 
   it("rejects unauthenticated admin API requests", async () => {
-    const response = await middleware(makeRequest("http://localhost/api/admin/leads"));
+    const response = await proxy(makeRequest("http://localhost/api/admin/leads"));
 
     expect(response.status).toBe(401);
     await expect(response.json()).resolves.toEqual({ error: "Unauthorized" });
@@ -47,7 +47,7 @@ describe("middleware", () => {
     const token = generateAdminToken("test-admin-pass", 1_700_000_000_000);
     const nowSpy = jest.spyOn(Date, "now").mockReturnValue(1_700_000_000_000);
 
-    const response = await middleware(
+    const response = await proxy(
       makeRequest("http://localhost/api/admin/leads", token)
     );
 
@@ -65,7 +65,7 @@ describe("middleware", () => {
     );
     const nowSpy = jest.spyOn(Date, "now").mockReturnValue(now);
 
-    const response = await middleware(
+    const response = await proxy(
       makeRequest("http://localhost/admin/leads", expiredToken)
     );
 

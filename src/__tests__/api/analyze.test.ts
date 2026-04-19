@@ -8,6 +8,10 @@ jest.mock("@/lib/scraper", () => {
   };
 });
 
+jest.mock("@/lib/require-admin", () => ({
+  requireAdmin: jest.fn(async () => null),
+}));
+
 import { POST } from "@/app/api/admin/leads/analyze/route";
 import {
   execFileAsync,

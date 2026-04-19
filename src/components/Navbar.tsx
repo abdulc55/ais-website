@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -17,16 +18,18 @@ const navLinks = [
 ];
 
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [hasDarkHero, setHasDarkHero] = useState(false);
 
+  // Only the homepage has a dark hero — no DOM queries, no race conditions
+  const hasDarkHero = pathname === "/";
+
+  // Close mobile menu on route change
   useEffect(() => {
-    const pageHero = document.querySelector<HTMLElement>("[data-page-hero]");
-    // This is a one-time DOM read on mount to match the rendered hero theme.
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setHasDarkHero(pageHero?.dataset.heroTone === "dark");
-  }, []);
+    setMobileOpen(false);
+  }, [pathname]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -113,14 +116,14 @@ export function Navbar() {
               <X
                 className={cn(
                   "w-6 h-6 transition-colors",
-                  "text-navy"
+                  !scrolled && hasDarkHero ? "text-white" : "text-navy"
                 )}
               />
             ) : (
               <Menu
                 className={cn(
                   "w-6 h-6 transition-colors",
-                  "text-navy"
+                  !scrolled && hasDarkHero ? "text-white" : "text-navy"
                 )}
               />
             )}
