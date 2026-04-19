@@ -33,7 +33,7 @@ describe("marketing pages", () => {
       })
     ).toBeInTheDocument();
     expect(screen.getByText("Core Builds")).toBeInTheDocument();
-    expect(screen.getByText("Growth Add-Ons")).toBeInTheDocument();
+    expect(screen.getByText("Platform Add-Ons")).toBeInTheDocument();
   });
 
   it("replaces the portfolio screenshot placeholder with a project snapshot", () => {

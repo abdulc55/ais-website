@@ -4,7 +4,7 @@ import { LandingPage, type LandingPageContent } from "@/components/LandingPage";
 export const metadata: Metadata = {
   title: "Cary NC Web Development for Local Businesses",
   description:
-    "Cary-based web developer building booking platforms for service businesses. Monthly plans from $99/mo, no upfront cost. Live in 2 weeks.",
+    "Cary-based web developer building booking platforms for service businesses. Monthly plans from $149/mo, no upfront cost. Live in 2 weeks.",
   alternates: { canonical: "https://spiffytec.com/cary-web-design" },
 };
 
@@ -14,7 +14,7 @@ const content: LandingPageContent = {
   h1: "Cary NC Web Development for Local Businesses",
   h1Highlight: "Cary NC",
   subtitle:
-    "Spiffy Tec is based right here in Cary. We build custom websites, booking platforms, and AI tools for local service businesses. Plans from $99/mo, no upfront cost.",
+    "Spiffy Tec is based right here in Cary. We build custom websites, booking platforms, and AI tools for local service businesses. Plans from $149/mo, no upfront cost.",
   whoItsFor: [
     "Cary-based detailers, landscapers, cleaners, and mobile service businesses",
     "Professional offices (law, dental, med spa, chiropractic) near Cary Parkway or Kildaire Farm",

@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     template: "%s | Spiffy Tec — Raleigh-Durham Web Development",
   },
   description:
-    "Spiffy Tec builds websites, booking platforms, and AI tools for service businesses in Raleigh, Cary, and Durham. Plans from $99/mo, live in 2 weeks.",
+    "Spiffy Tec builds websites, booking platforms, and AI tools for service businesses in Raleigh, Cary, and Durham. Plans from $149/mo, live in 2 weeks.",
   keywords: [
     "web development",
     "SaaS agency",

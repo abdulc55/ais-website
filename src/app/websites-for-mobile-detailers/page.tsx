@@ -51,7 +51,7 @@ const content: LandingPageContent = {
   ],
   priceRange: "$249 – $599/mo",
   priceBlurb:
-    "Growth or Premium tier required for the full booking platform. Includes website, booking, payments, admin dashboard, and ongoing support. Add mobile app for +$99/mo.",
+    "Platform or Premium tier required for the full booking platform. Includes website, booking, payments, admin dashboard, and ongoing support. Add mobile app for +$99/mo.",
   caseStudy: {
     href: "/portfolio/mike-t-detailing",
     label: "Mike T Detailing — Cary, NC",
@@ -72,7 +72,7 @@ const content: LandingPageContent = {
     {
       question: "How much does a detailing booking website cost?",
       answer:
-        "Our Growth tier starts at $249/mo and includes the full booking platform with payments and admin dashboard. Add a mobile app for +$99/mo. No upfront setup fees — just monthly billing. Traditional custom-built booking platforms usually run $15K-$50K upfront.",
+        "Our Platform tier starts at $249/mo and includes the full booking platform with payments and admin dashboard. Add a mobile app for +$99/mo. No upfront setup fees — just monthly billing. Traditional custom-built booking platforms usually run $15K-$50K upfront.",
     },
     {
       question: "Can I take deposits and prevent no-shows?",

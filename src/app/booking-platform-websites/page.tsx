@@ -51,7 +51,7 @@ const content: LandingPageContent = {
   ],
   priceRange: "$249 – $599/mo",
   priceBlurb:
-    "Growth or Premium tier required. Includes booking, payments, admin dashboard, and ongoing support. No upfront $15K-$50K setup fee. Just a monthly subscription.",
+    "Platform or Premium tier required. Includes booking, payments, admin dashboard, and ongoing support. No upfront $15K-$50K setup fee. Just a monthly subscription.",
   caseStudy: {
     href: "/portfolio/mike-t-detailing",
     label: "Mike T Detailing — Booking Platform Case Study",

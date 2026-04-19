@@ -32,7 +32,7 @@ const steps = [
     title: "We Design & Build",
     description:
       "Our team builds your website in 1-3 weeks depending on your plan. You get a private preview link to review before anything goes live.",
-    detail: "Starter sites launch in 1-2 weeks. Business sites take 2-3 weeks. Growth platforms take 3-4 weeks.",
+    detail: "Starter sites launch in 1-2 weeks. Business sites take 2-3 weeks. Platform platforms take 3-4 weeks.",
   },
   {
     number: 4,

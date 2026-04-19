@@ -16,9 +16,8 @@ const serviceOptions = [
 const budgetOptions = [
   "$99/mo (Starter)",
   "$149/mo (Business)",
-  "$249/mo (Growth)",
-  "$349/mo (Premium)",
-  "Need a custom quote",
+  "$249/mo (Platform)",
+  "Custom / Enterprise",
 ];
 
 type FormStatus = "idle" | "loading" | "success" | "error";

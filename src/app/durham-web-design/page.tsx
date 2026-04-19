@@ -4,7 +4,7 @@ import { LandingPage, type LandingPageContent } from "@/components/LandingPage";
 export const metadata: Metadata = {
   title: "Durham Web Design — Booking Platforms for Local Businesses",
   description:
-    "Web design and booking platforms for Durham service businesses. Built by a local Triangle developer. Plans from $99/mo, live in 2 weeks.",
+    "Web design and booking platforms for Durham service businesses. Built by a local Triangle developer. Plans from $149/mo, live in 2 weeks.",
   alternates: { canonical: "https://spiffytec.com/durham-web-design" },
 };
 
@@ -14,7 +14,7 @@ const content: LandingPageContent = {
   h1: "Durham Web Design for Service Businesses",
   h1Highlight: "Durham",
   subtitle:
-    "Custom websites, online booking, and AI business tools for Durham service businesses. Plans from $99/mo, live in 2-3 weeks. Built and maintained by a Triangle-based developer.",
+    "Custom websites, online booking, and AI business tools for Durham service businesses. Plans from $149/mo, live in 2-3 weeks. Built and maintained by a Triangle-based developer.",
   whoItsFor: [
     "Durham detailers, landscapers, cleaning crews, and mobile service businesses",
     "Bull City restaurants, breweries, and food trucks needing online ordering or reservations",
@@ -65,7 +65,7 @@ const content: LandingPageContent = {
     {
       question: "How long until my site is live?",
       answer:
-        "Starter sites: 1-2 weeks. Business sites (booking + CMS): 2-3 weeks. Growth platforms (payments + accounts): 3-4 weeks. You'll review a preview link before we go live.",
+        "Starter sites: 1-2 weeks. Business sites (booking + CMS): 2-3 weeks. Platform platforms (payments + accounts): 3-4 weeks. You'll review a preview link before we go live.",
     },
     {
       question: "Can I keep my existing domain and email?",
@@ -75,7 +75,7 @@ const content: LandingPageContent = {
     {
       question: "What's included in the monthly fee?",
       answer:
-        "Hosting, SSL, domain management, ongoing support, and a set number of edit hours each month (1 hour on Starter, 2 hours on Business, unlimited on Growth). No hidden costs.",
+        "Hosting, SSL, domain management, ongoing support, and a set number of edit hours each month (1 hour on Starter, 2 hours on Business, unlimited on Platform). No hidden costs.",
     },
     {
       question: "Do I own the website?",

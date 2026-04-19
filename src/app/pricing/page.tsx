@@ -5,9 +5,9 @@ import { Hero } from "@/components/Hero";
 import { PricingCard } from "@/components/PricingCard";
 
 export const metadata: Metadata = {
-  title: "Monthly Website Plans from $99/mo — No Upfront Cost",
+  title: "Custom Websites for Service Businesses from $149/mo",
   description:
-    "Simple monthly pricing for websites, booking platforms, and AI tools. Starting at $99/mo. Domain, hosting, and SSL included. No surprise fees.",
+    "Professional websites, booking platforms, and AI tools for service businesses. Plans from $149/mo. Domain, hosting, and SSL included. No surprise fees.",
 };
 
 const tiers = [
@@ -43,7 +43,7 @@ const tiers = [
     ],
   },
   {
-    name: "Growth",
+    name: "Platform",
     price: 249,
     description: "Full platform with payments, user accounts, and custom features.",
     features: [
@@ -58,6 +58,20 @@ const tiers = [
     ],
   },
 ];
+
+const customTier = {
+  name: "Custom",
+  description: "Enterprise platforms, multi-location sites, and custom integrations.",
+  features: [
+    "Everything in Platform",
+    "Unlimited pages",
+    "Custom API integrations",
+    "Multi-location support",
+    "VIP / membership systems",
+    "Dedicated account manager",
+    "Same-day support",
+  ],
+};
 
 const addOns = [
   { icon: Brain, name: "AI Business Suite", price: "+$99/mo", note: "Chatbot, analytics & marketing AI" },
@@ -84,7 +98,7 @@ const faqs = [
   },
   {
     q: "How long does it take to launch?",
-    a: "Starter sites launch in 1-2 weeks. Business sites take 2-3 weeks. Growth platforms with payments and accounts take 3-4 weeks. You get a preview link to review before we go live.",
+    a: "Starter sites launch in 1-2 weeks. Business sites take 2-3 weeks. Platform platforms with payments and accounts take 3-4 weeks. You get a preview link to review before we go live.",
   },
   {
     q: "What happens if I cancel?",
@@ -92,7 +106,7 @@ const faqs = [
   },
   {
     q: "What are the monthly edits?",
-    a: "Text updates, image swaps, adding new sections, layout tweaks — anything that keeps your site fresh. Starter includes 1 hour/month, Business includes 2 hours/month, Growth includes unlimited edits.",
+    a: "Text updates, image swaps, adding new sections, layout tweaks — anything that keeps your site fresh. Starter includes 1 hour/month, Business includes 2 hours/month, Platform includes unlimited edits.",
   },
   {
     q: "Can I upgrade my plan later?",
@@ -130,10 +144,31 @@ export default function PricingPage() {
 
       {/* Pricing Cards */}
       <section className="bg-surface py-16 md:py-20 px-4">
-        <div className="max-w-5xl mx-auto grid gap-8 grid-cols-1 md:grid-cols-3 items-stretch">
+        <div className="max-w-6xl mx-auto grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-stretch">
           {tiers.map((tier) => (
             <PricingCard key={tier.name} {...tier} />
           ))}
+
+          {/* Custom tier — quote-only */}
+          <div className="rounded-2xl border border-gray-200 bg-white p-6 flex flex-col card-shadow">
+            <h3 className="text-lg font-bold text-navy">{customTier.name}</h3>
+            <p className="mt-1 text-2xl font-bold text-navy">Let&apos;s Talk</p>
+            <p className="mt-2 text-sm text-gray-600 flex-grow">{customTier.description}</p>
+            <ul className="mt-4 space-y-2">
+              {customTier.features.map((f) => (
+                <li key={f} className="flex items-start gap-2 text-sm text-gray-600">
+                  <Check className="h-4 w-4 text-navy mt-0.5 shrink-0" />
+                  {f}
+                </li>
+              ))}
+            </ul>
+            <Link
+              href="/contact"
+              className="mt-6 block text-center rounded-full border-2 border-navy px-6 py-3 font-semibold text-navy hover:bg-navy hover:text-white transition-colors"
+            >
+              Book a Strategy Call
+            </Link>
+          </div>
         </div>
 
         <p className="text-center text-sm text-gray-500 mt-8 max-w-2xl mx-auto">
@@ -156,25 +191,27 @@ export default function PricingPage() {
                   <th className="text-left py-3 pr-4 font-semibold text-navy">Feature</th>
                   <th className="text-center py-3 px-4 font-semibold text-navy">Starter</th>
                   <th className="text-center py-3 px-4 font-semibold text-amber-dark">Business</th>
-                  <th className="text-center py-3 px-4 font-semibold text-navy">Growth</th>
+                  <th className="text-center py-3 px-4 font-semibold text-navy">Platform</th>
+                  <th className="text-center py-3 px-4 font-semibold text-navy">Custom</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {[
-                  ["Domain & Email", true, true, true],
-                  ["Pages", "3-5", "5-10", "10-20"],
-                  ["Custom Design", false, true, true],
-                  ["Mobile Responsive", true, true, true],
-                  ["SEO Optimization", "Basic", "Advanced", "Advanced"],
-                  ["Contact Form", true, true, true],
-                  ["Booking System", false, true, true],
-                  ["CMS / Blog", false, true, true],
-                  ["Google Analytics", false, true, true],
-                  ["Payment Processing", false, false, true],
-                  ["User Accounts", false, false, true],
-                  ["Admin Dashboard", false, false, true],
-                  ["Monthly Edits", "1 hr", "2 hrs", "Unlimited"],
-                  ["Support Response", "48 hrs", "24 hrs", "Priority"],
+                  ["Domain & Email", true, true, true, true],
+                  ["Pages", "3-5", "5-10", "10-20", "Unlimited"],
+                  ["Custom Design", false, true, true, true],
+                  ["Mobile Responsive", true, true, true, true],
+                  ["SEO Optimization", "Basic", "Advanced", "Advanced", "Advanced"],
+                  ["Contact Form", true, true, true, true],
+                  ["Booking System", false, true, true, true],
+                  ["CMS / Blog", false, true, true, true],
+                  ["Google Analytics", false, true, true, true],
+                  ["Payment Processing", false, false, true, true],
+                  ["User Accounts", false, false, true, true],
+                  ["Admin Dashboard", false, false, true, true],
+                  ["Custom Integrations", false, false, false, true],
+                  ["Monthly Edits", "1 hr", "2 hrs", "Unlimited", "Unlimited"],
+                  ["Support Response", "48 hrs", "24 hrs", "Priority", "Same-day"],
                 ].map(([feature, ...values]) => (
                   <tr key={feature as string}>
                     <td className="py-3 pr-4 text-gray-700">{feature}</td>

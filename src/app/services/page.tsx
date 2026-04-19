@@ -18,7 +18,7 @@ import { cn } from "@/lib/cn";
 export const metadata: Metadata = {
   title: "Web Development, Booking Platforms & AI Tools",
   description:
-    "Custom websites, booking platforms, mobile apps, and AI tools for Raleigh-Durham service businesses. Live in 2-3 weeks, plans from $99/mo.",
+    "Custom websites, booking platforms, mobile apps, and AI tools for Raleigh-Durham service businesses. Live in 2-3 weeks, plans from $149/mo.",
 };
 
 interface Service {
@@ -131,7 +131,7 @@ export default function ServicesPage() {
         highlight="run smoother"
         subtitle="We build the digital layer your business actually needs: a strong site, a real booking or payment workflow, and the systems that keep customers coming back."
         supportingPoints={[
-          "Plans from $99/mo",
+          "Plans from $149/mo",
           "Launch in 2-3 weeks",
           "Web, mobile, and AI in one shop",
         ]}
@@ -257,7 +257,7 @@ export default function ServicesPage() {
       <section className="bg-surface px-4 py-20 md:py-28">
         <div className="mx-auto max-w-6xl">
           <SectionHeader
-            badge="Growth Add-Ons"
+            badge="Platform Add-Ons"
             title="Layer in retention, reach, and automation."
             highlight="retention, reach, and automation"
             description="Once the core site or platform is doing its job, these are the upgrades that compound value."

@@ -4,7 +4,7 @@ import { LandingPage, type LandingPageContent } from "@/components/LandingPage";
 export const metadata: Metadata = {
   title: "Web Design for Raleigh Service Businesses",
   description:
-    "Affordable web design for Raleigh service businesses. Booking platforms, payments, AI tools — live in 2 weeks. Plans from $99/mo, no upfront cost.",
+    "Affordable web design for Raleigh service businesses. Booking platforms, payments, AI tools — live in 2 weeks. Plans from $149/mo, no upfront cost.",
   alternates: { canonical: "https://spiffytec.com/raleigh-web-design" },
 };
 
@@ -14,7 +14,7 @@ const content: LandingPageContent = {
   h1: "Web Design Built for Raleigh Service Businesses",
   h1Highlight: "Raleigh Service Businesses",
   subtitle:
-    "Custom websites, online booking, payments, and AI tools for Raleigh service businesses. Plans from $99/mo, live in 2 weeks. Built and maintained by a Triangle-based team.",
+    "Custom websites, online booking, payments, and AI tools for Raleigh service businesses. Plans from $149/mo, live in 2 weeks. Built and maintained by a Triangle-based team.",
   whoItsFor: [
     "Raleigh detailers, cleaners, landscapers, and home service businesses tired of losing leads to voicemail",
     "Professional practices (law, dental, chiropractic, med spas) that need a modern online presence",
@@ -65,7 +65,7 @@ const content: LandingPageContent = {
     {
       question: "How fast can you launch my site?",
       answer:
-        "Starter sites launch in 1-2 weeks. Business sites (with booking and CMS) take 2-3 weeks. Growth platforms with payments and user accounts take 3-4 weeks. You get a preview link to review before we go live.",
+        "Starter sites launch in 1-2 weeks. Business sites (with booking and CMS) take 2-3 weeks. Platform platforms with payments and user accounts take 3-4 weeks. You get a preview link to review before we go live.",
     },
     {
       question: "Do I own my website?",
