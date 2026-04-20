@@ -77,7 +77,7 @@ export function Hero({
         {subtitle && (
           <p className={cn(
             "mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed",
-            tall ? "text-ice/70" : "text-text-muted"
+            tall ? "text-amber" : "text-text-muted"
           )}>
             {subtitle}
           </p>
