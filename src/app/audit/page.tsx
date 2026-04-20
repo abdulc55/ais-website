@@ -186,19 +186,19 @@ export default function AuditPage() {
 
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              { industry: "Auto Detailing", pain: "Manual text bookings, no payments" },
-              { industry: "Pressure Washing", pain: "Invisible on Google, no online quotes" },
-              { industry: "Law Firms", pain: "No consultation funnel, weak authority" },
-              { industry: "CPAs & Accountants", pain: "No secure onboarding, trust deficit" },
-              { industry: "Salons & Med Spas", pain: "Booking friction, no memberships" },
-              { industry: "Contractors & Trades", pain: "No project proof, no quote flow" },
-              { industry: "Restaurants & Food", pain: "No online ordering, bad mobile site" },
-              { industry: "Gyms & Fitness", pain: "No class booking, no member portal" },
-              { industry: "Cleaning Services", pain: "No recurring booking, relies on referrals" },
+              { industry: "Auto Detailing", focus: "Online booking with upfront deposits" },
+              { industry: "Pressure Washing", focus: "Local SEO and instant quote requests" },
+              { industry: "Law Firms", focus: "Consultation funnels that build trust" },
+              { industry: "CPAs & Accountants", focus: "Secure client onboarding and document intake" },
+              { industry: "Salons & Med Spas", focus: "Frictionless booking and memberships" },
+              { industry: "Contractors & Trades", focus: "Project galleries and online quote flow" },
+              { industry: "Restaurants & Food", focus: "Mobile-first ordering and reservations" },
+              { industry: "Gyms & Fitness", focus: "Class booking and member portals" },
+              { industry: "Cleaning Services", focus: "Recurring bookings that grow retention" },
             ].map((item) => (
               <div key={item.industry} className="rounded-xl border border-gray-200 bg-white p-5 card-shadow">
                 <h3 className="font-bold text-navy">{item.industry}</h3>
-                <p className="mt-1 text-sm text-gray-500">{item.pain}</p>
+                <p className="mt-1 text-sm text-gray-500">{item.focus}</p>
               </div>
             ))}
           </div>
