@@ -81,13 +81,11 @@ const auditAreas = [
   },
 ];
 
-const toneStyles: Record<string, { border: string; bg: string; icon: string }> = {
-  blue: { border: "border-blue-200", bg: "bg-blue-50", icon: "text-blue-600 bg-blue-100" },
-  amber: { border: "border-amber-200", bg: "bg-amber-50", icon: "text-amber-600 bg-amber-100" },
-  emerald: { border: "border-emerald-200", bg: "bg-emerald-50", icon: "text-emerald-600 bg-emerald-100" },
-  violet: { border: "border-violet-200", bg: "bg-violet-50", icon: "text-violet-600 bg-violet-100" },
-  cyan: { border: "border-cyan-200", bg: "bg-cyan-50", icon: "text-cyan-600 bg-cyan-100" },
-  red: { border: "border-red-200", bg: "bg-red-50", icon: "text-red-600 bg-red-100" },
+// Consistent brand styling — all cards use the same navy/amber palette
+const cardStyle = {
+  border: "border-gray-200",
+  bg: "bg-white",
+  icon: "text-amber-dark bg-amber-light",
 };
 
 export default function AuditPage() {
@@ -113,11 +111,9 @@ export default function AuditPage() {
           </div>
 
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {auditAreas.map((area) => {
-              const style = toneStyles[area.tone];
-              return (
-                <div key={area.title} className={`rounded-2xl border ${style.border} ${style.bg} p-6`}>
-                  <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${style.icon}`}>
+            {auditAreas.map((area) => (
+                <div key={area.title} className={`rounded-2xl border ${cardStyle.border} ${cardStyle.bg} p-6 card-shadow`}>
+                  <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${cardStyle.icon}`}>
                     <area.icon className="h-6 w-6" />
                   </div>
                   <h3 className="font-bold text-navy text-lg">{area.title}</h3>
@@ -131,8 +127,7 @@ export default function AuditPage() {
                     ))}
                   </ul>
                 </div>
-              );
-            })}
+            ))}
           </div>
         </div>
       </section>
