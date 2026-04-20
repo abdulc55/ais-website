@@ -58,10 +58,10 @@ export function Hero({
           <div className={cn(
             "inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6",
             tall
-              ? "bg-white/10 border border-white/20"
+              ? "bg-white border border-white/20"
               : "bg-navy/5 border border-navy/10"
           )}>
-            <span className={cn("text-sm font-medium", tall ? "text-ice" : "text-navy")}>
+            <span className={cn("text-sm font-semibold", tall ? "text-navy" : "text-navy")}>
               {badge}
             </span>
           </div>
