@@ -64,8 +64,8 @@ export default function Home() {
                 problem: "No follow-up, no memberships, no reason to rebook.",
               },
             ].map((item) => (
-              <div key={item.title} className="rounded-2xl border border-red-100 bg-red-50/50 p-6">
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-red-100 text-red-600">
+              <div key={item.title} className="rounded-2xl border border-gray-200 bg-white p-6 card-shadow">
+                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-amber-light text-amber-dark">
                   <item.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-bold text-navy">{item.title}</h3>

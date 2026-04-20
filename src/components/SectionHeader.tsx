@@ -20,7 +20,7 @@ export function SectionHeader({
         <span key={i}>
           {part}
           {i < arr.length - 1 && (
-            <span className="gradient-text">{highlight}</span>
+            <span className="text-amber-dark">{highlight}</span>
           )}
         </span>
       ))
