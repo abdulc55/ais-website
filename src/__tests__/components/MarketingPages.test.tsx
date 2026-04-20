@@ -9,19 +9,17 @@ jest.mock("@/components/HeroBackground", () => ({
 }));
 
 describe("marketing pages", () => {
-  it("upgrades the homepage with stronger proof sections", () => {
+  it("renders the repositioned homepage with audit-led messaging", () => {
     render(<Home />);
 
     expect(
       screen.getByRole("heading", {
-        name: /Websites that look sharp and/i,
+        name: /Your website should be your best salesperson/i,
       })
     ).toBeInTheDocument();
-    expect(screen.getByText("Platform Snapshot")).toBeInTheDocument();
-    expect(
-      screen.getByText(/Built for the way local service businesses sell\./i)
-    ).toBeInTheDocument();
-    expect(screen.queryByText(/Client Retention/i)).not.toBeInTheDocument();
+    expect(screen.getAllByText(/leaking revenue/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/Not just a website/i)).toBeInTheDocument();
+    expect(screen.getAllByText("Get Your Free Audit").length).toBeGreaterThan(0);
   });
 
   it("reframes the services page around decision-making instead of repeated bands", () => {

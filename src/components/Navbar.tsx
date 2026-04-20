@@ -98,10 +98,10 @@ export function Navbar() {
           {/* Desktop CTA */}
           <div className="hidden md:block">
             <Link
-              href="/contact"
+              href="/audit"
               className="bg-amber text-navy-dark rounded-full px-6 py-2.5 text-sm font-semibold inline-block transition-colors hover:bg-amber-dark"
             >
-              Book a Strategy Call
+              Free Audit
             </Link>
           </div>
 
@@ -151,11 +151,11 @@ export function Navbar() {
           ))}
           <div className="pt-2">
             <Link
-              href="/contact"
+              href="/audit"
               onClick={() => setMobileOpen(false)}
               className="block text-center bg-amber text-navy-dark rounded-full px-6 py-3 font-semibold hover:bg-amber-dark transition-colors"
             >
-              Book a Strategy Call
+              Free Audit
             </Link>
           </div>
         </div>

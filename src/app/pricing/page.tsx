@@ -166,7 +166,7 @@ export default function PricingPage() {
               href="/contact"
               className="mt-6 block text-center rounded-full border-2 border-navy px-6 py-3 font-semibold text-navy hover:bg-navy hover:text-white transition-colors"
             >
-              Book a Strategy Call
+              Get Your Free Audit
             </Link>
           </div>
         </div>
@@ -299,7 +299,7 @@ export default function PricingPage() {
             href="/contact"
             className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
           >
-            Book Your Free Strategy Call <ArrowRight className="h-4 w-4" />
+            Book Your Free Audit <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>

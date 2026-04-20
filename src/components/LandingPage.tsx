@@ -149,7 +149,7 @@ export function LandingPage({ content }: { content: LandingPageContent }) {
               href={`/contact?ref=${slug}`}
               className="inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
             >
-              Book a Strategy Call <ArrowRight className="h-4 w-4" />
+              Get Your Free Audit <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/pricing"
@@ -224,7 +224,7 @@ export function LandingPage({ content }: { content: LandingPageContent }) {
             href={`/contact?ref=${slug}`}
             className="mt-8 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
           >
-            Book Your Strategy Call <ArrowRight className="h-4 w-4" />
+            Book Your Free Audit <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
       </section>
