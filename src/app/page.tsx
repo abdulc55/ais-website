@@ -29,7 +29,7 @@ export default function Home() {
       />
 
       {/* Section 2 — The Problem */}
-      <section className="bg-surface py-20 md:py-28 px-4">
+      <section className="bg-surface py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="The Real Problem"
@@ -41,7 +41,7 @@ export default function Home() {
             It&apos;s not just about having a website. It&apos;s about fixing the gaps that cost you customers every day.
           </p>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 icon: Eye,
@@ -86,7 +86,7 @@ export default function Home() {
       </section>
 
       {/* Section 3 — The System (5 layers) */}
-      <section className="bg-navy py-20 md:py-28 px-4">
+      <section className="bg-navy py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center">
             <span className="inline-block rounded-full border border-white/10 bg-white/6 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-amber">
@@ -95,12 +95,12 @@ export default function Home() {
             <h2 className="mt-4 text-3xl font-bold leading-tight text-white md:text-4xl">
               Not just a website. A complete business system.
             </h2>
-            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-ice/65">
+            <p className="mx-auto mt-4 max-w-3xl text-lg leading-relaxed text-white/80">
               Every layer works together so your website doesn&apos;t just look good — it books jobs, collects payments, and runs your operations.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
+          <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-5">
             {[
               {
                 icon: Shield,
@@ -139,7 +139,7 @@ export default function Home() {
                 </div>
                 <h3 className="mt-5 text-lg font-bold text-white">{item.title}</h3>
                 <p className="mt-1 text-xs font-medium text-amber">{item.label}</p>
-                <p className="mt-3 text-sm leading-relaxed text-ice/65">{item.description}</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.description}</p>
               </div>
             ))}
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
       </section>
 
       {/* Section 4 — Plans framed around business maturity */}
-      <section className="bg-surface py-20 md:py-28 px-4">
+      <section className="bg-surface py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="Plans"
@@ -156,7 +156,7 @@ export default function Home() {
             centered
           />
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               {
                 name: "Starter",
@@ -223,18 +223,18 @@ export default function Home() {
       </section>
 
       {/* AI Business Suite Banner */}
-      <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-dark py-16 md:py-20 px-4">
+      <section className="bg-gradient-to-br from-navy-dark via-navy to-navy-dark py-10 md:py-14 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row items-center gap-10 md:gap-16">
             <div className="flex-1">
               <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/10 rounded-full px-4 py-1.5 mb-4">
-                <Brain className="w-4 h-4 text-ice" />
-                <span className="text-sm font-medium text-ice">AI-Powered</span>
+                <Brain className="w-4 h-4 text-white" />
+                <span className="text-sm font-medium text-white">AI-Powered</span>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-white">
                 AI Business Suite
               </h2>
-              <p className="mt-3 text-lg text-ice/60 leading-relaxed">
+              <p className="mt-3 text-lg text-white/60 leading-relaxed">
                 AI that works while you sleep. Answers customer questions, surfaces revenue insights, and writes your marketing content.
               </p>
               <Link
@@ -251,9 +251,9 @@ export default function Home() {
                 { icon: Sparkles, title: "AI Marketing", desc: "Social posts, emails, and review responses" },
               ].map((item) => (
                 <div key={item.title} className="rounded-xl bg-white/10 backdrop-blur-sm border border-white/10 p-5 text-center">
-                  <item.icon className="w-8 h-8 text-ice mx-auto mb-3" />
+                  <item.icon className="w-8 h-8 text-white mx-auto mb-3" />
                   <h3 className="font-semibold text-white text-sm">{item.title}</h3>
-                  <p className="mt-1 text-xs text-ice/50">{item.desc}</p>
+                  <p className="mt-1 text-xs text-white/50">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -262,7 +262,7 @@ export default function Home() {
       </section>
 
       {/* Featured Project */}
-      <section className="bg-surface-muted py-20 md:py-28 px-4">
+      <section className="bg-surface-muted py-12 md:py-16 px-4">
         <div className="max-w-7xl mx-auto">
           <SectionHeader
             badge="Case Study"
@@ -272,7 +272,7 @@ export default function Home() {
             centered
           />
 
-          <div className="mt-14 max-w-5xl mx-auto">
+          <div className="mt-8 max-w-5xl mx-auto">
             <ProjectCard
               title="Mike T Detailing"
               description="Full-stack booking platform with online scheduling, Stripe payments, VIP memberships, referral program, admin dashboard, and a React Native mobile app."
@@ -297,7 +297,7 @@ export default function Home() {
       </section>
 
       {/* Testimonial */}
-      <section className="bg-surface py-20 md:py-28 px-4">
+      <section className="bg-surface py-12 md:py-16 px-4">
         <div className="max-w-3xl mx-auto">
           <TestimonialCard
             name="Mike T."
@@ -309,12 +309,12 @@ export default function Home() {
       </section>
 
       {/* CTA — Audit-led */}
-      <section className="bg-navy py-20 md:py-28 px-4">
+      <section className="bg-navy py-12 md:py-16 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             Where is your business leaking revenue?
           </h2>
-          <p className="mt-4 text-lg text-ice/60">
+          <p className="mt-4 text-lg text-white/60">
             15-minute audit. We&apos;ll show you exactly what&apos;s costing you customers — and how to fix it.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -326,7 +326,7 @@ export default function Home() {
             </Link>
             <a
               href="tel:+19842151498"
-              className="inline-flex items-center gap-2 text-ice/60 hover:text-white transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors font-medium"
             >
               <Phone className="h-4 w-4" />
               (984) 215-1498

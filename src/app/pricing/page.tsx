@@ -292,7 +292,7 @@ export default function PricingPage() {
       <section className="bg-navy py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Get Started?</h2>
-          <p className="mt-4 text-lg text-ice/60">
+          <p className="mt-4 text-lg text-white/60">
             First month gets you live. Domain, email, and support every month after.
           </p>
           <Link

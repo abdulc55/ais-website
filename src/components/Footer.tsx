@@ -84,10 +84,10 @@ export function Footer() {
                 className="h-8 w-auto"
               />
             </Link>
-            <p className="text-sm text-ice/60 mb-1 font-medium">
+            <p className="text-sm text-white/60 mb-1 font-medium">
               Web Development & AI Agency
             </p>
-            <p className="text-sm text-ice/40 leading-relaxed mb-5">
+            <p className="text-sm text-white/40 leading-relaxed mb-5">
               Building exceptional digital experiences for businesses in the
               Triangle area and beyond.
             </p>
@@ -99,7 +99,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-ice/50 hover:bg-amber hover:text-navy-dark transition-colors"
+                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:bg-amber hover:text-navy-dark transition-colors"
                 >
                   <s.icon className="w-4 h-4" />
                 </a>
@@ -109,7 +109,7 @@ export function Footer() {
 
           {/* Services column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
               Services
             </h3>
             <ul className="space-y-2.5">
@@ -117,7 +117,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-ice/50 hover:text-white transition-colors"
+                    className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -128,7 +128,7 @@ export function Footer() {
 
           {/* Company column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
               Company
             </h3>
             <ul className="space-y-2.5">
@@ -136,7 +136,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-ice/50 hover:text-white transition-colors"
+                    className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -147,10 +147,10 @@ export function Footer() {
 
           {/* Contact column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
               Get in Touch
             </h3>
-            <ul className="space-y-2.5 text-sm text-ice/50">
+            <ul className="space-y-2.5 text-sm text-white/50">
               <li>
                 <a
                   href="mailto:abdul@spiffytec.com"
@@ -176,7 +176,7 @@ export function Footer() {
         {/* Locations + industries — internal linking for SEO */}
         <div className="mt-14 grid gap-10 md:grid-cols-2">
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
               Areas We Serve
             </h3>
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
@@ -184,7 +184,7 @@ export function Footer() {
                 <li key={loc.href}>
                   <Link
                     href={loc.href}
-                    className="text-sm text-ice/50 hover:text-white transition-colors"
+                    className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {loc.label}
                   </Link>
@@ -193,7 +193,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-ice/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
               Industries
             </h3>
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
@@ -201,7 +201,7 @@ export function Footer() {
                 <li key={ind.href}>
                   <Link
                     href={ind.href}
-                    className="text-sm text-ice/50 hover:text-white transition-colors"
+                    className="text-sm text-white/50 hover:text-white transition-colors"
                   >
                     {ind.label}
                   </Link>
@@ -215,7 +215,7 @@ export function Footer() {
         <div className="h-px bg-white/10 my-10" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ice/40">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
           <p>&copy; 2026 Spiffy Tec. All rights reserved.</p>
         </div>
       </div>

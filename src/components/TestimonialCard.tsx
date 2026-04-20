@@ -30,7 +30,7 @@ export function TestimonialCard({
       </div>
 
       {/* Quote icon */}
-      <Quote className="w-8 h-8 text-ice mb-3" />
+      <Quote className="w-8 h-8 text-white mb-3" />
 
       {/* Quote text */}
       <p className="text-gray-700 italic leading-relaxed flex-1 mb-5">

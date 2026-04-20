@@ -143,7 +143,7 @@ export function LandingPage({ content }: { content: LandingPageContent }) {
           <p className="mt-3 text-3xl md:text-4xl font-bold text-white">
             {priceRange}
           </p>
-          <p className="mt-3 text-ice/70 max-w-2xl mx-auto">{priceBlurb}</p>
+          <p className="mt-3 text-white/70 max-w-2xl mx-auto">{priceBlurb}</p>
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href={`/contact?ref=${slug}`}
@@ -217,7 +217,7 @@ export function LandingPage({ content }: { content: LandingPageContent }) {
           <h2 className="text-2xl md:text-3xl font-bold text-white">
             Ready to get set up?
           </h2>
-          <p className="mt-4 text-ice/70">
+          <p className="mt-4 text-white/70">
             {"Book a free 30-minute strategy call. We'll pull up your site, score it, and show you exactly what's costing you customers."}
           </p>
           <Link

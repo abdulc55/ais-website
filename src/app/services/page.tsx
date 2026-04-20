@@ -243,7 +243,7 @@ export default function ServicesPage() {
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
                         <Check className="mt-0.5 h-5 w-5 shrink-0 text-amber" />
-                        <span className="leading-relaxed text-ice/80">{feature}</span>
+                        <span className="leading-relaxed text-white/80">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -310,7 +310,7 @@ export default function ServicesPage() {
           <h2 className="text-3xl font-bold text-white md:text-4xl">
             Not sure which layer fits your business?
           </h2>
-          <p className="mt-4 text-lg text-ice/65">
+          <p className="mt-4 text-lg text-white/65">
             We&apos;ll look at where leads are slipping through right now and recommend the smallest
             system that fixes the real bottleneck.
           </p>

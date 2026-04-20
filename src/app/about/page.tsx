@@ -163,7 +163,7 @@ export default function AboutPage() {
       <section className="bg-navy py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Let&apos;s Work Together</h2>
-          <p className="mt-4 text-lg text-ice/60">
+          <p className="mt-4 text-lg text-white/60">
             Tell us what you&apos;re building.
           </p>
           <Link

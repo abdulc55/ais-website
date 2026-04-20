@@ -205,7 +205,7 @@ export default function PortfolioPage() {
       <section className="bg-navy py-16 md:py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl md:text-4xl font-bold text-white">Want Results Like These?</h2>
-          <p className="mt-4 text-lg text-ice/60">
+          <p className="mt-4 text-lg text-white/60">
             Let&apos;s talk about your project. Every engagement starts with a free consultation.
           </p>
           <Link

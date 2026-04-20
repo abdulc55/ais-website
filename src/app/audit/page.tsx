@@ -217,7 +217,7 @@ export default function AuditPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             15 minutes. Zero obligation.
           </h2>
-          <p className="mt-4 text-lg text-ice/60 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
             We&apos;ll show you where your business is losing leads online — and give you an action plan to fix it. Whether you hire us or not.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -229,7 +229,7 @@ export default function AuditPage() {
             </Link>
             <a
               href="tel:+19842151498"
-              className="inline-flex items-center gap-2 text-ice/60 hover:text-white transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors font-medium"
             >
               <Phone className="h-4 w-4" />
               (984) 215-1498

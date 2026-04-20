@@ -38,7 +38,7 @@ export function ProjectCard({
         featured ? "h-full min-h-[240px]" : "h-48 md:h-56"
       )}
     >
-      <span className="text-ice/50 text-sm font-medium">
+      <span className="text-white/50 text-sm font-medium">
         {imagePlaceholder ?? "Product preview"}
       </span>
     </div>
@@ -48,7 +48,7 @@ export function ProjectCard({
     return (
       <div className="overflow-hidden rounded-[2rem] bg-white card-shadow grid gap-0 md:grid-cols-[1.1fr_0.9fr]">
         <div className="bg-gradient-to-br from-navy-dark via-navy to-navy-light p-6 md:p-8 text-white">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-ice/85">
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-white/85">
             Platform Snapshot
           </div>
 
@@ -60,7 +60,7 @@ export function ProjectCard({
                   className="rounded-2xl border border-white/10 bg-white/8 p-4 backdrop-blur-sm"
                 >
                   <p className="text-2xl font-bold tracking-tight text-white">{metric.value}</p>
-                  <p className="mt-1 text-sm text-ice/65">{metric.label}</p>
+                  <p className="mt-1 text-sm text-white/65">{metric.label}</p>
                 </div>
               ))}
             </div>
@@ -83,7 +83,7 @@ export function ProjectCard({
               {proofPoints.map((point) => (
                 <li key={point} className="flex items-start gap-3">
                   <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-amber" />
-                  <span className="text-sm leading-relaxed text-ice/80">{point}</span>
+                  <span className="text-sm leading-relaxed text-white/80">{point}</span>
                 </li>
               ))}
             </ul>
@@ -93,7 +93,7 @@ export function ProjectCard({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs font-medium text-ice/75"
+                className="rounded-full border border-white/10 bg-white/8 px-3 py-1 text-xs font-medium text-white/75"
               >
                 {tag}
               </span>

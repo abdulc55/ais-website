@@ -36,7 +36,7 @@ export function StatCounter({ value, prefix, suffix, label }: StatCounterProps) 
         {display}
         {suffix && <span>{suffix}</span>}
       </p>
-      <p className="mt-2 text-ice/70 text-sm font-medium">{label}</p>
+      <p className="mt-2 text-white/70 text-sm font-medium">{label}</p>
     </div>
   );
 }

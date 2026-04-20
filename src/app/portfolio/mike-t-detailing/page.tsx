@@ -248,14 +248,14 @@ export default function MikeTCaseStudyPage() {
                 <h3 className="mt-4 text-2xl font-bold tracking-tight text-white">
                   {module.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-ice/75">
+                <p className="mt-4 leading-relaxed text-white/75">
                   {module.body}
                 </p>
                 <div className="mt-8 rounded-2xl border border-white/10 bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ice/60">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
                     Why it matters
                   </p>
-                  <p className="mt-2 text-sm text-ice/80">
+                  <p className="mt-2 text-sm text-white/80">
                     Each module removes a real piece of friction from booking, paying, communicating,
                     or coming back.
                   </p>
@@ -325,7 +325,7 @@ export default function MikeTCaseStudyPage() {
           <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">
             A local service business does not need “more marketing.”
           </h2>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-ice/70">
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/70">
             It needs a sharper system. This project proves what happens when booking, payments,
             follow-up, and retention all live inside one coherent platform.
           </p>
@@ -337,7 +337,7 @@ export default function MikeTCaseStudyPage() {
                 className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur-sm"
               >
                 <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ice/70">{item.body}</p>
+                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.body}</p>
               </div>
             ))}
           </div>
@@ -376,7 +376,7 @@ export default function MikeTCaseStudyPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-white">
             Want a platform like this for your business?
           </h2>
-          <p className="mt-4 text-lg text-ice/70">
+          <p className="mt-4 text-lg text-white/70">
             Booking, payments, admin dashboard, and a mobile app — live in 2-3
             weeks from signed contract.
           </p>
