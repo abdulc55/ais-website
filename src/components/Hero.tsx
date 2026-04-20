@@ -28,7 +28,7 @@ export function Hero({
         <span key={i}>
           {part}
           {i < arr.length - 1 && (
-            <span className="text-amber">{highlight}</span>
+            <span className={tall ? "text-white underline decoration-amber decoration-4 underline-offset-8" : "text-amber-dark"}>{highlight}</span>
           )}
         </span>
       ))
@@ -45,8 +45,14 @@ export function Hero({
           : "bg-surface pt-28 md:pt-32 pb-8 md:pb-10"
       )}
     >
-      {/* Spiral animation background — only on homepage hero */}
-      {tall && <HeroBackground />}
+      {/* Spiral animation — pushed behind content with a dark overlay */}
+      {tall && (
+        <>
+          <HeroBackground />
+          {/* Dark overlay so animation doesn't compete with text */}
+          <div className="absolute inset-0 z-[1] bg-navy/60" />
+        </>
+      )}
 
       {/* Subtle top accent bar — only on non-animated heroes */}
       {!tall && (
@@ -77,7 +83,7 @@ export function Hero({
         {subtitle && (
           <p className={cn(
             "mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed",
-            tall ? "text-amber" : "text-text-muted"
+            tall ? "text-white/80" : "text-text-muted"
           )}>
             {subtitle}
           </p>
