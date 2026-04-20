@@ -83,7 +83,7 @@ export function Hero({
         {subtitle && (
           <p className={cn(
             "mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed",
-            tall ? "text-white bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl px-6 py-4 inline-block" : "text-text-muted"
+            tall ? "text-white font-semibold bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl px-6 py-4 inline-block" : "text-text-muted"
           )}>
             {subtitle}
           </p>
