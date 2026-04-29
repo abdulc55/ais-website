@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/*
+ * NOTE: This file is the development reference. At site-generation time
+ * `template-writer.ts` overwrites `globals.css` with the tenant-specific
+ * accent colour folded into the universal palette below. Edits here
+ * affect what new sites look like in dev — to change generated sites,
+ * edit `src/generator/template-writer.ts` instead.
+ */
+@theme {
+  /* Universal light surfaces — same for every tenant. */
+  --color-canvas: #FAFAF7;
+  --color-surface: #FFFFFF;
+  --color-muted: #F4F4F0;
+  --color-border-subtle: #E8E6E0;
+  --color-border-strong: #D4D2CC;
+  --color-primary: #1A1A1A;
+  --color-secondary: #5A5A5A;
+  --color-text-muted: #8A8A8A;
+  --color-footer-bg: #1F1F1B;
+
+  /* Tenant accent — overridden per-site at generate time. */
+  --color-accent: __ACCENT__;
+  --color-accent-light: __ACCENT_LIGHT__;
+  --color-accent-dark: __ACCENT_DARK__;
+  --color-accent-soft: __ACCENT_SOFT__;
+
+  /* Legacy aliases. */
+  --color-primary-light: #5A5A5A;
+  --color-primary-dark: #1A1A1A;
+  --color-surface-dark: #F4F4F0;
+  --color-text: #1A1A1A;
+  --color-text-light: #5A5A5A;
+
+  --font-heading: __FONT_HEADING__;
+  --font-body: __FONT_BODY__;
+  --font-display: 'Fraunces', Georgia, serif;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-primary);
+  background-color: var(--color-canvas);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.015em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}

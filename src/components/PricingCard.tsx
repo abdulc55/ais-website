@@ -21,11 +21,11 @@ export function PricingCard({
     <div
       className={cn(
         "bg-white rounded-2xl card-shadow flex flex-col relative overflow-hidden h-full",
-        popular && "border-2 border-amber scale-[1.02]"
+        popular && "border-2 border-[var(--color-spiffy-orange)]"
       )}
     >
       {popular && (
-        <div className="bg-amber text-navy-dark text-center text-xs font-bold uppercase tracking-wider py-2">
+        <div className="bg-[var(--color-spiffy-orange)] text-white text-center text-xs font-bold uppercase tracking-wider py-2">
           Most Popular
         </div>
       )}
@@ -56,8 +56,8 @@ export function PricingCard({
           className={cn(
             "block text-center rounded-full px-6 py-3 font-semibold transition-colors",
             popular
-              ? "bg-amber text-navy-dark hover:bg-amber-dark"
-              : "border-2 border-navy text-navy hover:bg-navy hover:text-white"
+              ? "bg-[var(--color-spiffy-orange)] text-white hover:bg-[var(--color-spiffy-orange-dark)]"
+              : "bg-white border border-[var(--color-border-strong)] text-[var(--color-ink)] hover:border-[var(--color-spiffy-orange)] hover:text-[var(--color-spiffy-orange)]"
           )}
         >
           Get Started

@@ -9,6 +9,8 @@
  */
 import { NextResponse } from "next/server";
 import path from "path";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import {
   execFileAsync,
   getScraperPath,
@@ -16,11 +18,12 @@ import {
   readLatestReport,
 } from "@/lib/scraper";
 import { analyzeUrlsSchema } from "@/lib/validations";
-import { requireAdmin } from "@/lib/require-admin";
 
 export async function POST(request: Request) {
-  const authError = await requireAdmin();
-  if (authError) return authError;
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
   try {
     const body = await request.json();

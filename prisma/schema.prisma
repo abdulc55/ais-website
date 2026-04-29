@@ -1,0 +1,177 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ─── NextAuth Adapter Models ────────────────────────────────────────────────
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+// ─── Core Models ────────────────────────────────────────────────────────────
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String    @default("sales") // admin | sales
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+
+  accounts    Account[]
+  sessions    Session[]
+  intakeForms IntakeForm[]
+}
+
+model IntakeForm {
+  id          String    @id @default(cuid())
+  token       String    @unique @default(cuid())
+  label       String
+  createdById String
+  expiresAt   DateTime?
+  createdAt   DateTime  @default(now())
+
+  createdBy   User               @relation(fields: [createdById], references: [id], onDelete: Cascade)
+  submissions ClientSubmission[]
+
+  @@index([createdById])
+}
+
+model ClientSubmission {
+  id           String @id @default(cuid())
+  intakeFormId String
+
+  // Section 1+2: Business & Contact
+  businessName     String
+  industry         String
+  yearsInBusiness  String?
+  city             String?
+  state            String?
+  serviceArea      String?
+  employees        String?
+  currentWebsite   String?
+  contactName      String
+  contactEmail     String
+  contactPhone     String?
+  preferredContact String?
+  bestTimeToReach  String?
+
+  // Section 3: Goals
+  goals      String? // JSON array
+  primaryCta String?
+
+  // Section 4: Services
+  services           String? // JSON array of {name, price, duration}
+  cancellationPolicy String?
+
+  // Section 5: Branding
+  hasLogo         Boolean @default(false)
+  brandColors     String? // JSON {primary, accent, background}
+  stylePreference String?
+  tagline         String?
+  desiredFeeling  String?
+  inspirationUrls String? // JSON array
+
+  // Section 6+7: Pages & Features
+  pagesNeeded    String? // JSON array
+  featuresNeeded String? // JSON array
+
+  // Section 9: Customers
+  idealCustomer    String?
+  ageRange         String?
+  howCustomersFind String?
+  competitors      String? // JSON array
+  differentiator   String?
+
+  // Section 8+10+11: Budget & Details
+  existingDomain   String?
+  existingHosting  String?
+  socialMedia      String? // JSON
+  budgetRange      String?
+  launchDate       String?
+  isUrgent         Boolean @default(false)
+  additionalNotes  String?
+
+  // Pipeline
+  status      String   @default("new") // new | reviewed | generating | generated | deployed
+  source      String   @default("client-intake") // "client-intake" | "sales-demo"
+  prospectiqLeadId String? // optional ProspectIQ business ID for prefill tracking
+  submittedAt DateTime @default(now())
+  reviewedAt  DateTime?
+  generatedAt DateTime?
+
+  intakeForm     IntakeForm      @relation(fields: [intakeFormId], references: [id], onDelete: Cascade)
+  siteGeneration SiteGeneration?
+
+  @@index([intakeFormId])
+  @@index([status])
+  @@index([source])
+  @@index([industry])
+  @@index([submittedAt])
+}
+
+model SiteGeneration {
+  id           String  @id @default(cuid())
+  submissionId String  @unique
+  siteConfig   String  // JSON - full SiteConfig object
+  slug         String
+  outputPath   String?
+  status       String  @default("pending") // pending | generating | success | error
+  errorMessage String?
+  deployUrl    String?
+  deployedAt   DateTime?
+
+  // Preview system for sales demos
+  previewToken       String?   @unique // public shareable preview token
+  previewExpiresAt   DateTime? // optional expiry (default 30 days from creation)
+  previewViewCount   Int       @default(0)
+  previewLastViewedAt DateTime?
+
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  submission ClientSubmission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
+
+  @@index([status])
+  @@index([previewToken])
+}

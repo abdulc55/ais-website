@@ -27,7 +27,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-8 py-3 rounded-xl font-semibold text-white cta-gradient transition hover:shadow-lg"
+            className="inline-flex items-center justify-center px-8 py-3 rounded-full font-semibold text-white bg-[var(--color-spiffy-orange)] hover:bg-[var(--color-spiffy-orange-dark)] transition"
           >
             Back to Home
           </Link>

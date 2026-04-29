@@ -8,8 +8,14 @@ jest.mock("@/lib/scraper", () => {
   };
 });
 
-jest.mock("@/lib/require-admin", () => ({
-  requireAdmin: jest.fn(async () => null),
+jest.mock("next-auth", () => ({
+  getServerSession: jest.fn(async () => ({
+    user: { id: "test-user", email: "abdul@spiffytec.com", role: "admin" },
+  })),
+}));
+
+jest.mock("@/lib/auth", () => ({
+  authOptions: {},
 }));
 
 import { POST } from "@/app/api/admin/leads/analyze/route";

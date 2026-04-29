@@ -1,6 +1,6 @@
 # Spiffy Tec
 
-Agency website for Spiffy Tec, a web development & SaaS company based in Cary, NC serving the Raleigh-Durham Triangle area.
+Agency website for Spiffy Tec, a web development & SaaS company based in Cary, NC. Specializes in service businesses, builds for any business ready to grow online — Triangle roots, no geographic limit.
 
 ## Tech Stack
 
@@ -214,6 +214,7 @@ npm run dev            # Start dev server on port 3001
 - **2026-03-23** — Created CLAUDE.md. Updated pricing from one-time ($1,500–$5,000+) to monthly model ($99–$349/mo). Added AI Business Suite as new service and add-on.
 - **2026-03-23** — Major pricing restructure: $149-$599/mo with setup fees ($0-$3,999), monthly/annual billing toggle, revenue share model, 12-month commitment, updated headlines across all pages, generated sales PDF (AIS-Sales-Pricing-2026.pdf). Updated CLAUDE.md pricing section.
 - **2026-03-24** — Added Lead Scanner web UI at `/admin/leads`: tabbed interface with "Search by Area" (Google Places discovery → auto-analyze) and "Analyze URLs" (direct URL scan). New API routes: `/api/admin/leads/analyze` and `/api/admin/leads/discover`. Dashboard shows scores, pitch points, outreach tracking. Reads from `tools/lead-scraper/` SQLite DB.
+- **2026-04-29** — Merged client-portal into spiffytec: NextAuth (email + bcrypt) replaces shared-password proxy. Prisma + libsql added. Admin lives at `/admin/*` (Dashboard, Lead Scanner, Intake Forms, Submissions, Demos, Sites). Public intake/preview at `/intake/[token]` and `/preview/[token]`. Full site-generator engine + starter template ported. Per-IP rate limiter on `/api/auth/callback/credentials` with regression test. 172/172 jest tests + `npm run build` green. **Dev script uses `--webpack` flag** because Turbopack was wedged in this install ("Persisting failed: Unable to write SST file" / "ENOENT middleware-manifest.json"). Production build is unaffected; sign-in works end-to-end via webpack dev. Re-enable Turbopack by removing `--webpack` from `package.json` once the upstream issue is fixed.
 
 ## Planning Convention — Multi-Agent Approval
 

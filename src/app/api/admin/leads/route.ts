@@ -1,13 +1,22 @@
 import { NextResponse } from "next/server";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/lib/auth";
 import { getAllDashboardData, markContacted } from "@/lib/leads-db";
 import { markContactedSchema } from "@/lib/validations";
-import { requireAdmin } from "@/lib/require-admin";
 
 const VALID_SORTS = new Set(["name", "date", "score"]);
 const VALID_ORDERS = new Set(["asc", "desc"]);
 
+async function requireSession(): Promise<Response | null> {
+  const session = await getServerSession(authOptions);
+  if (!session?.user) {
+    return Response.json({ error: "Unauthorized" }, { status: 401 });
+  }
+  return null;
+}
+
 export async function GET(request: Request) {
-  const authError = await requireAdmin();
+  const authError = await requireSession();
   if (authError) return authError;
 
   try {
@@ -32,7 +41,7 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
-  const authError = await requireAdmin();
+  const authError = await requireSession();
   if (authError) return authError;
 
   try {

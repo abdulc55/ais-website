@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { cn } from "@/lib/cn";
-import { HeroBackground } from "@/components/HeroBackground";
 
 interface HeroProps {
   badge?: string;
@@ -10,6 +9,7 @@ interface HeroProps {
   supportingPoints?: string[];
   primaryCta?: { label: string; href: string };
   secondaryCta?: { label: string; href: string };
+  /** Reserved for future use; the hero is always light now. */
   tall?: boolean;
 }
 
@@ -28,7 +28,7 @@ export function Hero({
         <span key={i}>
           {part}
           {i < arr.length - 1 && (
-            <span className={tall ? "text-white underline decoration-amber decoration-4 underline-offset-8" : "text-amber-dark"}>{highlight}</span>
+            <span className="text-[var(--color-spiffy-orange)]">{highlight}</span>
           )}
         </span>
       ))
@@ -37,54 +37,36 @@ export function Hero({
   return (
     <section
       data-page-hero
-      data-hero-tone={tall ? "dark" : "light"}
+      data-hero-tone="light"
       className={cn(
-        "relative overflow-hidden",
-        tall
-          ? "min-h-[75vh] flex items-center pt-20 bg-navy"
-          : "bg-surface pt-28 md:pt-32 pb-8 md:pb-10"
+        "relative overflow-hidden bg-white",
+        tall ? "pt-28 md:pt-36 pb-20 md:pb-28" : "pt-28 md:pt-32 pb-8 md:pb-10"
       )}
     >
-      {/* Spiral animation — pushed behind content with a dark overlay */}
+      {/* Soft orange decoration — purely decorative, no animation */}
       {tall && (
-        <>
-          <HeroBackground />
-          {/* Dark overlay so animation doesn't compete with text */}
-          <div className="absolute inset-0 z-[1] bg-navy/60" />
-        </>
-      )}
-
-      {/* Subtle top accent bar — only on non-animated heroes */}
-      {!tall && (
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-navy via-amber to-navy" />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-40 -right-40 w-[480px] h-[480px] rounded-full opacity-50 blur-3xl"
+          style={{ background: "radial-gradient(closest-side, #FFE0CB, transparent)" }}
+        />
       )}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         {badge && (
-          <div className={cn(
-            "inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6",
-            tall
-              ? "bg-white border border-white/20"
-              : "bg-navy/5 border border-navy/10"
-          )}>
-            <span className={cn("text-sm font-semibold", tall ? "text-navy" : "text-navy")}>
+          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-6 bg-[var(--color-spiffy-orange-soft)] border border-[var(--color-border)]">
+            <span className="text-sm font-semibold text-[var(--color-spiffy-orange-dark)]">
               {badge}
             </span>
           </div>
         )}
 
-        <h1 className={cn(
-          "text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight max-w-4xl mx-auto",
-          tall ? "text-white" : "text-navy"
-        )}>
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight tracking-tight max-w-4xl mx-auto text-[var(--color-ink)]">
           {renderedTitle}
         </h1>
 
         {subtitle && (
-          <p className={cn(
-            "mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed",
-            tall ? "text-white font-bold" : "text-text-muted"
-          )}>
+          <p className="mt-6 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-[var(--color-ink-muted)]">
             {subtitle}
           </p>
         )}
@@ -94,12 +76,7 @@ export function Hero({
             {supportingPoints.map((point) => (
               <span
                 key={point}
-                className={cn(
-                  "rounded-full px-4 py-2 text-sm font-medium",
-                  tall
-                    ? "border border-white/20 bg-white text-navy font-semibold"
-                    : "border border-navy/10 bg-white text-navy"
-                )}
+                className="rounded-full px-4 py-2 text-sm font-medium border border-[var(--color-border)] bg-white text-[var(--color-ink)]"
               >
                 {point}
               </span>
@@ -112,12 +89,7 @@ export function Hero({
             {primaryCta && (
               <Link
                 href={primaryCta.href}
-                className={cn(
-                  "rounded-full px-8 py-3.5 font-semibold text-lg transition-colors inline-block",
-                  tall
-                    ? "bg-amber text-navy-dark hover:bg-amber-dark"
-                    : "bg-navy text-white hover:bg-navy-light"
-                )}
+                className="rounded-full px-8 py-3.5 font-semibold text-lg inline-block bg-[var(--color-spiffy-orange)] text-white hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
               >
                 {primaryCta.label}
               </Link>
@@ -125,12 +97,7 @@ export function Hero({
             {secondaryCta && (
               <Link
                 href={secondaryCta.href}
-                className={cn(
-                  "border-2 rounded-full px-8 py-3.5 font-semibold text-lg transition-colors inline-block",
-                  tall
-                    ? "border-white/30 text-white hover:bg-white/10"
-                    : "border-navy/20 text-navy hover:bg-navy/5"
-                )}
+                className="rounded-full px-8 py-3.5 font-semibold text-lg inline-block bg-white border border-[var(--color-border-strong)] text-[var(--color-ink)] hover:border-[var(--color-spiffy-orange)] hover:text-[var(--color-spiffy-orange)] transition-colors"
               >
                 {secondaryCta.label}
               </Link>

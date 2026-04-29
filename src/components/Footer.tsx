@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import type { SVGProps } from "react";
 
 function GithubIcon(props: SVGProps<SVGSVGElement>) {
@@ -18,10 +17,10 @@ function LinkedinIcon(props: SVGProps<SVGSVGElement>) {
   );
 }
 
-function XIcon(props: SVGProps<SVGSVGElement>) {
+function InstagramIcon(props: SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z" />
     </svg>
   );
 }
@@ -42,13 +41,13 @@ const company = [
 ];
 
 const socials = [
-  { icon: GithubIcon, href: "https://github.com/spiffytec", label: "GitHub" },
+  { icon: InstagramIcon, href: "https://instagram.com/spiffytec", label: "Instagram" },
+  { icon: GithubIcon, href: "https://github.com/abdulc55", label: "GitHub" },
   {
     icon: LinkedinIcon,
     href: "https://linkedin.com/company/spiffytec",
     label: "LinkedIn",
   },
-  { icon: XIcon, href: "https://x.com/spiffytec", label: "X (Twitter)" },
 ];
 
 const locations = [
@@ -70,24 +69,18 @@ const industries = [
 
 export function Footer() {
   return (
-    <footer className="bg-navy text-white">
+    <footer className="bg-[var(--color-surface-muted)] text-[var(--color-ink)] border-t border-[var(--color-border)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-20">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-8">
           {/* Brand column */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-block mb-3">
-              <Image
-                src="/logo.png"
-                alt="Spiffy Tec"
-                width={140}
-                height={38}
-                className="h-8 w-auto"
-              />
+              <span className="brand-text text-2xl">Spiffy Tec</span>
             </Link>
-            <p className="text-sm text-white/60 mb-1 font-medium">
+            <p className="text-sm text-[var(--color-ink)] mb-1 font-medium">
               Web Development & AI Agency
             </p>
-            <p className="text-sm text-white/40 leading-relaxed mb-5">
+            <p className="text-sm text-[var(--color-ink-muted)] leading-relaxed mb-5">
               Building exceptional digital experiences for businesses in the
               Triangle area and beyond.
             </p>
@@ -99,7 +92,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
-                  className="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:bg-amber hover:text-navy-dark transition-colors"
+                  className="w-9 h-9 rounded-full bg-white border border-[var(--color-border)] flex items-center justify-center text-[var(--color-ink)] hover:bg-[var(--color-spiffy-orange)] hover:border-[var(--color-spiffy-orange)] hover:text-white transition-colors"
                 >
                   <s.icon className="w-4 h-4" />
                 </a>
@@ -109,7 +102,7 @@ export function Footer() {
 
           {/* Services column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-ink)] mb-4">
               Services
             </h3>
             <ul className="space-y-2.5">
@@ -117,7 +110,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/50 hover:text-white transition-colors"
+                    className="text-sm text-[var(--color-ink-muted)] hover:text-[var(--color-spiffy-orange)] transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -128,7 +121,7 @@ export function Footer() {
 
           {/* Company column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-ink)] mb-4">
               Company
             </h3>
             <ul className="space-y-2.5">
@@ -136,7 +129,7 @@ export function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-sm text-white/50 hover:text-white transition-colors"
+                    className="text-sm text-[var(--color-ink-muted)] hover:text-[var(--color-spiffy-orange)] transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -147,14 +140,14 @@ export function Footer() {
 
           {/* Contact column */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-ink)] mb-4">
               Get in Touch
             </h3>
-            <ul className="space-y-2.5 text-sm text-white/50">
+            <ul className="space-y-2.5 text-sm text-[var(--color-ink-muted)]">
               <li>
                 <a
                   href="mailto:abdul@spiffytec.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--color-spiffy-orange)] transition-colors"
                 >
                   abdul@spiffytec.com
                 </a>
@@ -162,7 +155,7 @@ export function Footer() {
               <li>
                 <a
                   href="tel:+19842151498"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[var(--color-spiffy-orange)] transition-colors"
                 >
                   (984) 215-1498
                 </a>
@@ -176,7 +169,7 @@ export function Footer() {
         {/* Locations + industries — internal linking for SEO */}
         <div className="mt-14 grid gap-10 md:grid-cols-2">
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-ink)] mb-4">
               Areas We Serve
             </h3>
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
@@ -184,7 +177,7 @@ export function Footer() {
                 <li key={loc.href}>
                   <Link
                     href={loc.href}
-                    className="text-sm text-white/50 hover:text-white transition-colors"
+                    className="text-sm text-[var(--color-ink-muted)] hover:text-[var(--color-spiffy-orange)] transition-colors"
                   >
                     {loc.label}
                   </Link>
@@ -193,7 +186,7 @@ export function Footer() {
             </ul>
           </div>
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white/70 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-[var(--color-ink)] mb-4">
               Industries
             </h3>
             <ul className="flex flex-wrap gap-x-5 gap-y-2">
@@ -201,7 +194,7 @@ export function Footer() {
                 <li key={ind.href}>
                   <Link
                     href={ind.href}
-                    className="text-sm text-white/50 hover:text-white transition-colors"
+                    className="text-sm text-[var(--color-ink-muted)] hover:text-[var(--color-spiffy-orange)] transition-colors"
                   >
                     {ind.label}
                   </Link>
@@ -212,11 +205,11 @@ export function Footer() {
         </div>
 
         {/* Divider */}
-        <div className="h-px bg-white/10 my-10" />
+        <div className="h-px bg-[var(--color-border)] my-10" />
 
         {/* Bottom bar */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
-          <p>&copy; 2026 Spiffy Tec. All rights reserved.</p>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--color-ink-muted)]">
+          <p>&copy; 2026 <span className="brand-text text-xs">Spiffy Tec</span>. All rights reserved.</p>
         </div>
       </div>
     </footer>

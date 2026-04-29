@@ -24,7 +24,7 @@ describe("Navbar", () => {
     mockUsePathname.mockReturnValue("/services");
   });
 
-  it("uses light styling on non-home routes", async () => {
+  it("renders the orange brand wordmark on non-home routes", async () => {
     const { container } = render(
       <>
         <Navbar />
@@ -32,15 +32,12 @@ describe("Navbar", () => {
       </>
     );
 
-    const brand = container.querySelector("header span.text-3xl");
+    const brand = container.querySelector("header .brand-text");
     expect(brand).not.toBeNull();
-
-    await waitFor(() => {
-      expect(brand).toHaveClass("text-navy");
-    });
+    expect(brand?.textContent).toBe("Spiffy Tec");
   });
 
-  it("uses dark-hero styling on the homepage", async () => {
+  it("renders the orange brand wordmark on the homepage", async () => {
     mockUsePathname.mockReturnValue("/");
 
     const { container } = render(
@@ -49,11 +46,8 @@ describe("Navbar", () => {
       </>
     );
 
-    const brand = container.querySelector("header span.text-3xl");
+    const brand = container.querySelector("header .brand-text");
     expect(brand).not.toBeNull();
-
-    await waitFor(() => {
-      expect(brand).toHaveClass("text-white");
-    });
+    expect(brand?.textContent).toBe("Spiffy Tec");
   });
 });

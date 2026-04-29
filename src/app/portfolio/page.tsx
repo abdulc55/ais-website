@@ -8,33 +8,34 @@ import { TechBadge } from "@/components/TechBadge";
 export const metadata: Metadata = {
   title: "Client Work — Web Design & Booking Platforms",
   description:
-    "See the websites, booking platforms, and mobile apps Spiffy Tec has built for service businesses in the Raleigh-Durham Triangle.",
+    "See the websites, booking platforms, and mobile apps Spiffy Tec has built — full case studies and live projects.",
 };
 
 const projects = [
   {
-    name: "Mike T Detailing",
+    name: "Valueati",
     label: "Featured Project",
+    href: "https://valueati.com",
     description:
-      "Full-stack booking platform with online scheduling, Stripe payments, VIP memberships, referral program, admin dashboard, and a React Native mobile app.",
+      "A coding-education platform built end-to-end — auth, curriculum engine, practice runner, and a spaced-review system that surfaces past problems for long-term retention.",
     challenge:
-      "Mike T Detailing needed a complete online presence — booking, payments, customer management — to replace phone-only scheduling that was costing them leads every day.",
+      "Most coding-prep tools dump problems on you and disappear. Valueati needed structured lessons, guided practice, and a review loop that actually keeps the material — without becoming another bloated SaaS.",
     solution:
-      "We built a full-stack Next.js platform with a 5-step booking flow, Stripe payment processing, VIP memberships, a referral program, an admin dashboard, and a React Native mobile app.",
+      "Custom-built on Next.js + TypeScript + Tailwind + Prisma. Auth, content management, problem engine, and the spaced-review queue all built in-house. No third-party platform stitched together.",
     results:
-      "Online bookings replaced phone calls, automated payments eliminated invoicing headaches, VIP subscriptions created recurring revenue, and a mobile app launched on both app stores.",
-    tech: ["Next.js", "React", "React Native", "TypeScript", "Tailwind CSS", "Stripe", "Prisma"],
-    features: ["Online Booking", "Stripe Payments", "VIP Memberships", "Referral System", "Admin Dashboard", "Mobile App"],
+      "Live at valueati.com. The same architecture, code quality, and production standard that ships on every Spiffy Tec client site. Open it in another tab — that&apos;s the proof.",
+    tech: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma"],
+    features: ["Curriculum Engine", "Guided Practice", "Spaced Review", "Custom Auth", "Responsive Web", "Built End-to-End"],
     metrics: [
-      { value: "3 weeks", label: "To launch the live platform" },
-      { value: "24/7", label: "Customers can book online" },
-      { value: "Stripe", label: "Payments and receipts automated" },
-      { value: "iOS + Android", label: "Companion app delivered" },
+      { value: "Live", label: "valueati.com is up right now" },
+      { value: "End-to-end", label: "Auth, content, practice, review" },
+      { value: "Custom built", label: "No templates, no page builders" },
+      { value: "Web-ready", label: "Responsive across devices" },
     ],
     proofPoints: [
-      "Booking flow, deposits, and service add-ons in one mobile-first checkout",
-      "VIP memberships and referral system for repeat revenue",
-      "Dashboard, customer history, and notifications for the owner",
+      "Curriculum-driven lessons with embedded code editor and inline checks",
+      "Guided practice problems with hints, walkthroughs, and graded solutions",
+      "Spaced-review queue that surfaces past problems for retention",
     ],
     featured: true,
   },
@@ -63,12 +64,12 @@ const projects = [
     features: ["7-Step Intake Wizard", "Shareable Form Links", "Auto Site Generation", "Industry Presets", "Pipeline Tracking"],
   },
   {
-    name: "ValueAti",
-    label: "Education Platform",
+    name: "Mike T Detailing",
+    label: "Booking Platform Build",
     description:
-      "Coding interview prep platform with 40+ algorithm problems, step-by-step breakdowns, and solutions in Python, JavaScript, and Java across 22 categories.",
-    tech: ["Express", "Node.js", "EJS", "MongoDB", "Firebase"],
-    features: ["40+ Problems", "22 Categories", "3 Languages", "Step-by-Step Breakdowns", "Category Navigation"],
+      "Full-stack booking platform with online scheduling, Stripe payments, VIP memberships, referral program, admin dashboard, and a React Native mobile app.",
+    tech: ["Next.js", "React", "React Native", "TypeScript", "Stripe", "Prisma"],
+    features: ["Online Booking", "Stripe Payments", "VIP Memberships", "Referral System", "Admin Dashboard", "iOS + Android App"],
   },
 ];
 
@@ -89,13 +90,13 @@ export default function PortfolioPage() {
         ]}
       />
 
-      {/* Featured Project — Mike T Detailing */}
+      {/* Featured Project — Valueati */}
       <section className="bg-surface py-12 md:py-16 px-4">
         <div className="max-w-6xl mx-auto">
-          <p className="text-sm font-semibold text-amber-dark uppercase tracking-wider text-center">
+          <p className="text-sm font-semibold text-[var(--color-spiffy-orange-dark)] uppercase tracking-wider text-center">
             {featured.label}
           </p>
-          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-navy text-center">
+          <h2 className="mt-2 text-3xl md:text-4xl font-bold text-[var(--color-ink)] text-center">
             {featured.name}
           </h2>
 
@@ -107,7 +108,7 @@ export default function PortfolioPage() {
               featured
               metrics={featured.metrics}
               proofPoints={featured.proofPoints}
-              primaryCta={{ label: "Read the Full Case Study", href: "/portfolio/mike-t-detailing" }}
+              primaryCta={{ label: "Visit Valueati", href: "https://valueati.com" }}
               secondaryCta={{ label: "Book a Strategy Call", href: "/contact" }}
             />
           </div>
@@ -115,22 +116,22 @@ export default function PortfolioPage() {
           {/* Challenge / Solution / Results */}
           <div className="mt-12 grid gap-10 md:grid-cols-3">
             <div>
-              <h3 className="text-lg font-bold text-navy">The Challenge</h3>
-              <p className="mt-3 text-text-muted leading-relaxed">{featured.challenge}</p>
+              <h3 className="text-lg font-bold text-[var(--color-ink)]">The Challenge</h3>
+              <p className="mt-3 text-[var(--color-ink-muted)] leading-relaxed">{featured.challenge}</p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-navy">Our Solution</h3>
-              <p className="mt-3 text-text-muted leading-relaxed">{featured.solution}</p>
+              <h3 className="text-lg font-bold text-[var(--color-ink)]">Our Solution</h3>
+              <p className="mt-3 text-[var(--color-ink-muted)] leading-relaxed">{featured.solution}</p>
             </div>
             <div>
-              <h3 className="text-lg font-bold text-navy">The Results</h3>
-              <p className="mt-3 text-text-muted leading-relaxed">{featured.results}</p>
+              <h3 className="text-lg font-bold text-[var(--color-ink)]">The Results</h3>
+              <p className="mt-3 text-[var(--color-ink-muted)] leading-relaxed">{featured.results}</p>
             </div>
           </div>
 
           {/* Tech stack */}
           <div className="mt-10">
-            <h3 className="text-lg font-bold text-navy text-center">Tech Stack</h3>
+            <h3 className="text-lg font-bold text-[var(--color-ink)] text-center">Tech Stack</h3>
             <div className="mt-4 flex flex-wrap justify-center gap-3">
               {featured.tech.map((tech) => (
                 <TechBadge key={tech} name={tech} />
@@ -140,25 +141,27 @@ export default function PortfolioPage() {
 
           {/* Key features */}
           <div className="mt-10">
-            <h3 className="text-lg font-bold text-navy text-center">Key Features</h3>
+            <h3 className="text-lg font-bold text-[var(--color-ink)] text-center">Key Features</h3>
             <div className="mt-4 grid gap-4 sm:grid-cols-2 md:grid-cols-3 max-w-3xl mx-auto">
               {featured.features.map((feat) => (
                 <div key={feat} className="flex items-center gap-3">
-                  <Check className="h-5 w-5 shrink-0 text-success" />
-                  <span className="text-text font-medium">{feat}</span>
+                  <Check className="h-5 w-5 shrink-0 text-[var(--color-success)]" />
+                  <span className="text-[var(--color-ink)] font-medium">{feat}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Read full case study CTA */}
+          {/* Visit live site CTA */}
           <div className="mt-12 text-center">
-            <Link
-              href="/portfolio/mike-t-detailing"
-              className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-8 py-3.5 font-semibold hover:bg-navy-light transition-colors"
+            <a
+              href="https://valueati.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] text-white px-8 py-3.5 font-semibold hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
             >
-              Read the Full Case Study <ArrowRight className="h-4 w-4" />
-            </Link>
+              See Valueati Live <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
         </div>
       </section>
@@ -202,15 +205,15 @@ export default function PortfolioPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-16 md:py-20 px-4">
+      <section className="bg-[var(--color-surface-muted)] py-16 md:py-20 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Want Results Like These?</h2>
-          <p className="mt-4 text-lg text-white/60">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-ink)]">Want Results Like These?</h2>
+          <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
             Let&apos;s talk about your project. Every engagement starts with a free consultation.
           </p>
           <Link
             href="/contact"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-8 py-3.5 font-semibold text-white hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
           >
             Book Your Free Strategy Call <ArrowRight className="h-4 w-4" />
           </Link>

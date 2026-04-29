@@ -3,8 +3,14 @@ jest.mock("@/lib/leads-db", () => ({
   markContacted: jest.fn(),
 }));
 
-jest.mock("@/lib/require-admin", () => ({
-  requireAdmin: jest.fn(async () => null),
+jest.mock("next-auth", () => ({
+  getServerSession: jest.fn(async () => ({
+    user: { id: "test-user", email: "abdul@spiffytec.com", role: "admin" },
+  })),
+}));
+
+jest.mock("@/lib/auth", () => ({
+  authOptions: {},
 }));
 
 import { GET, POST } from "@/app/api/admin/leads/route";

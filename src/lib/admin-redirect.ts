@@ -1,4 +1,4 @@
-const DEFAULT_ADMIN_REDIRECT = "/admin/leads";
+const DEFAULT_ADMIN_REDIRECT = "/admin";
 
 export function sanitizeAdminRedirect(redirect: string | null | undefined): string {
   if (!redirect || !redirect.startsWith("/")) {

@@ -18,7 +18,7 @@ import { cn } from "@/lib/cn";
 export const metadata: Metadata = {
   title: "Web Development, Booking Platforms & AI Tools",
   description:
-    "Custom websites, booking platforms, mobile apps, and AI tools for Raleigh-Durham service businesses. Live in 2-3 weeks, plans from $149/mo.",
+    "Custom websites, booking platforms, mobile apps, and AI tools — accessible to every business. Live in 2-3 weeks, plans from $99/mo, no upfront cost.",
 };
 
 interface Service {
@@ -166,7 +166,7 @@ export default function ServicesPage() {
               },
             ].map((item) => (
               <div key={item.title} className="rounded-3xl bg-white p-6 card-shadow">
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-light text-amber-dark">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-spiffy-orange-soft)] text-[var(--color-spiffy-orange-dark)]">
                   <item.icon className="h-6 w-6" />
                 </div>
                 <h2 className="mt-5 text-xl font-bold text-navy">{item.title}</h2>
@@ -201,10 +201,10 @@ export default function ServicesPage() {
                   )}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ice-muted text-navy">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-spiffy-orange-soft)] text-navy">
                       <service.icon className="h-6 w-6" />
                     </div>
-                    <p className="text-sm font-semibold uppercase tracking-wider text-amber-dark">
+                    <p className="text-sm font-semibold uppercase tracking-wider text-[var(--color-spiffy-orange-dark)]">
                       Starting at {service.price}
                     </p>
                   </div>
@@ -216,7 +216,7 @@ export default function ServicesPage() {
                   <p className="mt-4 leading-relaxed text-text-muted">{service.body}</p>
 
                   <div className="mt-6 rounded-2xl bg-surface-muted p-4">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-dark">
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-spiffy-orange-dark)]">
                       Best fit
                     </p>
                     <p className="mt-2 text-sm leading-relaxed text-text-muted">{service.fit}</p>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
 
                   <Link
                     href="/contact"
-                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-navy px-7 py-3 font-semibold text-white transition-colors hover:bg-navy-light"
+                    className="mt-8 inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-7 py-3 font-semibold text-white transition-colors hover:bg-[var(--color-spiffy-orange-dark)]"
                   >
                     Talk Through This Option <ArrowRight className="h-4 w-4" />
                   </Link>
@@ -232,18 +232,18 @@ export default function ServicesPage() {
 
                 <div
                   className={cn(
-                    "bg-gradient-to-br from-navy-dark via-navy to-navy-light p-8 md:p-10 text-white",
-                    index % 2 === 1 && "md:order-1"
+                    "bg-[var(--color-surface)] border-l border-[var(--color-border)] p-8 md:p-10",
+                    index % 2 === 1 && "md:order-1 md:border-l-0 md:border-r"
                   )}
                 >
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-spiffy-orange-dark)]">
                     Included
                   </p>
                   <ul className="mt-6 space-y-4">
                     {service.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-3">
-                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-amber" />
-                        <span className="leading-relaxed text-white/80">{feature}</span>
+                        <Check className="mt-0.5 h-5 w-5 shrink-0 text-[var(--color-spiffy-orange)]" />
+                        <span className="leading-relaxed text-[var(--color-ink)]">{feature}</span>
                       </li>
                     ))}
                   </ul>
@@ -271,11 +271,11 @@ export default function ServicesPage() {
                 id={service.id}
                 className="rounded-[2rem] bg-white p-7 card-shadow"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-amber-light text-amber-dark">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[var(--color-spiffy-orange-soft)] text-[var(--color-spiffy-orange-dark)]">
                   <service.icon className="h-6 w-6" />
                 </div>
 
-                <p className="mt-5 text-sm font-semibold uppercase tracking-wider text-amber-dark">
+                <p className="mt-5 text-sm font-semibold uppercase tracking-wider text-[var(--color-spiffy-orange-dark)]">
                   {service.price}
                 </p>
                 <h2 className="mt-2 text-2xl font-bold tracking-tight text-navy">
@@ -285,7 +285,7 @@ export default function ServicesPage() {
                 <p className="mt-3 text-sm leading-relaxed text-text-muted">{service.body}</p>
 
                 <div className="mt-5 rounded-2xl bg-surface-muted p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-amber-dark">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-spiffy-orange-dark)]">
                     Best fit
                   </p>
                   <p className="mt-2 text-sm leading-relaxed text-text-muted">{service.fit}</p>
@@ -305,18 +305,18 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <section className="bg-navy px-4 py-20 md:py-28">
+      <section className="bg-[var(--color-surface-muted)] px-4 py-20 md:py-28">
         <div className="mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl font-bold text-white md:text-4xl">
+          <h2 className="text-3xl font-bold text-[var(--color-ink)] md:text-4xl">
             Not sure which layer fits your business?
           </h2>
-          <p className="mt-4 text-lg text-white/65">
+          <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
             We&apos;ll look at where leads are slipping through right now and recommend the smallest
             system that fixes the real bottleneck.
           </p>
           <Link
             href="/contact"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark transition-colors hover:bg-amber-dark"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-8 py-3.5 font-semibold text-white transition-colors hover:bg-[var(--color-spiffy-orange-dark)]"
           >
             Book a Strategy Call <ArrowRight className="h-4 w-4" />
           </Link>

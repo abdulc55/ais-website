@@ -74,7 +74,7 @@ export default function HowItWorksPage() {
               >
                 {/* Number + Icon */}
                 <div className="shrink-0 flex flex-col items-center">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-navy text-white text-2xl font-bold shadow-lg">
+                  <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[var(--color-spiffy-orange)] text-white text-2xl font-bold shadow-lg">
                     {step.number}
                   </div>
                   {i < steps.length - 1 && (
@@ -121,22 +121,22 @@ export default function HowItWorksPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28 px-4">
+      <section className="bg-[var(--color-surface-muted)] py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Get Started?</h2>
-          <p className="mt-4 text-lg text-white/60">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-ink)]">Ready to Get Started?</h2>
+          <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
             Book a free 15-minute call. No commitment, no pressure.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-8 py-3.5 font-semibold text-white hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
             >
               Book Your Free Call <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-white/30 px-8 py-3.5 font-semibold text-white hover:bg-white/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-white border border-[var(--color-border-strong)] px-8 py-3.5 font-semibold text-[var(--color-ink)] hover:border-[var(--color-spiffy-orange)] hover:text-[var(--color-spiffy-orange)] transition-colors"
             >
               View Pricing
             </Link>

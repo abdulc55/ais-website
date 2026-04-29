@@ -240,22 +240,22 @@ export default function MikeTCaseStudyPage() {
             {PLATFORM_WALKTHROUGH.map((module) => (
               <div
                 key={module.title}
-                className="rounded-[2rem] bg-gradient-to-br from-navy-dark via-navy to-navy-light p-7 text-white card-shadow"
+                className="rounded-[2rem] bg-white border border-[var(--color-border)] p-7 card-shadow"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[var(--color-spiffy-orange)]">
                   Module
                 </p>
-                <h3 className="mt-4 text-2xl font-bold tracking-tight text-white">
+                <h3 className="mt-4 text-2xl font-bold tracking-tight text-[var(--color-ink)]">
                   {module.title}
                 </h3>
-                <p className="mt-4 leading-relaxed text-white/75">
+                <p className="mt-4 leading-relaxed text-[var(--color-ink-muted)]">
                   {module.body}
                 </p>
-                <div className="mt-8 rounded-2xl border border-white/10 bg-white/8 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/60">
+                <div className="mt-8 rounded-2xl border border-[var(--color-border)] bg-[var(--color-surface)] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--color-spiffy-orange-dark)]">
                     Why it matters
                   </p>
-                  <p className="mt-2 text-sm text-white/80">
+                  <p className="mt-2 text-sm text-[var(--color-ink-muted)]">
                     Each module removes a real piece of friction from booking, paying, communicating,
                     or coming back.
                   </p>
@@ -282,7 +282,7 @@ export default function MikeTCaseStudyPage() {
                 key={s.title}
                 className="rounded-2xl bg-white border border-gray-100 p-6 card-shadow"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-ice-muted text-navy">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-spiffy-orange-soft)] text-navy">
                   <s.icon className="h-6 w-6" />
                 </div>
                 <h3 className="mt-4 font-bold text-navy">{s.title}</h3>
@@ -317,15 +317,15 @@ export default function MikeTCaseStudyPage() {
       </section>
 
       {/* Build Proof */}
-      <section className="bg-navy py-20 px-4">
+      <section className="bg-[var(--color-surface-muted)] py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <p className="text-sm font-semibold uppercase tracking-wider text-amber">
+          <p className="text-sm font-semibold uppercase tracking-wider text-[var(--color-spiffy-orange-dark)]">
             What This Build Proves
           </p>
-          <h2 className="mt-2 text-3xl font-bold text-white md:text-4xl">
+          <h2 className="mt-2 text-3xl font-bold text-[var(--color-ink)] md:text-4xl">
             A local service business does not need “more marketing.”
           </h2>
-          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-white/70">
+          <p className="mt-4 max-w-3xl text-lg leading-relaxed text-[var(--color-ink-muted)]">
             It needs a sharper system. This project proves what happens when booking, payments,
             follow-up, and retention all live inside one coherent platform.
           </p>
@@ -334,10 +334,10 @@ export default function MikeTCaseStudyPage() {
             {BUILD_PROOF.map((item) => (
               <div
                 key={item.title}
-                className="rounded-3xl border border-white/10 bg-white/6 p-6 backdrop-blur-sm"
+                className="rounded-3xl border border-[var(--color-border)] bg-white p-6 card-shadow"
               >
-                <h3 className="text-xl font-bold text-white">{item.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{item.body}</p>
+                <h3 className="text-xl font-bold text-[var(--color-ink)]">{item.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[var(--color-ink-muted)]">{item.body}</p>
               </div>
             ))}
           </div>
@@ -371,25 +371,25 @@ export default function MikeTCaseStudyPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28 px-4">
+      <section className="bg-[var(--color-surface-muted)] py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-ink)]">
             Want a platform like this for your business?
           </h2>
-          <p className="mt-4 text-lg text-white/70">
+          <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
             Booking, payments, admin dashboard, and a mobile app — live in 2-3
             weeks from signed contract.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact?ref=mike-t-case-study"
-              className="inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-8 py-3.5 font-semibold text-white hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
             >
               Book a Strategy Call <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/pricing"
-              className="inline-flex items-center gap-2 rounded-full border-2 border-white/30 text-white px-8 py-3.5 font-semibold hover:bg-white/10 transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-white border border-[var(--color-border-strong)] text-[var(--color-ink)] px-8 py-3.5 font-semibold hover:border-[var(--color-spiffy-orange)] hover:text-[var(--color-spiffy-orange)] transition-colors"
             >
               See Pricing
             </Link>

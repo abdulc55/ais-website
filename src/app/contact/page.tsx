@@ -6,7 +6,7 @@ import { ContactForm } from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "Book a Free Web Strategy Call — Spiffy Tec (Raleigh, NC)",
   description:
-    "Book a free 30-minute strategy call with Spiffy Tec. We build websites, booking platforms, and AI tools for service businesses in the Raleigh-Durham Triangle.",
+    "Book a free 30-minute strategy call with Spiffy Tec. We build websites, booking platforms, and AI tools for any business ready to grow online.",
 };
 
 const contactInfo = [
@@ -66,7 +66,7 @@ export default function ContactPage() {
               <div className="mt-6 space-y-6">
                 {contactInfo.map((item) => (
                   <div key={item.label} className="flex items-start gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ice-muted text-navy">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[var(--color-spiffy-orange-soft)] text-navy">
                       <item.icon className="h-5 w-5" />
                     </div>
                     <div>
@@ -74,7 +74,7 @@ export default function ContactPage() {
                       {item.href ? (
                         <a
                           href={item.href}
-                          className="text-navy font-medium hover:text-amber-dark transition-colors"
+                          className="text-navy font-medium hover:text-[var(--color-spiffy-orange-dark)] transition-colors"
                         >
                           {item.value}
                         </a>
@@ -87,7 +87,7 @@ export default function ContactPage() {
               </div>
 
               {/* Response time note */}
-              <div className="mt-8 rounded-xl bg-amber-light p-4">
+              <div className="mt-8 rounded-xl bg-[var(--color-spiffy-orange-soft)] p-4">
                 <p className="text-sm font-medium text-navy">
                   We respond to every inquiry within 24 hours. Usually much sooner.
                 </p>

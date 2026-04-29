@@ -5,9 +5,9 @@ import { Hero } from "@/components/Hero";
 import { PricingCard } from "@/components/PricingCard";
 
 export const metadata: Metadata = {
-  title: "Custom Websites for Service Businesses from $149/mo",
+  title: "Custom Websites & Booking Platforms from $99/mo",
   description:
-    "Professional websites, booking platforms, and AI tools for service businesses. Plans from $149/mo. Domain, hosting, and SSL included. No surprise fees.",
+    "Professional websites, booking platforms, and AI tools for any business. Plans from $99/mo. Domain, hosting, and SSL included. No upfront cost. No surprise fees.",
 };
 
 const tiers = [
@@ -164,7 +164,7 @@ export default function PricingPage() {
             </ul>
             <Link
               href="/contact"
-              className="mt-6 block text-center rounded-full border-2 border-navy px-6 py-3 font-semibold text-navy hover:bg-navy hover:text-white transition-colors"
+              className="mt-6 block text-center rounded-full bg-white border border-[var(--color-border-strong)] px-6 py-3 font-semibold text-[var(--color-ink)] hover:border-[var(--color-spiffy-orange)] hover:text-[var(--color-spiffy-orange)] transition-colors"
             >
               Get Your Free Audit
             </Link>
@@ -218,9 +218,7 @@ export default function PricingPage() {
                     {values.map((val, i) => (
                       <td key={i} className="text-center py-3 px-4">
                         {val === true ? (
-                          <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-navy mx-auto">
-                            <Check className="h-3.5 w-3.5 text-white" />
-                          </span>
+                          <Check className="h-5 w-5 text-[var(--color-success)] mx-auto" />
                         ) : val === false ? (
                           <span className="text-border">—</span>
                         ) : (
@@ -250,7 +248,7 @@ export default function PricingPage() {
                 key={addon.name}
                 className="rounded-2xl bg-white border border-gray-100 p-6 text-center card-shadow"
               >
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-ice-muted text-navy">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[var(--color-spiffy-orange-soft)] text-navy">
                   <addon.icon className="h-6 w-6" />
                 </div>
                 <h3 className="font-bold text-navy">{addon.name}</h3>
@@ -289,15 +287,15 @@ export default function PricingPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28 px-4">
+      <section className="bg-[var(--color-surface-muted)] py-20 md:py-28 px-4">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-white">Ready to Get Started?</h2>
-          <p className="mt-4 text-lg text-white/60">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-ink)]">Ready to Get Started?</h2>
+          <p className="mt-4 text-lg text-[var(--color-ink-muted)]">
             First month gets you live. Domain, email, and support every month after.
           </p>
           <Link
             href="/contact"
-            className="mt-10 inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
+            className="mt-10 inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-8 py-3.5 font-semibold text-white hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
           >
             Book Your Free Audit <ArrowRight className="h-4 w-4" />
           </Link>

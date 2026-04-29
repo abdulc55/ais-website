@@ -1,99 +1,95 @@
 /**
- * Tests for POST /api/admin/auth
- * Tests login flow, rate limiting, and token generation.
+ * Tests for the proxy.ts rate limiter on POST /api/auth/callback/credentials.
+ * Replaces the previous shared-password test from before the NextAuth migration.
  */
-import { POST, generateAdminToken } from "@/app/api/admin/auth/route";
+import { NextRequest } from "next/server";
+import { proxy, _resetLoginRateLimit } from "@/proxy";
 
-function makeRequest(body: Record<string, unknown>, ip = "127.0.0.1"): Request {
-  return new Request("http://localhost:3001/api/admin/auth", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "x-forwarded-for": ip,
-    },
-    body: JSON.stringify(body),
+function makeCredentialsRequest(ip = "127.0.0.1"): NextRequest {
+  const headers = new Headers({
+    "x-forwarded-for": ip,
+    "Content-Type": "application/x-www-form-urlencoded",
   });
+  return new NextRequest(
+    new Request("http://localhost:3001/api/auth/callback/credentials", {
+      method: "POST",
+      headers,
+      body: "csrfToken=fake&email=test@example.com&password=wrong",
+    })
+  );
 }
 
-describe("generateAdminToken()", () => {
-  it("returns an expiring token with a signed suffix", () => {
-    const token = generateAdminToken("test-password", 1_700_000_000_000);
-    expect(token).toMatch(/^\d+\.[a-f0-9]{64}$/);
-  });
-
-  it("generates consistent tokens for same input", () => {
-    const now = 1_700_000_000_000;
-    const token1 = generateAdminToken("test-password", now);
-    const token2 = generateAdminToken("test-password", now);
-    expect(token1).toBe(token2);
-  });
-
-  it("generates different tokens for different passwords", () => {
-    const now = 1_700_000_000_000;
-    const token1 = generateAdminToken("password-a", now);
-    const token2 = generateAdminToken("password-b", now);
-    expect(token1).not.toBe(token2);
-  });
-});
-
-describe("POST /api/admin/auth", () => {
+describe("proxy: credentials sign-in rate limiter", () => {
   const originalEnv = process.env;
 
   beforeEach(() => {
-    process.env = { ...originalEnv, ADMIN_PASSWORD: "test-admin-pass" };
+    process.env = { ...originalEnv, NEXTAUTH_SECRET: "test-secret" };
+    _resetLoginRateLimit();
   });
 
   afterAll(() => {
     process.env = originalEnv;
   });
 
-  it("returns 200 with correct password", async () => {
-    const res = await POST(makeRequest({ password: "test-admin-pass" }, "10.0.0.1"));
-    expect(res.status).toBe(200);
-    const data = await res.json();
-    expect(data).toEqual({ success: true });
-  });
-
-  it("sets httpOnly cookie on success", async () => {
-    const res = await POST(makeRequest({ password: "test-admin-pass" }, "10.0.0.2"));
-    const setCookie = res.headers.get("set-cookie");
-    expect(setCookie).toContain("spiffy-admin-token=");
-    expect(setCookie).toContain("HttpOnly");
-    expect(setCookie?.toLowerCase()).toContain("samesite=strict");
-  });
-
-  it("returns 401 with wrong password", async () => {
-    const res = await POST(makeRequest({ password: "wrong-password" }, "10.0.0.3"));
-    expect(res.status).toBe(401);
-    const data = await res.json();
-    expect(data.error).toBe("Invalid password");
-  });
-
-  it("returns 400 when password is missing", async () => {
-    const res = await POST(makeRequest({}, "10.0.0.4"));
-    expect(res.status).toBe(400);
-  });
-
-  it("returns 500 when ADMIN_PASSWORD is not set", async () => {
-    delete process.env.ADMIN_PASSWORD;
-    const res = await POST(makeRequest({ password: "anything" }, "10.0.0.5"));
-    expect(res.status).toBe(500);
-    const data = await res.json();
-    expect(data.error).toBe("Admin access not configured");
-  });
-
-  it("returns 429 after too many attempts from same IP", async () => {
-    const testIp = "10.99.99.99";
-    // Exhaust the rate limit (5 attempts)
+  it("allows the first 5 attempts from an IP", async () => {
+    const ip = "10.0.0.1";
     for (let i = 0; i < 5; i++) {
-      await POST(makeRequest({ password: "wrong" }, testIp));
+      const res = await proxy(makeCredentialsRequest(ip));
+      expect(res.status).not.toBe(429);
     }
+  });
 
-    // 6th attempt should be rate limited
-    const res = await POST(makeRequest({ password: "wrong" }, testIp));
+  it("returns 429 on the 6th attempt within the window", async () => {
+    const ip = "10.0.0.2";
+    for (let i = 0; i < 5; i++) {
+      await proxy(makeCredentialsRequest(ip));
+    }
+    const res = await proxy(makeCredentialsRequest(ip));
     expect(res.status).toBe(429);
     const data = await res.json();
     expect(data.error).toContain("Too many login attempts");
-    expect(res.headers.get("Retry-After")).toBeDefined();
+    expect(res.headers.get("Retry-After")).toBeTruthy();
+  });
+
+  it("isolates throttle counters across IPs", async () => {
+    const blockedIp = "10.0.0.3";
+    for (let i = 0; i < 5; i++) {
+      await proxy(makeCredentialsRequest(blockedIp));
+    }
+    const blocked = await proxy(makeCredentialsRequest(blockedIp));
+    expect(blocked.status).toBe(429);
+
+    const freshIp = "10.0.0.4";
+    const allowed = await proxy(makeCredentialsRequest(freshIp));
+    expect(allowed.status).not.toBe(429);
+  });
+
+  it("does not throttle GET requests to the callback path", async () => {
+    const headers = new Headers({ "x-forwarded-for": "10.0.0.5" });
+    const getReq = new NextRequest(
+      new Request("http://localhost:3001/api/auth/callback/credentials", {
+        method: "GET",
+        headers,
+      })
+    );
+    for (let i = 0; i < 10; i++) {
+      const res = await proxy(getReq);
+      expect(res.status).not.toBe(429);
+    }
+  });
+
+  it("does not throttle non-credential auth callbacks", async () => {
+    const headers = new Headers({ "x-forwarded-for": "10.0.0.6" });
+    const googleReq = new NextRequest(
+      new Request("http://localhost:3001/api/auth/callback/google", {
+        method: "POST",
+        headers,
+        body: "",
+      })
+    );
+    for (let i = 0; i < 10; i++) {
+      const res = await proxy(googleReq);
+      expect(res.status).not.toBe(429);
+    }
   });
 });

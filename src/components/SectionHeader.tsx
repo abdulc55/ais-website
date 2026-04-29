@@ -20,7 +20,7 @@ export function SectionHeader({
         <span key={i}>
           {part}
           {i < arr.length - 1 && (
-            <span className="text-amber-dark">{highlight}</span>
+            <span className="text-[var(--color-spiffy-orange-dark)]">{highlight}</span>
           )}
         </span>
       ))
@@ -29,7 +29,7 @@ export function SectionHeader({
   return (
     <div className={cn(centered && "text-center")}>
       {badge && (
-        <span className="inline-block bg-amber-light text-amber-dark text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
+        <span className="inline-block bg-[var(--color-spiffy-orange-soft)] text-[var(--color-spiffy-orange-dark)] text-xs font-semibold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
           {badge}
         </span>
       )}

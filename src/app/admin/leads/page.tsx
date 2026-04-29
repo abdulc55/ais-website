@@ -422,7 +422,7 @@ export default function LeadsDashboard() {
                             "w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition",
                             searching
                               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                              : "cta-gradient text-white hover:opacity-90"
+                              : "bg-[var(--color-spiffy-orange)] text-white hover:bg-[var(--color-spiffy-orange-dark)]"
                           )}
                         >
                           {searching ? (
@@ -502,7 +502,7 @@ export default function LeadsDashboard() {
                             "flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition h-[46px]",
                             analyzing
                               ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                              : "cta-gradient text-white hover:opacity-90"
+                              : "bg-[var(--color-spiffy-orange)] text-white hover:bg-[var(--color-spiffy-orange-dark)]"
                           )}
                         >
                           {analyzing ? (

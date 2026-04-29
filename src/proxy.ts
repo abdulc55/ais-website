@@ -1,97 +1,93 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
-import { buildAdminSessionPayload, parseAdminToken } from "@/lib/admin-session";
+import { getToken } from "next-auth/jwt";
 
-/** Convert a hex string to Uint8Array */
-function hexToBytes(hex: string): Uint8Array {
-  const bytes = new Uint8Array(hex.length / 2);
-  for (let i = 0; i < hex.length; i += 2) {
-    bytes[i / 2] = parseInt(hex.substring(i, i + 2), 16);
-  }
-  return bytes;
+// ─── Rate Limiter (In-Memory) ───────────────────────────────────────────────
+// Resets on every cold start. Acceptable for launch — migrate to Upstash if
+// brute-force becomes a real signal in logs.
+
+interface RateLimitEntry {
+  count: number;
+  resetAt: number;
 }
 
-/** Convert ArrayBuffer to hex string */
-function bytesToHex(buffer: ArrayBuffer): string {
-  return Array.from(new Uint8Array(buffer))
-    .map((b) => b.toString(16).padStart(2, "0"))
-    .join("");
-}
+const loginAttempts = new Map<string, RateLimitEntry>();
+const MAX_ATTEMPTS = 5;
+const WINDOW_MS = 15 * 60 * 1000;
 
-/** Constant-time comparison of two hex strings */
-function timingSafeEqual(a: string, b: string): boolean {
-  if (a.length !== b.length) return false;
-  const aBytes = hexToBytes(a);
-  const bBytes = hexToBytes(b);
-  let result = 0;
-  for (let i = 0; i < aBytes.length; i++) {
-    result |= aBytes[i] ^ bBytes[i];
-  }
-  return result === 0;
-}
-
-/** Regenerate the expected token to compare against the cookie. Must match generateAdminToken in auth route. */
-async function verifyAdminToken(cookieToken: string, adminPassword: string): Promise<boolean> {
-  const parsedToken = parseAdminToken(cookieToken);
-  if (!parsedToken || Date.now() > parsedToken.expiresAt) {
-    return false;
-  }
-
-  const encoder = new TextEncoder();
-  const key = await crypto.subtle.importKey(
-    "raw",
-    encoder.encode(adminPassword),
-    { name: "HMAC", hash: "SHA-256" },
-    false,
-    ["sign"]
+function getClientIp(request: NextRequest): string {
+  return (
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
   );
-  const signature = await crypto.subtle.sign(
-    "HMAC",
-    key,
-    encoder.encode(buildAdminSessionPayload(parsedToken.expiresAt))
-  );
-  const expectedSignature = bytesToHex(signature);
-  return timingSafeEqual(parsedToken.signature, expectedSignature);
 }
+
+function checkRateLimit(ip: string): number {
+  const now = Date.now();
+  const entry = loginAttempts.get(ip);
+
+  if (!entry || now > entry.resetAt) {
+    loginAttempts.set(ip, { count: 1, resetAt: now + WINDOW_MS });
+    return 0;
+  }
+
+  if (entry.count >= MAX_ATTEMPTS) {
+    return entry.resetAt - now;
+  }
+
+  entry.count++;
+  return 0;
+}
+
+// Test-only escape hatch so the regression test can isolate per-IP state.
+export function _resetLoginRateLimit(): void {
+  loginAttempts.clear();
+}
+
+// ─── Proxy ──────────────────────────────────────────────────────────────────
 
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+
+  // Throttle credential sign-in attempts at the edge. NextAuth's callback POST
+  // is the chokepoint; any successful or failed attempt flows through it.
+  if (
+    request.method === "POST" &&
+    pathname === "/api/auth/callback/credentials"
+  ) {
+    const ip = getClientIp(request);
+    const retryAfterMs = checkRateLimit(ip);
+    if (retryAfterMs > 0) {
+      const retryAfterSeconds = Math.ceil(retryAfterMs / 1000);
+      return NextResponse.json(
+        { error: "Too many login attempts. Please try again later." },
+        {
+          status: 429,
+          headers: { "Retry-After": String(retryAfterSeconds) },
+        }
+      );
+    }
+  }
+
   const isAdminPage =
     pathname.startsWith("/admin") &&
     !pathname.startsWith("/admin/login");
-  const isAdminApi =
-    pathname.startsWith("/api/admin") &&
-    !pathname.startsWith("/api/admin/auth");
+  const isAdminApi = pathname.startsWith("/api/admin");
+  const isPortalApi =
+    pathname.startsWith("/api/submissions") ||
+    pathname.startsWith("/api/demos");
 
-  if (isAdminPage || isAdminApi) {
-    const token = request.cookies.get("spiffy-admin-token")?.value;
-    const adminPassword = process.env.ADMIN_PASSWORD;
+  if (isAdminPage || isAdminApi || isPortalApi) {
+    const token = await getToken({
+      req: request,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
 
-    if (!adminPassword || !token) {
-      if (isAdminApi) {
+    if (!token) {
+      if (isAdminApi || isPortalApi) {
         return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
       }
-
-      const loginUrl = new URL("/admin/login", request.url);
-      loginUrl.searchParams.set("redirect", pathname);
-      return NextResponse.redirect(loginUrl);
-    }
-
-    try {
-      if (!(await verifyAdminToken(token, adminPassword))) {
-        if (isAdminApi) {
-          return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-        }
-
-        const loginUrl = new URL("/admin/login", request.url);
-        loginUrl.searchParams.set("redirect", pathname);
-        return NextResponse.redirect(loginUrl);
-      }
-    } catch {
-      if (isAdminApi) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-      }
-
       const loginUrl = new URL("/admin/login", request.url);
       loginUrl.searchParams.set("redirect", pathname);
       return NextResponse.redirect(loginUrl);
@@ -102,5 +98,11 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*", "/api/admin/:path*"],
+  matcher: [
+    "/admin/:path*",
+    "/api/admin/:path*",
+    "/api/submissions/:path*",
+    "/api/demos/:path*",
+    "/api/auth/callback/:path*",
+  ],
 };

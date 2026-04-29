@@ -1,33 +1,45 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Inter, Bowlby_One } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/Navbar";
-import { Footer } from "@/components/Footer";
+import Providers from "@/components/Providers";
+import { SiteChrome } from "@/components/SiteChrome";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-inter",
+});
+
+// Brand wordmark font — close visual match to "Cosmic Octo" until we self-host
+// the actual licensed font file. Drop a .woff2 at public/fonts/cosmic-octo.woff2
+// and override --font-cosmic-octo in globals.css to use the real one.
+const brandFont = Bowlby_One({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-cosmic-octo",
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Web Design for Service Businesses in Raleigh-Durham | Spiffy Tec",
-    template: "%s | Spiffy Tec — Raleigh-Durham Web Development",
+    default: "Spiffy Tec — A real website shouldn't be a luxury",
+    template: "%s | Spiffy Tec",
   },
   description:
-    "Spiffy Tec builds websites, booking platforms, and AI tools for service businesses in Raleigh, Cary, and Durham. Plans from $149/mo, live in 2 weeks.",
+    "Spiffy Tec builds custom-coded websites, booking platforms, and AI tools — accessible to every business, not just the ones with a $20K budget. Live in 2-3 weeks. Plans from $99/mo, no upfront cost.",
   keywords: [
-    "web development",
-    "SaaS agency",
-    "Cary NC",
-    "Triangle area",
-    "custom websites",
-    "mobile apps",
-    "Next.js",
-    "React",
-    "software development",
+    "affordable web design",
+    "small business website",
+    "custom website",
+    "booking platform",
+    "Cary NC web design",
+    "Raleigh web design",
+    "Durham web design",
+    "Triangle web development",
+    "Next.js agency",
+    "monthly website pricing",
   ],
-  authors: [{ name: "Spiffy Tec" }],
+  authors: [{ name: "Abdul Shakur Caesar" }],
   creator: "Spiffy Tec",
   metadataBase: new URL("https://spiffytec.com"),
   openGraph: {
@@ -35,25 +47,17 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://spiffytec.com",
     siteName: "Spiffy Tec",
-    title: "Spiffy Tec — Web Development & SaaS Agency | Cary, NC",
+    title: "Spiffy Tec — A real website shouldn't be a luxury",
     description:
-      "Custom websites, SaaS platforms, and mobile apps for businesses in the Triangle area and beyond.",
-    images: [
-      {
-        url: "/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Spiffy Tec",
-      },
-    ],
+      "Custom-built websites, booking systems, and AI tools — accessible to every business. Live in 2-3 weeks, no upfront cost, plans from $99/mo.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Spiffy Tec — Web Development & SaaS Agency | Cary, NC",
+    title: "Spiffy Tec — A real website shouldn't be a luxury",
     description:
-      "Custom websites, SaaS platforms, and mobile apps for businesses in the Triangle area and beyond.",
-    images: ["/og-image.png"],
+      "Custom-built websites, booking systems, and AI tools — live in 2-3 weeks, no upfront cost.",
   },
+  themeColor: "#FF751F",
   robots: {
     index: true,
     follow: true,
@@ -73,7 +77,7 @@ const jsonLd = {
   name: "Spiffy Tec",
   alternateName: "Spiffy Tec",
   description:
-    "Web development and SaaS agency specializing in custom websites, SaaS platforms, and mobile apps.",
+    "Spiffy Tec builds custom-coded websites, booking platforms, and AI tools accessible to every business — live in 2-3 weeks, no upfront cost, plans from $99/mo.",
   url: "https://spiffytec.com",
   telephone: "(984) 215-1498",
   email: "abdul@spiffytec.com",
@@ -100,9 +104,9 @@ const jsonLd = {
     geoRadius: "50000",
   },
   sameAs: [
-    "https://github.com/spiffytec",
+    "https://instagram.com/spiffytec",
+    "https://github.com/abdulc55",
     "https://linkedin.com/company/spiffytec",
-    "https://x.com/spiffytec",
   ],
   serviceType: [
     "Web Development",
@@ -118,7 +122,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.className} h-full antialiased`}>
+    <html lang="en" className={`${inter.variable} ${brandFont.variable} ${inter.className} h-full antialiased`}>
       <head>
         <script
           type="application/ld+json"
@@ -126,9 +130,9 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <Providers>
+          <SiteChrome>{children}</SiteChrome>
+        </Providers>
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ import { Hero } from "@/components/Hero";
 export const metadata: Metadata = {
   title: "Free Revenue Leak Audit — Find Out Where You're Losing Customers",
   description:
-    "15-minute audit for service businesses. We'll show you exactly where your online presence is costing you leads, bookings, and revenue — and how to fix it.",
+    "15-minute audit for any business. We'll show you exactly where your online presence is costing you leads, bookings, and revenue — and how to fix it.",
 };
 
 const auditAreas = [
@@ -85,7 +85,7 @@ const auditAreas = [
 const cardStyle = {
   border: "border-gray-200",
   bg: "bg-white",
-  icon: "text-amber-dark bg-amber-light",
+  icon: "text-[var(--color-spiffy-orange-dark)] bg-[var(--color-spiffy-orange-soft)]",
 };
 
 export default function AuditPage() {
@@ -94,7 +94,7 @@ export default function AuditPage() {
       <Hero
         title="Where is your business leaking revenue?"
         highlight="leaking revenue"
-        subtitle="Most service businesses lose leads, bookings, and repeat customers because of gaps they can't see. Our free 15-minute audit shows you exactly what's costing you — and how to fix it."
+        subtitle="Most businesses lose leads, bookings, and repeat customers because of gaps they can't see. Our free 15-minute audit shows you exactly what's costing you — and how to fix it."
         primaryCta={{ label: "Book Your Free Audit", href: "/contact" }}
       />
 
@@ -161,7 +161,7 @@ export default function AuditPage() {
               },
             ].map((item) => (
               <div key={item.step} className="flex gap-5">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-navy flex items-center justify-center text-white font-bold text-lg">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[var(--color-spiffy-orange)] flex items-center justify-center text-white font-bold text-lg">
                   {item.step}
                 </div>
                 <div>
@@ -178,7 +178,7 @@ export default function AuditPage() {
       <section className="bg-surface py-20 md:py-28 px-4">
         <div className="max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-navy text-center mb-4">
-            Built for service businesses like yours
+            Built for any business with customers online
           </h2>
           <p className="text-center text-gray-500 max-w-2xl mx-auto mb-14">
             The audit works for any business that gets customers through its website — or should be.
@@ -206,25 +206,25 @@ export default function AuditPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-navy py-20 md:py-28 px-4">
+      <section className="bg-[var(--color-surface-muted)] py-20 md:py-28 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <Clock className="h-10 w-10 text-amber mx-auto mb-4" />
-          <h2 className="text-3xl md:text-4xl font-bold text-white">
+          <Clock className="h-10 w-10 text-[var(--color-spiffy-orange)] mx-auto mb-4" />
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--color-ink)]">
             15 minutes. Zero obligation.
           </h2>
-          <p className="mt-4 text-lg text-white/60 max-w-2xl mx-auto">
+          <p className="mt-4 text-lg text-[var(--color-ink-muted)] max-w-2xl mx-auto">
             We&apos;ll show you where your business is losing leads online — and give you an action plan to fix it. Whether you hire us or not.
           </p>
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-amber px-8 py-3.5 font-semibold text-navy-dark hover:bg-amber-dark transition-colors"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-spiffy-orange)] px-8 py-3.5 font-semibold text-white hover:bg-[var(--color-spiffy-orange-dark)] transition-colors"
             >
               Book Your Free Audit <ArrowRight className="h-4 w-4" />
             </Link>
             <a
               href="tel:+19842151498"
-              className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors font-medium"
+              className="inline-flex items-center gap-2 text-[var(--color-ink-muted)] hover:text-[var(--color-spiffy-orange)] transition-colors font-medium"
             >
               <Phone className="h-4 w-4" />
               (984) 215-1498

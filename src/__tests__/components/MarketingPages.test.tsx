@@ -4,10 +4,6 @@ import ServicesPage from "@/app/services/page";
 import PortfolioPage from "@/app/portfolio/page";
 import MikeTCaseStudyPage from "@/app/portfolio/mike-t-detailing/page";
 
-jest.mock("@/components/HeroBackground", () => ({
-  HeroBackground: () => null,
-}));
-
 describe("marketing pages", () => {
   it("renders the repositioned homepage with audit-led messaging", () => {
     render(<Home />);
@@ -34,14 +30,14 @@ describe("marketing pages", () => {
     expect(screen.getByText("Platform Add-Ons")).toBeInTheDocument();
   });
 
-  it("replaces the portfolio screenshot placeholder with a project snapshot", () => {
+  it("features the live Valueati build with a snapshot panel and external link", () => {
     render(<PortfolioPage />);
 
     expect(screen.getByText("Platform Snapshot")).toBeInTheDocument();
     expect(screen.queryByText(/Project Screenshot/i)).not.toBeInTheDocument();
     expect(
-      screen.getAllByRole("link", { name: /Read the Full Case Study/i })[0]
-    ).toHaveAttribute("href", "/portfolio/mike-t-detailing");
+      screen.getAllByRole("link", { name: /See Valueati Live/i })[0]
+    ).toHaveAttribute("href", "https://valueati.com");
   });
 
   it("replaces case-study placeholders with walkthrough and proof content", () => {

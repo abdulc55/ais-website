@@ -1,52 +1,43 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Brand colors — from logo */
-  --color-navy: #263353;
-  --color-navy-light: #344568;
-  --color-navy-dark: #1A2540;
-  --color-ice: #add8eb;
-  --color-ice-muted: #D6EBF3;
+  /* Brand — Spiffy Tec orange */
+  --color-spiffy-orange: #FF751F;
+  --color-spiffy-orange-dark: #D85F12;
+  --color-spiffy-orange-soft: #FFF1E5;
 
-  /* Warm accent */
-  --color-amber: #E8B86D;
-  --color-amber-dark: #C4932E;
-  --color-amber-light: #FBF0DD;
-
-  /* Surfaces — warm, not sterile */
-  --color-surface: #F9F8F6;
-  --color-surface-muted: #F0EEEB;
-  --color-surface-alt: #EFECEA;
+  /* Surfaces (warm off-white system) */
+  --color-canvas: #FFFFFF;
+  --color-surface: #FAF7F2;
+  --color-surface-muted: #F5F1EA;
 
   /* Text */
-  --color-text: #1E2A3A;
-  --color-text-muted: #5A6878;
+  --color-ink: #1A1A1A;
+  --color-ink-muted: #5A6878;
 
   /* Borders */
-  --color-border: #E2DFD9;
+  --color-border: #EAE4DA;
+  --color-border-strong: #D8CFBF;
 
-  /* Status */
+  /* Status (multi-color — these convey meaning) */
   --color-success: #2D8659;
   --color-error: #C75450;
 
-  /* Legacy primary aliases — mapped to navy/ice for components */
-  --color-primary-50: #EDF4F7;
-  --color-primary-100: #D6EBF3;
-  --color-primary-200: #add8eb;
-  --color-primary-300: #8DC5DC;
-  --color-primary-400: #6BB2CD;
-  --color-primary-500: #4A9FBE;
-  --color-primary-600: #263353;
-  --color-primary-700: #1F2B47;
-  --color-primary-800: #1A2540;
-  --color-primary-900: #151E35;
-  --color-primary-950: #10172A;
+  /* Legacy aliases — kept so existing components compile while we migrate */
+  --color-navy: var(--color-ink);
+  --color-navy-light: var(--color-ink);
+  --color-text: var(--color-ink);
+  --color-text-muted: var(--color-ink-muted);
+  --color-amber: var(--color-spiffy-orange);
+  --color-amber-dark: var(--color-spiffy-orange-dark);
+  --color-amber-light: var(--color-spiffy-orange-soft);
 
-  --color-cyan-400: #add8eb;
-  --color-cyan-500: #8DC5DC;
-  --color-cyan-600: #6BB2CD;
+  --color-primary-50: var(--color-spiffy-orange-soft);
+  --color-primary-500: var(--color-spiffy-orange);
+  --color-primary-600: var(--color-spiffy-orange-dark);
 
   --font-sans: var(--font-inter);
+  --font-brand: var(--font-cosmic-octo, "Bowlby One"), system-ui, sans-serif;
 
   --animate-fade-up: fade-up 0.6s ease-out both;
   --animate-fade-in: fade-in 0.5s ease-out both;
@@ -68,52 +59,73 @@
   to { opacity: 1; }
 }
 
-/* Base styles */
+/* Base */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 80px;
 }
 
 body {
-  background: #F9F8F6;
-  color: #1E2A3A;
+  background: #FFFFFF;
+  color: #1A1A1A;
   font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
 }
 
-/* Scrollbar */
+/* Scrollbar — restrained */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #F0EEEB; }
-::-webkit-scrollbar-thumb { background: #C4C0B9; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #9A958E; }
+::-webkit-scrollbar-track { background: #F5F1EA; }
+::-webkit-scrollbar-thumb { background: #D8CFBF; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #FF751F; }
 
-/* Utility classes */
+/* Card shadow — neutral, calm. Not orange-tinted. */
+.card-shadow {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  border: 1px solid #EAE4DA;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
+}
+
+.card-shadow:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Gradient text — only used on the home hero highlight word */
 .gradient-text {
-  background: linear-gradient(135deg, #263353, #add8eb);
+  background: linear-gradient(135deg, #FF751F, #FFAB80);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-.cta-gradient {
-  background: #263353;
+/* Brand wordmark — chunky orange "Spiffy Tec™" used for the brand name */
+.brand-text {
+  font-family: var(--font-brand);
+  color: #FF751F;
+  letter-spacing: 0.02em;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 0.05em;
 }
 
-.cta-gradient:hover {
-  background: #344568;
+.brand-text::after {
+  content: "TM";
+  font-family: var(--font-brand);
+  font-size: 0.45em;
+  font-weight: 400;
+  vertical-align: super;
+  line-height: 1;
+  margin-top: 0.15em;
+  letter-spacing: 0.05em;
 }
 
-.card-shadow {
-  box-shadow: 0 4px 6px -1px rgba(38,51,83,0.06), 0 2px 4px -2px rgba(38,51,83,0.04);
-  border: 1px solid #E2DFD9;
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
+/* Focus rings — soft orange glow that respects each element's own border-radius */
+:where(button, a, select):focus-visible {
+  outline: 2px solid #FF751F;
+  outline-offset: 2px;
 }
 
-.card-shadow:hover {
-  box-shadow: 0 20px 25px -5px rgba(38,51,83,0.08), 0 8px 10px -6px rgba(38,51,83,0.04);
-  transform: translateY(-2px);
-}
-
-.section-divider {
-  height: 1px;
-  background: linear-gradient(90deg, transparent, #E2DFD9, transparent);
+:where(input, textarea):focus-visible {
+  outline: none;
+  border-color: #FF751F;
+  box-shadow: 0 0 0 3px rgba(255, 117, 31, 0.18);
 }

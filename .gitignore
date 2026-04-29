@@ -41,3 +41,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prisma — local dev DB and generated client
+/prisma/dev.db
+/prisma/dev.db-journal
+/prisma/dev.db.pre-merge.bak
+/src/generated
+
+# site generator output (built per-client at runtime)
+/generated-sites
+

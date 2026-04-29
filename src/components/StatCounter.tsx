@@ -31,12 +31,12 @@ export function StatCounter({ value, prefix, suffix, label }: StatCounterProps) 
 
   return (
     <div ref={ref} className="text-center">
-      <p className="text-4xl md:text-5xl font-bold text-white">
+      <p className="text-4xl md:text-5xl font-bold text-[var(--color-spiffy-orange)]">
         {prefix && <span>{prefix}</span>}
         {display}
         {suffix && <span>{suffix}</span>}
       </p>
-      <p className="mt-2 text-white/70 text-sm font-medium">{label}</p>
+      <p className="mt-2 text-[var(--color-ink-muted)] text-sm font-medium">{label}</p>
     </div>
   );
 }
