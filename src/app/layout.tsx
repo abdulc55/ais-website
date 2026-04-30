@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Bowlby_One } from "next/font/google";
 import "./globals.css";
 import Providers from "@/components/Providers";
@@ -57,7 +57,6 @@ export const metadata: Metadata = {
     description:
       "Custom-built websites, booking systems, and AI tools — live in 2-3 weeks, no upfront cost.",
   },
-  themeColor: "#FF751F",
   robots: {
     index: true,
     follow: true,
@@ -69,6 +68,10 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#FF751F",
 };
 
 const jsonLd = {

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { Inbox, FileText, Globe, Clock } from "lucide-react";
 import prisma from "@/lib/prisma";
 import StatCard from "@/components/ui/StatCard";
